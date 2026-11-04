@@ -1,2 +1,2 @@
-# Atlas_Geopol-tico
+# Atlas_Geopolítico
 Atlas geopolíticos dos conflitos mundiais
