@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Israel x Hamas</title>
+
+  <style>
+    :root {
+      --cor-fundo:    #eef3f7;
+      --cor-texto:    #16202b;
+      --cor-suave:    #5b6b7a;
+      --cor-cartao:   #ffffff;
+      --cor-destaque: #1f7a8c;
+      --cor-borda:    #d6e0e8;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: var(--cor-fundo);
+      color: var(--cor-texto);
+      line-height: 1.6;
+    }
+
+    .pagina {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    .voltar {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--cor-suave);
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .voltar:hover { color: var(--cor-destaque); }
+
+    header h1 { font-size: 32px; margin: 0 0 6px; }
+    header p.intro { color: var(--cor-suave); margin: 0 0 28px; }
+
+    .botoes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .botoes button {
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: bold;
+      padding: 11px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      background: var(--cor-cartao);
+      color: var(--cor-texto);
+      border: 2px solid var(--cor-borda);
+    }
+
+    .botoes button:hover { border-color: var(--cor-destaque); }
+
+    .botoes button.ativo {
+      background: var(--cor-destaque);
+      color: #fff;
+      border-color: var(--cor-destaque);
+    }
+
+    .conteudo { display: none; }
+    .conteudo.aberto { display: block; }
+
+    .cartao-conteudo {
+      background: var(--cor-cartao);
+      border: 1px solid var(--cor-borda);
+      border-radius: 18px;
+      padding: 26px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.06);
+    }
+
+    .cartao-conteudo h2 {
+      margin: 0 0 14px;
+      font-size: 24px;
+      color: var(--cor-destaque);
+    }
+
+    .cartao-conteudo p { margin: 0 0 14px; }
+
+    .foto { margin: 0 0 18px; }
+
+    .foto img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+      background: #dfe8ef;
+    }
+
+    .foto figcaption {
+      font-size: 13px;
+      color: var(--cor-suave);
+      margin-top: 8px;
+      text-align: center;
+    }
+
+    /* ---- VÍDEO ---- */
+    .video-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 20px auto;
+      aspect-ratio: 16 / 9;
+    }
+
+    .video-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 500px) {
+      header h1 { font-size: 26px; }
+      .cartao-conteudo { padding: 20px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="pagina">
+
+    <!-- Volta para o carrossel -->
+    <a class="voltar" href="index.html">← Voltar aos temas</a>
+
+    <header>
+      <!-- 👉 TROQUE o título e a introdução do seu tema -->
+      <h1>Grupo 2: ISRAEL X HAMAS(Faixa de Gaza)</h1>
+      <p class="intro">Clique em um ícone para ver o conteúdo.</p>
+    </header>
+
+    <!-- =========================================================
+         OS 5 BOTÕES
+         Cada botão chama abrir('idDoConteudo').
+         👉 TROQUE o texto dos botões pelo nome dos seus 5 assuntos.
+    ========================================================== -->
+    <div class="botoes">
+      <button class="ativo" onclick="abrir('norte', this)">Localização</button>
+      <button onclick="abrir('nordeste', this)">Surgimento</button>
+      <button onclick="abrir('centrooeste', this)">Participantes</button>
+      <button onclick="abrir('sudeste', this)">Interesses</button>
+      <button onclick="abrir('sul', this)">Impactos</button>
+    </div>
+    
+    
+
+    <!-- =========================================================
+         OS 5 CONTEÚDOS
+         Cada bloco tem um id (ex.: id="norte") igual ao do botão.
+         O primeiro já está com a classe "aberto" para aparecer logo.
+
+         👉 PARA EDITAR: troque o <h2>, os <p> e a imagem de cada bloco.
+         👉 IMAGEM: crie uma pasta chamada "imagens" ao lado deste arquivo
+            e coloque suas fotos lá. Depois escreva o nome no src, por ex.:
+            <img src="imagens/norte.jpg" ...>
+            Enquanto não tiver imagem, aparece um espaço cinza no lugar.
+    ========================================================== -->
+
+<div class="conteudo aberto" id="norte">
+      <div class="cartao-conteudo">
+        <h2>Onde acontece o conflito</h2>
+        <figure class="foto">
+          <img src="olivia.png" alt="Ataques Faixa de Gaza" onerror="semImagem(this)">
+          <figcaption>Ataques aéreos à Faixa de Gaza deixam destruição — Mahmud Hams/AFP</figcaption>
+        </figure>
+        <h2>Países Envolvidos</h2>
+    
+    <ul>
+        <li>
+            Israel
+            <ul>
+                <li>Capital: Jerusalém</li>
+                <li>Participação conflito: País que combate o Hamas.</li>
+            </ul>
+        </li>
+        <li>
+          Palestina
+            <ul>
+                <li>Capital: Jerusalém Oriental</li>
+                <li>Participação conflito: Os palestinos vivem principalmente na Faixa de Gaza e na <br>Cisjordânia. O Hamas atua em Gaza.</li>
+            </ul>
+        </li>
+        <li>
+            Egito
+            <ul>
+                <li>Capital: Cairo</li>
+                <li>Participação conflito: Faz fronteira com Gaza e tem papel importante na passagem <br>de pessoas e ajuda humanitária.</li>
+            </ul>
+        </li>
+        <li>
+            Irã
+            <ul>
+                <li>Capital:Beirute</li>
+                <li>Participação conflito: Está envolvido no contexto regional por confrontos entre<br> Israel e o Hezbollah, grupo distinto do Hamas.</li>
+            </ul>
+        </li>
+        <li>
+            Líbano
+            <ul>
+                <li>Capital: Teerã</li>
+                <li>Participação conflito: É um importante apoiador do Hamas e de outros grupos armados<br> da região.</li>
+            </ul>
+        </li>
+    </ul>
+            <h2>Continente e localização geográfica</h2>
+        <p>
+Continente: Ásia<br>
+Região: Oriente Médio<br>
+Mar próximo: Mar Mediterrâneo<br>
+Localização da faixa de Gaza: Costa oriental do Mar Mediterrâneo, entre<br> Israel e Egito
+Área Aproximada: 365 km<br>
+Características físicas: Planície costeira, com praias, dunas de areia e áreas urbanizadas
+</p>
+
+<h2>Fronteiras da região:</h2>
+<p>
+A faixa de Gaza possui fronteiras terrestres com dois territórios ou países<br><br>
+Norte e Leste: Israel<br>
+Sul: Egito<br>
+Oeste: Mar Mediterrâneo
+</p>
+
+<h2>Recursos naturais existentes</h2>
+
+<p>
+    Gás natural:
+Existem reservas de gás natural no mar Mediterrâneo, próximas à costa palestina, conhecidas como campos de Gaza Marine. Esse recurso pode contribuir para a produção de energia e para a economia palestina.<br>
+    Terras agrícolas:
+Existem solos utilizados para o cultivo de hortaliças, frutas, oliveiras e outras culturas. A agricultura é importante para a alimentação e o sustento da população.<br>
+    Água subterrânea:
+O aquífero costeiro é uma fonte fundamental de água, embora esteja muito afetado pela salinização, pela contaminação e pela exploração excessiva.
+Também existem areia e outros materiais utilizados na construção.
+</p>
+
+<h2>Importância estratégica da região</h2>
+<p>
+    A Faixa de Gaza tem grande importância por cinco motivos principais:<br><br>
+Posição geográfica: Fica junto ao Mar Mediterrâneo, próximo de Israel, do Egito e de rotas comerciais regionais.<br>
+Segurança militar: Sua proximidade com cidades e comunidades israelenses faz com que o controle das fronteiras seja uma questão central para a segurança de Israel.<br>
+Controle das fronteiras e circulação: As passagens terrestres influenciam a entrada de alimentos, medicamentos, combustíveis, mercadorias e ajuda humanitária.<br>
+Recursos energéticos: O gás natural marítimo representa um possível recurso econômico e energético para os palestinos.<br>
+Importância política e histórica: Gaza faz parte da questão palestina, que envolve território, soberania, segurança, refugiados, direitos nacionais e a possibilidade de criação de um Estado palestino.<br>
+<figcaption>Feito por: Olivia Possarle</figcaption>
+</p>
+      </div>
+    </div>
+
+    <div class="conteudo" id="nordeste">
+      <div class="cartao-conteudo">
+        <h2>Razões para o surgimento do conflito</h2>
+        <figure class="foto">
+          <img src="gabi.png" alt="Conflito Israel e Hamas" onerror="semImagem(this)">
+          <figcaption>Conflito Israel e Hamas</figcaption>
+        </figure>
+
+
+        <h2>1. Contexto histórico</h2>
+        <p>O conflito entre Israel e Palestina começou no final do século XIX, quando judeus e árabes palestinos passaram a reivindicar o mesmo território. Os judeus defendiam a criação de um Estado próprio na região, considerada sagrada para sua religião.
+          Em 1947, a ONU propôs dividir a Palestina em dois Estados: um judeu e outro árabe. Em 1948, Israel declarou sua independência, provocando uma guerra e o deslocamento de milhares de palestinos, episódio conhecido como Nakba, que significa "catástrofe".
+          Em 1967, Israel ocupou a Faixa de Gaza e a Cisjordânia, aumentando as disputas territoriais que continuam até hoje.
+
+
+        <h2>2. Principais acontecimentos</h2>
+Um dos acontecimentos mais importantes foi a criação do Hamas, em 1987, durante a Primeira Intifada, um movimento de revolta palestino contra a ocupação israelense.
+Em 2005, Israel retirou seus soldados e assentamentos permanentes da Faixa de Gaza. Entretanto, manteve controle sobre aspectos importantes do acesso ao território, como o espaço aéreo e o acesso marítimo.
+Em 2006, o Hamas venceu as eleições legislativas palestinas. No ano seguinte, após conflitos internos com o partido Fatah, assumiu o controle da Faixa de Gaza. Como consequência, Israel e Egito intensificaram as restrições à circulação de pessoas e mercadorias no território.
+A situação provocou sucessivos confrontos entre Israel e grupos armados palestinos.
+Em 7 de outubro de 2023, o Hamas realizou um ataque contra Israel, matando aproximadamente 1.200 pessoas e fazendo cerca de 250 reféns. Israel respondeu com uma grande operação militar na Faixa de Gaza, dando início à atual guerra entre Israel e Hamas. 
+
+
+        <h2>3. Disputas políticas</h2>
+A principal disputa política envolve o direito dos israelenses e palestinos de terem Estados independentes e seguros.
+Israel busca garantir sua segurança nacional e impedir ataques contra sua população. Já os palestinos reivindicam a criação de um Estado próprio, com autonomia política e territorial.
+<p>Outras questões importantes são:</p>
+<p>- O controle de Jerusalém, cidade considerada importante por diferentes religiões.</p>
+<p>- A definição das fronteiras entre Israel e um possível Estado palestino.</p>
+<p>- O controle da Faixa de Gaza e da Cisjordânia.</p>
+<p>- O direito de retorno dos refugiados palestinos.</p>
+<p>- O reconhecimento político e a segurança de ambos os povos.</p>
+
+
+        <h2>4. Fatores econômicos</h2>
+A Faixa de Gaza enfrenta dificuldades econômicas há muitos anos, agravadas pelas restrições de circulação de pessoas e mercadorias, pelo desemprego e pela dependência de ajuda humanitária.
+O território possui limitações no acesso a recursos, no comércio com outros países e no desenvolvimento de atividades econômicas.
+Além disso, os constantes confrontos provocam a destruição de moradias, hospitais, escolas, empresas e infraestrutura, prejudicando ainda mais a economia palestina.
+As disputas territoriais também envolvem o acesso à água, às terras e a outros recursos naturais.
+
+
+        <h2>5. Fatores religiosos</h2>
+Jerusalém é uma cidade sagrada para três grandes religiões:
+- Judaísmo: é considerada a cidade mais sagrada do judaísmo, especialmente pela importância histórica do antigo Templo de Jerusalém.
+- Islamismo: abriga a Mesquita de Al-Aqsa, um dos locais mais sagrados do Islã.
+- Cristianismo: possui locais associados à vida e à história de Jesus Cristo.
+As disputas pelo controle e pela administração de locais sagrados aumentam as tensões entre diferentes grupos. Entretanto, é importante destacar que o conflito também envolve questões territoriais, políticas e nacionais, e não deve ser entendido apenas como uma guerra religiosa.
+
+
+        <h2>6. Fatores étnicos</h2>
+Os israelenses incluem pessoas de diferentes origens, sendo a maioria da população judaica. Já os palestinos são um povo predominantemente árabe, com identidade cultural, histórica e nacional própria.
+Ao longo da história, as duas populações desenvolveram reivindicações sobre a mesma região, gerando disputas por território, reconhecimento e autodeterminação.
+É importante ressaltar que nem todos os judeus são israelenses, assim como nem todos os palestinos apoiam o Hamas. Os dois povos possuem diferentes opiniões políticas, religiosas e culturais.</p>
+
+<h2>Linha do tempo</h2>
+<p>1917 Declaração de Balfour: Reino Unido apoia a criação de um lar nacional judeu na Palestina.</p>
+<p>1947 ONU propõe a divisão da Palestina em dois Estados.</p>
+<p>1948 Israel declara sua independência e ocorre a Nakba palestina.</p>
+<p>1967 Israel ocupa a Faixa de Gaza e a Cisjordânia.</p>
+<p>1987 Criação do Hamas.</p>
+<p>1993 Acordos de Oslo: tentativas de negociação de paz.</p>
+<p>2005 Israel retira seus assentamentos permanentes de Gaza.</p>
+<p>2006 Hamas vence as eleições palestinas.</p>
+<p>2007 Hamas assume o controle da Faixa de Gaza.</p>
+<p>2023 Ataque do Hamas contra Israel em 7 de outubro e início da guerra atual.</p>
+
+<figcaption>Feito por: Gabriela Oliveira</figcaption>      
+</div>
+    </div>
+
+<div class="conteudo" id="centrooeste">
+      <div class="cartao-conteudo">
+        <h2>Quem participa?</h2>
+        <figure class="foto">
+          <img src="naty.png" alt="Mapa do conflito entre Israel e Hamas" onerror="semImagem(this)">
+          <figcaption>Mapa do conflito</figcaption>
+        </figure>
+            <p>Israel: É o Estado que combate o Hamas. Suas Forças de Defesa (IDF) conduzem operações militares na Faixa de Gaza. 
+                Israel afirma que seus objetivos são combater o Hamas, impedir novos ataques e garantir a segurança de sua população</p>
+            <p>Hamas:É uma organização palestina islamista, com atuação política e braço armado. Assumiu o controle de Gaza em 2007.
+            É considerado uma organização terrorista por países como Estados Unidos, Reino Unido e União Europeia.</p>
+                <p>Autoridade Nacional Palestina: É uma administração palestina que exerce parte do governo na Cisjordânia. 
+                    É liderada pelo movimento Fatah e não deve ser confundida com o Hamas. Defende uma solução política para a questão palestina e não controla atualmente a Faixa de Gaza.</p>
+
+                    <h2>Grupos armados envolvidos:</h2>
+                    <p>Hezbollah (Líbano)-Organização político-militar libanesa apoiada pelo Irã. 
+                        Entrou em confronto com Israel na fronteira entre os dois países, ampliando o conflito para além de Gaza</p>
+                        <p>Jihad Islamica Palestina- Organização armada palestina que atua principalmente na Faixa de Gaza.
+                             Também combate Israel e mantém relações de apoio com o Irã.</p>
+                             <p>Houthis-Movimento político e armado conhecido como Ansar Allah. Apoiado pelo Irã, realizou ataques contra alvos relacionados a Israel e embarcações no Mar Vermelho</p>
+                             <p>Brigadas Izz ad-Din al-Qassam-São o braço militar do Hamas e tiveram participação central</p>
+                             <p>Frente Popular para a Libertação da Palestina (FPLP)-Organização política palestina de orientação marxista e nacionalista, que também possui um braço armado e participa da resistência contra Israel.</p>
+
+                             <h2>Organizações internacionais envolvidas:</h2>
+                             <p>As organizações internacionais desempenham funções importantes na tentativa de reduzir a violência, 
+                                proteger a população civil, negociar acordos e garantir o cumprimento do direito internacional.</p>
+                                <li>Organização das Nações Unidas (ONU)</li>
+                                    <li>Agência da ONU para Refugiados Palestinos (UNRWA)</li>
+                                    <li>Comitê Internacional da Cruz Vermelha (CICV)</li>
+                                    <li>Organização Mundial da Saúde (OMS)</li>
+                                    <li>Corte Internacional de Justiça (CIJ)</li>
+                                    <li>Tribunal Penal Internacional (TPI)</li>
+                                    <li>União Europeia (UE)</li>
+        
+                                    <h2>Potências estrangeiras e seus interesses:</h2>
+        <table>
+        <tr>
+            <th>País</th>
+            <th>Forma de participação</th>
+        </tr>
+
+        <tr>
+            <td>Estados Unidos</td>
+            <td>Apoiam Israel militar e diplomaticamente e participam das negociações.</td>
+        </tr>
+
+        <tr>
+            <td>Irã</td>
+            <td>Apoia grupos como Hamas e Hezbollah, buscando influência regional.</td>
+        </tr>
+
+        <tr>
+            <td>Egito</td>
+            <td>Atua como mediador e participa das negociações de paz.</td>
+        </tr>
+
+        <tr>
+            <td>Catar</td>
+            <td>Participa das negociações e mantém diálogo com o Hamas.</td>
+        </tr>
+
+        <tr>
+            <td>Turquia</td>
+            <td>Critica as ações militares israelenses e defende os palestinos.</td>
+        </tr>
+
+        <tr>
+            <td>Rússia</td>
+            <td>Participa das discussões diplomáticas sobre o conflito.</td>
+        </tr>
+
+        <tr>
+            <td>China</td>
+            <td>Defende negociações e a criação de um Estado palestino.</td>
+        </tr>
+
+        <tr>
+            <td>Arábia Saudita</td>
+            <td>Defende a criação de um Estado palestino e participa das discussões regionais.</td>
+        </tr>
+
+        <tr>
+            <td>Jordânia</td>
+            <td>Oferece assistência humanitária e atua diplomaticamente.</td>
+        </tr>
+
+        <tr>
+            <td>Emirados Árabes Unidos</td>
+            <td>Participam de iniciativas diplomáticas e humanitárias.</td>
+        </tr>
+    </table>
+
+    <h2>Novos participantes das negociações e do plano de paz:</h2>
+    <p>Em 2025, a ONU aprovou a Resolução 2803, que apoiou um plano de transição para Gaza.
+         Entre os envolvidos estão os Estados Unidos, Egito, Catar e Turquia, que participam das negociações, 
+         além de um comitê palestino responsável pela administração civil e uma força internacional prevista para ajudar na estabilização e segurança da região.</p>
+
+         <h2>População civil: quem também é afetado?</h2>
+         <p>Civis palestinos: moradores da Faixa de Gaza e da Cisjordânia, que enfrentam deslocamentos, falta de alimentos,
+           dificuldades de acesso à saúde e destruição de suas moradias.</p>
+          <p>Civis israelenses: população afetada pelos ataques do Hamas, pela insegurança e pelos deslocamentos nas áreas próximas às zonas de conflito.</p>
+          <p>Refugiados palestinos: pessoas que foram obrigadas a deixar suas casas ao longo da história do conflito e dependem, em muitos casos, de assistência internacional.</p>
+<figcaption>Feito por: Natálya Lozovoy</figcaption>
+        </div>        
+    </div>
+
+<div class="conteudo" id="sudeste">
+    <div class="cartao-conteudo">
+
+      <h2>Principais interesses envolvidos</h2>
+
+      <figure class="foto">
+        <img src="julia.png" alt="Imagem representando os interesses econômicos e territoriais">
+        <figcaption>Interesses territoriais no Oriente Médio.</figcaption>
+      </figure>
+
+      <h2>1. Petróleo</h2>
+      <p>
+        O petróleo não é o principal motivo da guerra, mas é importante
+        para a economia do Oriente Médio. Países da região possuem
+        grandes reservas e, por isso, têm influência econômica e política.
+        No conflito entre Israel e Hamas, porém, a disputa por território
+        e segurança é muito mais importante do que o petróleo.
+      </p>
+
+      <h2>2. Gás natural</h2>
+      <p>
+        Existem reservas de gás natural próximas à costa da Faixa de Gaza.
+        A exploração desse recurso poderia gerar dinheiro, empregos e
+        ajudar no desenvolvimento da economia palestina. Por isso,
+        o gás tem importância econômica, embora não seja considerado
+        a principal causa da guerra.
+      </p>
+
+      <h2>3. Minérios</h2>
+      <p>
+        Os minérios não são um dos principais interesses desse conflito.
+        A disputa está mais relacionada ao controle territorial,
+        à segurança e aos direitos políticos dos israelenses e palestinos
+        do que à exploração mineral.
+      </p>
+
+      <h2>4. Água</h2>
+      <p>
+        Israel e os territórios palestinos enfrentam dificuldades
+        relacionadas à disponibilidade de água. Israel busca garantir
+        o abastecimento de sua população, enquanto os palestinos
+        precisam de maior acesso à água potável para sobreviver
+        e desenvolver suas cidades. Em Gaza, a guerra e a destruição
+        de tubulações e sistemas de abastecimento agravam muito esse problema.
+      </p>
+
+      <h2>5. Rotas comerciais</h2>
+      <p>
+        Israel está localizado em uma região estratégica para o comércio
+        internacional. Manter a segurança das rotas marítimas e terrestres
+        é importante para transportar mercadorias e fortalecer a economia.
+        Os conflitos na região também podem prejudicar o comércio
+        e aumentar os custos de transporte.
+      </p>
+
+      <h2>6. Territórios disputados</h2>
+      <p>
+        Esse é um dos principais motivos do conflito. Israel busca
+        garantir sua segurança e manter o controle sobre áreas que
+        considera importantes estrategicamente. Já os palestinos lutam
+        pelo direito de ter um Estado independente, com território próprio.
+        A Faixa de Gaza, a Cisjordânia e Jerusalém Oriental estão entre
+        as principais áreas envolvidas na disputa. As reivindicações
+        históricas e nacionais dos dois povos tornam a questão
+        muito difícil de resolver.
+      </p>
+
+      <h2>7. Influência internacional</h2>
+      <p>
+        Outros países também participam indiretamente do conflito
+        porque desejam proteger seus interesses políticos e estratégicos.
+        Os Estados Unidos apoiam Israel, enquanto o Irã apoia o Hamas
+        e outros grupos armados. Egito e Catar participam de negociações
+        para tentar alcançar acordos de cessar-fogo. Esses países
+        buscam influenciar os acontecimentos no Oriente Médio
+        e proteger seus próprios interesses de segurança.
+      </p>
+      
+<h2>7. Vídeo explicativo</h2>
+
+<div class="video-container">
+    <iframe
+        src="https://www.youtube.com/embed/CtDRK1qeXlo"
+        title="Vídeo explicativo sobre o conflito entre Israel e Hamas"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+    </iframe>
+</div>
+
+<figcaption>Feito por: Julia Prado</figcaption>
+    </div>
+  </div>
+
+    <div class="conteudo" id="sul">
+      <div class="cartao-conteudo">
+        <h2>Impactos do conflito</h2>
+        <figure class="foto">
+          <img src="manu.png" alt="hamas" onerror="semImagem(this)">
+          <figcaption>População palestina afetada pelo conflito</figcaption>
+        </figure>
+        <article class="topico-impacto">
+      <h2>1. Mortos</h2>
+      <p>O conflito se intensificou em 7 de outubro de 2023, quando ataques em Israel deixaram cerca de 1.200 mortos. 
+        Na Faixa de Gaza, foram registrados 71.803 mortos até 3 de fevereiro de 2026, incluindo pelo menos 21.289 crianças. 
+        Mesmo após a trégua iniciada em 10 de outubro de 2025, novas mortes continuaram a ser contabilizadas.</p>
+    </article>
+
+    <article class="topico-impacto">
+      <h2>2. Feridos</h2>
+      <p>Até 3 de fevereiro de 2026, Gaza somava 171.230 feridos, dos quais 44.500 são crianças.
+         Em Israel, o ataque inicial deixou cerca de 14.970 feridos que necessitaram de hospitalização. 
+         O tratamento dos feridos é gravemente afetado pela destruição da rede hospitalar e pela falta de insumos médicos.</p>
+    </article>
+
+    <article class="topico-impacto">
+      <h2>3. Refugiados</h2>
+      <p>Enquanto a maioria dos afetados permaneceu dentro do próprio território como deslocados internos, 
+        uma parcela de palestinos conseguiu sair para outros países. 
+        Do lado israelense, milhares de residentes próximos à Faixa de Gaza e à fronteira com o Líbano precisaram abandonar suas casas por motivos de segurança.</p>
+    </article>
+
+    <article class="topico-impacto">
+      <h2>4. Deslocados Internos</h2>
+      <p>Mais de 1,9 milhão de palestinos foram deslocados internamente em Gaza, muitos por repetidas vezes. 
+        Mais de 1,2 milhão de pessoas perderam suas casas, passando a viver em tendas,
+         abrigos improvisados ou prédios danificados sob forte superlotação e sem saneamento adequado.</p>
+    </article>
+
+    <article class="topico-impacto">
+      <h2>5. Impactos Econômicos</h2>
+      <p>A economia de Gaza sofreu uma contração de 84%. Os danos à infraestrutura física são estimados em US$ 35,2 bilhões, 
+        somados a US$ 22,7 bilhões em perdas econômicas e sociais.
+         A necessidade para recuperação e reconstrução em 10 anos é estimada em US$ 71,4 bilhões.</p>
+    </article>
+
+    <article class="topico-impacto">
+      <h2>6. Impactos Sociais</h2>
+      <p>O sistema de saúde opera no limite, restando apenas cerca de 2.000 leitos hospitalares em Gaza e nenhum hospital plenamente funcional. 
+        Mais de 658 mil crianças estão fora do sistema de ensino, com cerca de 95% das escolas danificadas ou destruídas.
+         Em 2025, 320 mil crianças menores de 5 anos estavam em risco de desnutrição aguda.</p>
+    </article>
+
+    <article class="topico-impacto">
+      <h2>7. Impactos Ambientais</h2>
+      <p>Quase 90% da infraestrutura de água e saneamento foi danificada ou destruída, gerando contaminação do solo e vazamento de esgoto. 
+        O acúmulo massivo de entulho dos bombardeios, a destruição de terras agrícolas e a falta de coleta de resíduos provocam sérios riscos sanitários e à agricultura.</p>
+    </article>
+  </section>
+  <figcaption>Feito por: Manuela Barbosa</figcaption>
+      </div>
+    </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- =========================================================
+       JAVASCRIPT DOS BOTÕES
+       abrir(): mostra o conteúdo certo e pinta o botão clicado.
+       semImagem(): deixa um espaço cinza quando a foto ainda não existe.
+       Você não precisa mexer aqui.
+  ========================================================== -->
+  <script>
+    function abrir(id, botao) {
+      // esconde todos os conteúdos
+      document.querySelectorAll('.conteudo').forEach(c => c.classList.remove('aberto'));
+      // mostra só o escolhido
+      document.getElementById(id).classList.add('aberto');
+      // tira o destaque de todos os botões e coloca só no clicado
+      document.querySelectorAll('.botoes button').forEach(b => b.classList.remove('ativo'));
+      botao.classList.add('ativo');
+    }
+
+    // Placeholder cinza quando a imagem não é encontrada
+    function semImagem(img) {
+      if (img.dataset.ok) return;            // evita repetir
+      img.dataset.ok = '1';
+      img.src = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(
+        '<svg xmlns="http://www.w3.org/2000/svg" width="600" height="340">' +
+        '<rect width="600" height="340" fill="#dfe8ef"/>' +
+        '<text x="300" y="165" font-family="Arial" font-size="22" fill="#7d8da0" ' +
+        'text-anchor="middle">Coloque sua imagem aqui</text>' +
+        '<text x="300" y="195" font-family="Arial" font-size="15" fill="#9aa8b8" ' +
+        'text-anchor="middle">' + img.getAttribute('src').split('?')[0] + '</text>' +
+        '</svg>'
+      );
+    }
+  </script>
+</body>
+</html>

@@ -26,11 +26,10 @@
     /* ---- Ajustes gerais ---- */
     * { box-sizing: border-box; }
     body {
+      overflow-y: hidden; /* Bloqueia o scroll vertical */
       margin: 0;
       font-family: 'Segoe UI', Arial, sans-serif;
       background-color: var(--cor-fundo);
-      background-image: radial-gradient(rgba(17, 24, 39, 0.05) 1.5px, transparent 1.5px);
-      background-size: 30px 30px;
       color: var(--cor-texto);
       line-height: 1.5;
       overflow-x: hidden;
@@ -39,37 +38,15 @@
       min-height: 100vh;
     }
 
-    /* ---- Animação e Posição das Imagens Flutuantes no Background ---- */
-    @keyframes flutuar {
-      0%   { transform: translateY(0px) rotate(0deg); }
-      50%  { transform: translateY(-25px) rotate(4deg); }
-      100% { transform: translateY(0px) rotate(0deg); }
-    }
-
-    .img-flutuante {
+    /* ---- Fundo Vetorial com a Estampa dos 4 Ícones Espalhados ---- */
+    .fundo-padrao {
       position: fixed;
-      opacity: 0.35;          /* Opacidade ajustada */
-      pointer-events: none;  /* Não interfere nos cliques */
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
       z-index: 1;
-      
-      /* Remove o quadrado retangular e aplica sombra apenas nos contornos do desenho */
-      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15));
-      
-      /* Garante que qualquer fundo branco residual fique 100% transparente no site */
-      mix-blend-mode: multiply;
-      
-      animation: flutuar 9s ease-in-out infinite;
-    }
-
-    /* Afastadas 15px a mais em relação às bordas laterais da tela */
-    .img-flutuante.pos1 { top: 18%; left: calc(3% + 45px);  width: 240px; animation-delay: 0s; }
-    .img-flutuante.pos2 { top: 62%; left: calc(1% + 45px);  width: 290px; animation-delay: 2.5s; }
-    .img-flutuante.pos3 { top: 22%; right: calc(1% + 45px); width: 300px; animation-delay: 2.5s; }
-    .img-flutuante.pos4 { top: 65%; right: calc(1% + 45px); width: 290px; animation-delay: 1.5s; }
-
-    /* Esconde em telas menores para não encostar no cartão principal */
-    @media (max-width: 1300px) {
-      .img-flutuante { display: none; }
     }
 
     /* ---- Faixa Superior Escura (de ponta a ponta) ---- */
@@ -134,10 +111,10 @@
     }
 
     /* ---- Container Principal ---- */
-    .pagina { 
+    .pagina {
       max-width: 1100px; 
       margin: 0 auto; 
-      padding: 100px 20px 40px 20px; 
+      padding: 75px 20px 20px 20px; /* Reduzido levemente para caber tudo em 100vh */
       position: relative;
       z-index: 2;
       flex: 1;
@@ -166,15 +143,12 @@
 
     /* =========================================================
          O CARROSSEL
-         A "janela" (.carrossel) só mostra 1 slide por vez.
-         A "esteira" (.esteira) desliza para o lado com o JavaScript.
     ========================================================== */
-   /* ---- O CARROSSEL (Borda preta trocada por sombra cinza esfumada) ---- */
     .carrossel {
       overflow: hidden;
       border-radius: 18px;
-      border: 1px solid rgba(156, 163, 175, 0.25); /* Linha cinza quase imperceptível para acabamento */
-      box-shadow: 0 20px 50px rgba(17, 24, 39, 0.18), 0 0 25px rgba(107, 114, 128, 0.15); /* Sombra cinza profunda e esfumada */
+      border: 1px solid rgba(156, 163, 175, 0.25); /* Borda cinza suave */
+      box-shadow: 0 20px 50px rgba(17, 24, 39, 0.18), 0 0 25px rgba(107, 114, 128, 0.15); /* Sombra cinza esfumada */
     }
     .esteira {
       display: flex;                 /* coloca os slides lado a lado */
@@ -221,11 +195,11 @@
     .cartao a.btn-resumo:hover { background: #e5e7eb; }
 
     /* ---- Capas dos Temas carregando imagens tema1.png a tema5.png com sobreposição escura/vermelha ---- */
-    .capa1 { background: linear-gradient(rgba(184, 2, 13, 0.45), rgba(17, 24, 39, 0.75)), url('tema1.png?v=2') center/cover no-repeat #b8020d; }
-    .capa2 { background: linear-gradient(rgba(184, 2, 13, 0.45), rgba(17, 24, 39, 0.75)), url('tema2.png?v=2') center/cover no-repeat #b8020d; }
-    .capa3 { background: linear-gradient(rgba(184, 2, 13, 0.45), rgba(17, 24, 39, 0.75)), url('tema3.png?v=2') center/cover no-repeat #b8020d; }
-    .capa4 { background: linear-gradient(rgba(184, 2, 13, 0.45), rgba(17, 24, 39, 0.75)), url('tema4.png?v=2') center/cover no-repeat #b8020d; }
-    .capa5 { background: linear-gradient(rgba(184, 2, 13, 0.45), rgba(17, 24, 39, 0.75)), url('tema5.png?v=2') center/cover no-repeat #b8020d; }
+    .capa1 { background: linear-gradient(rgba(184, 2, 13, 0.15), rgba(17, 24, 39, 0.75)), url('tema1.png?v=2') center/cover no-repeat #b8020d; }
+    .capa2 { background: linear-gradient(rgba(184, 2, 13, 0.15), rgba(17, 24, 39, 0.75)), url('tema2.png?v=2') center/cover no-repeat #b8020d; }
+    .capa3 { background: linear-gradient(rgba(184, 2, 13, 0.15), rgba(17, 24, 39, 0.75)), url('tema3.png?v=2') center/cover no-repeat #b8020d; }
+    .capa4 { background: linear-gradient(rgba(184, 2, 13, 0.15), rgba(17, 24, 39, 0.75)), url('tema4.png?v=2') center/cover no-repeat #b8020d; }
+    .capa5 { background: linear-gradient(rgba(184, 2, 13, 0.15), rgba(17, 24, 39, 0.75)), url('tema5.png?v=2') center/cover no-repeat #b8020d; }
 
     /* ---- Controles: setas e bolinhas ---- */
     .controles {
@@ -296,11 +270,40 @@
 
 <body>
 
-  <!-- Imagens Flutuantes no Background (Movimento Lento) -->
-  <img src="img1.png?v=3" alt="" class="img-flutuante pos1">
-  <img src="img2.png?v=3" alt="" class="img-flutuante pos2">
-  <img src="img3.png?v=3" alt="" class="img-flutuante pos3">
-  <img src="img4.png?v=3" alt="" class="img-flutuante pos4">
+  <!-- Background Padrão com os 4 Ícones Intercalados por Toda a Tela -->
+  <svg class="fundo-padrao" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="grid-icones" width="160" height="160" patternUnits="userSpaceOnUse">
+        <!-- Ícone 1: Globo Terrestre (Canto superior esquerdo) -->
+        <g transform="translate(25, 25) scale(1.1)" stroke="#111827" stroke-width="1.3" fill="none" opacity="0.08">
+          <circle cx="12" cy="12" r="9"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <path d="M12 3a13 13 0 0 1 3.5 9 13 13 0 0 1-3.5 9 13 13 0 0 1-3.5-9 13 13 0 0 1 3.5-9z"/>
+        </g>
+
+        <!-- Ícone 2: Rosa dos Ventos / Bússola (Canto superior direito) -->
+        <g transform="translate(105, 25) scale(1.1)" stroke="#111827" stroke-width="1.3" fill="none" opacity="0.08">
+          <circle cx="12" cy="12" r="9"/>
+          <polygon points="12 4 13.8 10.2 20 12 13.8 13.8 12 20 10.2 13.8 4 12 10.2 10.2 12 4"/>
+        </g>
+
+        <!-- Ícone 3: Alvo / Radar Geopolítico (Canto inferior esquerdo) -->
+        <g transform="translate(25, 105) scale(1.1)" stroke="#111827" stroke-width="1.3" fill="none" opacity="0.08">
+          <circle cx="12" cy="12" r="9"/>
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="2" x2="12" y2="22"/>
+          <line x1="2" y1="12" x2="22" y2="12"/>
+        </g>
+
+        <!-- Ícone 4: Marcador de Mapa / Pin (Canto inferior direito) -->
+        <g transform="translate(105, 105) scale(1.1)" stroke="#111827" stroke-width="1.3" fill="none" opacity="0.08">
+          <path d="M12 3a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.5 6-12a6 6 0 0 0-6-6z"/>
+          <circle cx="12" cy="9" r="2"/>
+        </g>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#grid-icones)" />
+  </svg>
 
   <!-- Faixa Superior Escura apenas com o Logo SENAI -->
   <div class="topbar">
@@ -319,10 +322,6 @@
 
     <!-- =========================================================
          CARROSSEL
-         Cada .slide é um tema. O link (href) leva para a página
-         daquele tema. Já estão apontando para tema1.html até tema5.html.
-
-         👉 PARA TROCAR O TEXTO: edite o <h2> (título) e o <p> (descrição).
     ========================================================== -->
     <div class="carrossel">
       <div class="esteira" id="esteira">
@@ -331,10 +330,10 @@
           <div class="cartao">
             <div class="capa capa1"></div>
             <div class="texto">
-              <h2>Tema 1</h2>
-              <p>Descrição do tema 1 e seus aspectos geopolíticos principais.</p>
+              <h2>Rússia x Ucrânia</h2>
+              <p>Análise do conflito no Leste Europeu, abordando as disputas territoriais, a expansão da OTAN e os impactos socioeconômicos mundiais.</p>
               <div class="acoes-cartao">
-                <a href="tema1.html" class="btn-abrir">Abrir tema →</a>
+                <a href="russiaucrania.html" class="btn-abrir">Abrir tema →</a>
                 <a href="#resumo-1" class="btn-resumo">Ver Resumo</a>
               </div>
             </div>
@@ -345,10 +344,10 @@
           <div class="cartao">
             <div class="capa capa2"></div>
             <div class="texto">
-              <h2>Tema 2</h2>
-              <p>Descrição do tema 2 e seus aspectos geopolíticos principais.</p>
+              <h2>Israel x Hamas</h2>
+              <p>Análise do conflito no Oriente Médio, abordando as raízes históricas da disputa territorial, a escalada na Faixa de Gaza e suas consequências humanitárias e diplomáticas.</p>
               <div class="acoes-cartao">
-                <a href="tema2.html" class="btn-abrir">Abrir tema →</a>
+                <a href="israelhamas.html" class="btn-abrir">Abrir tema →</a>
                 <a href="#resumo-2" class="btn-resumo">Ver Resumo</a>
               </div>
             </div>
@@ -359,10 +358,10 @@
           <div class="cartao">
             <div class="capa capa3"></div>
             <div class="texto">
-              <h2>Tema 3</h2>
-              <p>Descrição do tema 3 e seus aspectos geopolíticos principais.</p>
+              <h2>Primavera Árabe e a Guerra Civil da Síria</h2>
+              <p>Análise da onda de protestos no mundo árabe e o desdobramento da Guerra Civil Síria, abordando a crise de refugiados, a ascensão de grupos extremistas e o envolvimento de potências globais.</p>
               <div class="acoes-cartao">
-                <a href="tema3.html" class="btn-abrir">Abrir tema →</a>
+                <a href="primaveraarabe.html" class="btn-abrir">Abrir tema →</a>
                 <a href="#resumo-3" class="btn-resumo">Ver Resumo</a>
               </div>
             </div>
@@ -436,30 +435,32 @@
   <div id="resumo-1" class="modal-container">
     <div class="modal-box">
       <a href="#" class="modal-fechar">&times;</a>
-      <h3>Resumo — Tema 1</h3>
-      <p>Este espaço reservado conterá uma síntese curta dos aspectos gerais, localização e contexto do Tema 1 fornecido pelo grupo responsável.</p>
+      <h3>Resumo</h3>
+      <p>O conflito entre Rússia e Ucrânia representa uma das maiores crises geopolíticas do século XXI. Intensificado com a invasão de 2022, o embate possui raízes históricas no colapso da União Soviética, na expansão da OTAN a leste e nas disputas por soberania territorial, como a anexação da Crimeia em 2014 e os combates na região do Donbas.</p>
+      <p>Além da grave crise humanitária e do deslocamento de milhões de refugiados, a guerra provocou severos impactos na economia global, afetando diretamente a segurança alimentar, o mercado internacional de energia e redefinindo a diplomacia de segurança da Europa.</p>
     </div>
   </div>
 
   <div id="resumo-2" class="modal-container">
     <div class="modal-box">
       <a href="#" class="modal-fechar">&times;</a>
-      <h3>Resumo — Tema 2</h3>
-      <p>Este espaço reservado conterá uma síntese curta dos aspectos gerais, localização e contexto do Tema 2 fornecido pelo grupo responsável.</p>
+      <h3>Israel x Hamas</h3>
+      <p>O conflito entre Israel e o grupo Hamas insere-se em uma longa e complexa disputa histórica pela região da Palestina e pelo controle territorial. A escalada desencadeada após os ataques de outubro de 2023 redefiniu a dinâmica de segurança no Oriente Médio, resultando em combates de grande proporção e em uma severa crise humanitária na Faixa de Gaza.</p>
+      <p>Além do elevado impacto social e do deslocamento populacional massivo, o embate gera intensas repercussões geopolíticas globais, envolvendo potências internacionais e atores regionais na busca por mediação diplomática, cessar-fogo e estabilidade no Leste do Mediterrâneo.</p>
     </div>
   </div>
 
   <div id="resumo-3" class="modal-container">
     <div class="modal-box">
       <a href="#" class="modal-fechar">&times;</a>
-      <h3>Resumo — Tema 3</h3>
-      <p>Este espaço reservado conterá uma síntese curta dos aspectos gerais, localização e contexto do Tema 3 fornecido pelo grupo responsável.</p>
+      <h3>Primavera Árabe e a Guerra Civil da Síria</h3>
+      <p>Iniciada em 2010, a Primavera Árabe foi uma onda revolucionária de protestos antiautoritários que se espalhou pelo Oriente Médio e Norte da África em busca de democracia e melhores condições socioeconômicas. Na Síria, os protestos pacíficos de 2011 contra o regime de Bashar al-Assad foram duramente reprimidos, desencadeando uma complexa e devastadora guerra civil.</p>
+      <p>O conflito rapidamente se fragmentou com o envolvimento de forças rebeldes, a ascensão de grupos extremistas (como o Estado Islâmico) e a intervenção de potências internacionais como Rússia, Estados Unidos e Irã. A guerra gerou a maior crise de refugiados do século XXI e transformou radicalmente a geopolítica regional.</p>
     </div>
   </div>
 
   <!-- =========================================================
        JAVASCRIPT DO CARROSSEL
-       Você não precisa mexer aqui. Ele só faz a esteira deslizar.
   ========================================================== -->
   <script>
     const esteira  = document.getElementById('esteira');
