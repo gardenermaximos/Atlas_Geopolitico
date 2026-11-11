@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Grupo 5: Conflito na RDC — Atlas Geopolítico</title>
+
+  <!-- =========================================================
+       CSS DA PÁGINA (GRUPO 5 - TOTALMENTE RESPONSIVO)
+  ========================================================== -->
+  <style>
+    :root {
+      --cor-fundo:    #f6f0c8a9;
+      --cor-texto:    #653c06;
+      --cor-suave:    #b47509;
+      --cor-cartao:   #ffffff;
+      --cor-destaque: #a93923;  /* Cor do botão selecionado */
+      --cor-hover:    #802413;
+      --cor-borda:    #d6e0e8;
+      --cor-acerto:   #1e7e34;
+      --cor-erro:     #bd2130;
+    }
+
+    * { box-sizing: border-box; }
+    
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: var(--cor-fundo);
+      color: var(--cor-texto);
+      line-height: 1.6;
+    }
+
+    .pagina {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    /* ---- Topo com o botão de voltar ---- */
+    .voltar {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: var(--cor-suave);
+      font-weight: bold;
+      margin-bottom: 20px;
+      font-size: 15px;
+      transition: color 0.2s ease;
+    }
+    .voltar:hover { color: var(--cor-destaque); }
+
+    header {
+      margin-bottom: 24px;
+    }
+
+    header h1 {
+      font-size: 32px;
+      margin: 0 0 6px;
+      color: var(--cor-texto);
+      line-height: 1.2;
+    }
+
+    header p.intro {
+      color: var(--cor-suave);
+      margin: 0 0 16px;
+      font-size: 16px;
+    }
+
+    /* ---- BARRA DE BOTÕES RESPONSIVA ---- */
+    .botoes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .botoes button {
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: bold;
+      padding: 11px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      background: var(--cor-cartao);
+      color: var(--cor-texto);
+      border: 2px solid var(--cor-borda);
+      transition: all 0.2s ease;
+      touch-action: manipulation;
+    }
+
+    .botoes button:hover {
+      border-color: var(--cor-destaque);
+      color: var(--cor-destaque);
+    }
+
+    .botoes button.ativo {
+      background: var(--cor-destaque);
+      color: #ffffff;
+      border-color: var(--cor-destaque);
+    }
+
+    /* ---- CONTEÚDO ---- */
+    .conteudo { display: none; }
+    .conteudo.aberto { display: block !important; }
+
+    .cartao-conteudo {
+      background: var(--cor-cartao);
+      border: 1px solid var(--cor-borda);
+      border-radius: 18px;
+      padding: 26px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.06);
+    }
+
+    .cartao-conteudo h2 {
+      margin: 22px 0 12px;
+      font-size: 22px;
+      color: var(--cor-destaque);
+      line-height: 1.3;
+    }
+
+    .cartao-conteudo h2:first-child { margin-top: 0; }
+    .cartao-conteudo p  { margin: 0 0 14px; word-wrap: break-word; }
+
+    /* ---- Imagens ---- */
+    .foto { margin: 0 0 18px; }
+    .foto img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+      background: #dfe8ef;
+      object-fit: cover;
+    }
+    .foto figcaption {
+      font-size: 13px;
+      color: var(--cor-suave);
+      margin-top: 8px;
+      text-align: center;
+      font-style: italic;
+    }
+
+    /* ---- ESTILOS DOS CRÉDITOS DA PÁGINA ---- */
+    .creditos {
+      margin-top: 24px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--cor-borda);
+      font-size: 14px;
+      color: var(--cor-suave);
+      font-weight: 600;
+      text-align: right;
+    }
+
+    /* ---- ESTILOS DO QUIZ ---- */
+    .cartao-quiz {
+      background: var(--cor-cartao);
+      border: 1px solid var(--cor-borda);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 18px;
+    }
+
+    .cartao-quiz h2 {
+      font-size: 17px;
+      color: var(--cor-destaque);
+      margin: 0 0 10px;
+      line-height: 1.4;
+    }
+
+    .cartao-quiz label {
+      display: block;
+      padding: 8px 12px;
+      margin-bottom: 6px;
+      background: #fdfbf2;
+      border-radius: 8px;
+      border: 1px solid var(--cor-borda);
+      cursor: pointer;
+      font-size: 15px;
+      transition: background 0.2s;
+    }
+
+    .cartao-quiz label:hover {
+      background: #f6efe0;
+    }
+
+    .cartao-quiz input[type="radio"] {
+      margin-right: 8px;
+      accent-color: var(--cor-destaque);
+    }
+
+    .nota {
+      text-align: center;
+      background: #ffffff;
+      border: 2px solid var(--cor-destaque);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    .nota .numero {
+      font-size: 42px;
+      font-weight: bold;
+      color: var(--cor-destaque);
+    }
+
+    .feedback {
+      font-weight: bold;
+      margin: 10px 0 0;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      display: none;
+    }
+
+    .feedback-acerto {
+      color: var(--cor-acerto);
+      background: #e8f5e9;
+      border: 1px solid #c8e6c9;
+    }
+
+    .feedback-erro {
+      color: var(--cor-erro);
+      background: #ffebee;
+      border: 1px solid #ffcdd2;
+    }
+
+    .btn-submit-quiz {
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 12px 28px;
+      border-radius: 30px;
+      cursor: pointer;
+      background: var(--cor-destaque);
+      color: #fff;
+      border: none;
+      transition: background 0.2s;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .btn-submit-quiz:hover {
+      background: var(--cor-hover);
+    }
+
+    /* ---- ADAPTAÇÕES MOBILE ---- */
+    @media (max-width: 768px) {
+      .pagina { padding: 20px 15px 40px; }
+      header h1 { font-size: 26px; }
+      header p.intro { font-size: 14px; margin-bottom: 14px; }
+      .botoes { gap: 8px; }
+      .botoes button {
+        flex: 1 1 calc(50% - 8px);
+        text-align: center;
+        padding: 10px 14px;
+        font-size: 14px;
+      }
+      .cartao-conteudo { padding: 20px 16px; border-radius: 14px; }
+      .cartao-conteudo h2 { font-size: 19px; }
+    }
+
+    @media (max-width: 480px) {
+      .botoes button { flex: 1 1 100%; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="pagina">
+
+    <!-- Volta para o carrossel -->
+    <a class="voltar" href="index.html">← Voltar aos temas</a>
+
+    <header>
+      <h1>Grupo 5: Conflito na República Democrática do Congo (RDC)</h1>
+      <p class="intro">Clique em um tópico para ver o conteúdo.</p>
+    </header>
+
+    <!-- =========================================================
+         BOTÕES DE NAVEGAÇÃO
+    ========================================================== -->
+    <div class="botoes">
+      <button class="ativo" onclick="abrir('norte', this)">Onde acontece o conflito?</button>
+      <button onclick="abrir('nordeste', this)">Como surgiu o conflito?</button>
+      <button onclick="abrir('oeste', this)">Quem participa?</button>
+      <button onclick="abrir('sudeste', this)">Quais interesses?</button>
+      <button onclick="abrir('sul', this)">Quais os impactos?</button>
+      <button onclick="abrir('quiz', this)">Quiz</button>
+    </div>
+
+    <!-- =========================================================
+         1. ONDE ACONTECE O CONFLITO? (Rafaella)
+    ========================================================== -->
+    <div class="conteudo aberto" id="norte">
+      <div class="cartao-conteudo">
+        <h2>Onde acontece o conflito?</h2>
+        <figure class="foto">
+          <img src="congo.png" alt="Região de Kivu do Norte" onerror="semImagem(this)">
+          <figcaption>Kivu do Norte</figcaption>
+        </figure>
+        <p>O conflito concentra-se no leste da República Democrática do Congo (RDC), com destaque para as províncias de Kivu do Norte, Kivu do Sul e Ituri. Trata-se de uma zona estratégica devido à localização fronteiriça com países como Ruanda e Uganda, bem como pelas disputas que chegam a envolver a periferia da capital, Kinshasa.</p>
+        <p>A região é marcada por disputas territoriais severas e pelo avanço militar insurgente em centros urbanos estratégicos, como as cidades de Goma e Bukavu. A proximidade geográfica com as fronteiras facilitou o deslocamento transfronteiriço de tropas, milícias e populações refugiadas ao longo de décadas.</p>
+        <p class="creditos">Feito por Rafaella</p>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         2. COMO SURGIU O CONFLITO? (Yasmim)
+    ========================================================== -->
+    <div class="conteudo" id="nordeste">
+      <div class="cartao-conteudo">
+        <h2>Como surgiu o conflito?</h2>
+        <figure class="foto">
+          <img src="Congo.webp" alt="Província de Ituri" onerror="semImagem(this)">
+          <figcaption>Ituri</figcaption>
+        </figure>
+        <p>As raízes do conflito remontam ao transbordamento do genocídio de Ruanda em 1994, quando centenas de milhares de refugiados e extremistas hutus cruzaram a fronteira para o antigo Zaire. A presença e reorganização dessas milícias provocaram a reação do novo governo tutsi ruandês, desencadeando a Primeira Guerra do Congo (1996-1997) para derrubar o regime de Mobutu Sese Seko com o apoio de rebeldes locais liderados por Laurent Kabila.</p>
+        <p>A Segunda Guerra do Congo (1998-2003) eclodiu após o rompimento das alianças entre Kinshasa e o governo de Ruanda. Mesmo após a formalização de acordos de paz a partir de 2002 e a subsequente realização de eleições, a instabilidade no leste persistiu, impulsionada pelo surgimento de novos grupos insurgentes como o M23 e pela proliferação de disputas por recursos locais.</p>
+        <p class="creditos">Feito por Yasmim</p>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         3. QUEM PARTICIPA? (Heitor)
+    ========================================================== -->
+    <div class="conteudo" id="oeste">
+      <div class="cartao-conteudo">
+        <h2>Quem participa?</h2>
+        <figure class="foto">
+          <img src="congo-un.jpg" alt="Tropas e missões de paz na RDC" onerror="semImagem(this)">
+          <figcaption>Kinshasa e o Oeste</figcaption>
+        </figure>
+        <p>As forças governamentais da RDC (FARDC) combatem ao lado de milícias locais conhecidas como Wazalendo, além de contarem historicamente com o suporte de missões de paz da ONU (MONUSCO) e de países aliados. No campo oposto atuam diversas milícias armadas e coalizões rebeldes, com destaque para a Aliança Fleuve Congo (AFC) e o grupo insurgente M23, majoritariamente tutsi.</p>
+        <p>O conflito conta com intensa interferência de atores regionais e globais. Governos vizinhos como Ruanda e Uganda desempenham papéis diretos ou indiretos na dinâmica militar, enquanto potências internacionais influenciam o cenário econômico — a China detém presença expressiva ao controlar vastas minas protegidas pelo exército congolês e fornecer equipamentos militares, enquanto os EUA monitoram o setor geopolítico e impõem sanções contra atores armados.</p>
+        <p class="creditos">Feito por Heitor</p>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         4. QUAIS INTERESSES? (Beatriz)
+    ========================================================== -->
+    <div class="conteudo" id="sudeste">
+      <div class="cartao-conteudo">
+        <h2>Quais interesses?</h2>
+        <figure class="foto">
+          <img src="download.jpg" alt="Mineração no Sudeste Congolês" onerror="semImagem(this)">
+          <figcaption>Sudeste Congolês</figcaption>
+        </figure>
+        <p>O principal vetor geopolítico e econômico é a disputa pelas abundantes reservas minerais da RDC, que incluem coltan, cobalto, cobre, ouro, zinco e urânio. Esses metais de terras raras são indispensáveis para a indústria global de tecnologia, transição para energia limpa e fabricação de eletrônicos avançados, motivando o financiamento contínuo de grupos armados e operações de mineração ilegal.</p>
+        <p>Paralelamente, existem motivações de segurança nacional, étnicas e de soberania política. Ruanda e outros países vizinhos justificam suas intervenções com a garantia de segurança contra grupos rebeldes fronteiriços e a proteção de populações étnicas aliadas, enquanto potências globais buscam garantir o controle sobre as cadeias globais de fornecimento mineral.</p>
+        <p class="creditos">Feito por Beatriz</p>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         5. QUAIS OS IMPACTOS? (Rafaella)
+    ========================================================== -->
+    <div class="conteudo" id="sul">
+      <div class="cartao-conteudo">
+        <h2>Quais os impactos?</h2>
+        <figure class="foto">
+          <img src="estradas-do-congo-brazzaville.webp" alt="Infraestrutura em Katanga" onerror="semImagem(this)">
+          <figcaption>Katanga</figcaption>
+        </figure>
+        <p>A crise humanitária é considerada uma das mais letais do mundo, registrando aproximadamente seis milhões de mortes acumuladas desde 1996 devido aos combates diretos, à violência brutal, à fome e a surtos de doenças como o Ebola. Mais de sete milhões de pessoas foram forçadas ao deslocamento interno, enfrentando o colapso dos sistemas de saúde e severo desabastecimento.</p>
+        <p>Social e politicamente, o conflito gerou o rompimento de relações diplomáticas entre Kinshasa e Ruanda, além de promover graves violações dos direitos humanos, incluindo o recrutamento de crianças-soldados e o uso de trabalho infantil nas áreas de mineração. A instabilidade crônica mantém as populações locais presas a um ciclo contínuo de insegurança e exploração.</p>
+        <p class="creditos">Feito por Rafaella</p>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         6. QUIZ (HTML + JS) (Rafaella)
+    ========================================================== -->
+    <div class="conteudo" id="quiz">
+      <div class="cartao-conteudo">
+        <h2>📝 Quiz: Conflito na República Democrática do Congo</h2>
+
+        <div id="painel-nota" class="nota">
+          <div id="nota-numero" class="numero">0 / 5</div>
+          <p id="nota-texto" style="font-weight: bold; margin-top: 8px;"></p>
+        </div>
+
+        <form id="form-quiz" onsubmit="corrigirQuiz(event)">
+          
+          <div class="cartao-quiz">
+            <h2>1. Em qual região da RDC se concentram os combates mais intensos e históricos das últimas décadas?</h2>
+            <label><input type="radio" name="p1" value="a" required> Costa Oeste do Atlântico</label>
+            <label><input type="radio" name="p1" value="b"> Leste da RDC (como Kivu do Norte e Kivu do Sul)</label>
+            <label><input type="radio" name="p1" value="c"> Região central do Deserto do Saara</label>
+            <label><input type="radio" name="p1" value="d"> Fronteira sul com a África do Sul</label>
+            <p id="msg1" class="feedback"></p>
+          </div>
+
+          <div class="cartao-quiz">
+            <h2>2. Qual grande evento histórico na região serviu como estopim principal para as Guerras do Congo?</h2>
+            <label><input type="radio" name="p2" value="a" required> A Guerra Fria nos anos 1970</label>
+            <label><input type="radio" name="p2" value="b"> O transbordamento do Genocídio em Ruanda de 1994</label>
+            <label><input type="radio" name="p2" value="c"> A construção da barragem de Inga nos anos 1980</label>
+            <label><input type="radio" name="p2" value="d"> A independência do Zaire na década de 1960</label>
+            <p id="msg2" class="feedback"></p>
+          </div>
+
+          <div class="cartao-quiz">
+            <h2>3. Quais minerais valiosos extraídos na RDC alimentam a disputa entre grupos armados e a indústria de tecnologia?</h2>
+            <label><input type="radio" name="p3" value="a" required> Petróleo e Gás Natural</label>
+            <label><input type="radio" name="p3" value="b"> Coltan e Cobalto</label>
+            <label><input type="radio" name="p3" value="c"> Carvão mineral e Bauxita</label>
+            <label><input type="radio" name="p3" value="d"> Lítio e Quartzo rosa</label>
+            <p id="msg3" class="feedback"></p>
+          </div>
+
+          <div class="cartao-quiz">
+            <h2>4. Qual grupo insurgente tutsi atua no leste da RDC e é frequentemente acusado pelo governo congolês de receber apoio de Ruanda?</h2>
+            <label><input type="radio" name="p4" value="a" required> M23 e Ruanda</label>
+            <label><input type="radio" name="p4" value="b"> Boko Haram e Nigéria</label>
+            <label><input type="radio" name="p4" value="c"> Al-Shabaab e Somália</label>
+            <label><input type="radio" name="p4" value="d"> FARC e Colômbia</label>
+            <p id="msg4" class="feedback"></p>
+          </div>
+
+          <div class="cartao-quiz">
+            <h2>5. Qual cidade estratégica, capital da província de Kivu do Norte, é frequentemente alvo de ofensivas e cercos militares rebeldes?</h2>
+            <label><input type="radio" name="p5" value="a" required> Kinshasa</label>
+            <label><input type="radio" name="p5" value="b"> Lubumbashi</label>
+            <label><input type="radio" name="p5" value="c"> Goma</label>
+            <label><input type="radio" name="p5" value="d"> Matadi</label>
+            <p id="msg5" class="feedback"></p>
+          </div>
+
+          <button type="submit" class="btn-submit-quiz">Ver resultado</button>
+        </form>
+
+        <p class="creditos">Feito por Rafaella</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- =========================================================
+       JAVASCRIPT DAS ABAS E CORREÇÃO DO QUIZ
+  ========================================================== -->
+  <script>
+    function abrir(id, botao) {
+      document.querySelectorAll('.conteudo').forEach(c => c.classList.remove('aberto'));
+      
+      const elementoAlvo = document.getElementById(id);
+      if (elementoAlvo) {
+        elementoAlvo.classList.add('aberto');
+      }
+
+      document.querySelectorAll('.botoes button').forEach(b => b.classList.remove('ativo'));
+      if (botao) {
+        botao.classList.add('ativo');
+      }
+    }
+
+    function semImagem(img) {
+      if (img.dataset.ok) return;
+      img.dataset.ok = '1';
+      img.src = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(
+        '<svg xmlns="http://www.w3.org/2000/svg" width="600" height="340">' +
+        '<rect width="600" height="340" fill="#dfe8ef"/>' +
+        '<text x="300" y="165" font-family="Arial" font-size="22" fill="#7d8da0" ' +
+        'text-anchor="middle">Coloque sua imagem aqui</text>' +
+        '<text x="300" y="195" font-family="Arial" font-size="15" fill="#9aa8b8" ' +
+        'text-anchor="middle">' + img.getAttribute('src').split('?')[0] + '</text>' +
+        '</svg>'
+      );
+    }
+
+    function corrigirQuiz(event) {
+      event.preventDefault();
+
+      const gabarito = {
+        p1: { certa: 'b', texto: 'Leste da RDC (como Kivu do Norte e Kivu do Sul).' },
+        p2: { certa: 'b', texto: 'O transbordamento do Genocídio em Ruanda de 1994.' },
+        p3: { certa: 'b', texto: 'Coltan e Cobalto.' },
+        p4: { certa: 'a', texto: 'M23 e Ruanda.' },
+        p5: { certa: 'c', texto: 'Goma.' }
+      };
+
+      let pontos = 0;
+
+      for (let i = 1; i <= 5; i++) {
+        const campo = 'p' + i;
+        const resposta = document.querySelector('input[name="' + campo + '"]:checked');
+        const msgEl = document.getElementById('msg' + i);
+
+        msgEl.style.display = 'block';
+
+        if (resposta && resposta.value === gabarito[campo].certa) {
+          pontos++;
+          msgEl.className = 'feedback feedback-acerto';
+          msgEl.textContent = '✔ Acertou!';
+        } else {
+          msgEl.className = 'feedback feedback-erro';
+          msgEl.textContent = '✘ Errou. A resposta certa era: ' + gabarito[campo].texto;
+        }
+      }
+
+      const painel = document.getElementById('painel-nota');
+      const notaNum = document.getElementById('nota-numero');
+      const notaTexto = document.getElementById('nota-texto');
+
+      painel.style.display = 'block';
+      notaNum.textContent = pontos + ' / 5';
+
+      if (pontos === 5) {
+        notaTexto.textContent = 'Perfeito! Você acertou tudo! 🎉';
+      } else if (pontos >= 3) {
+        notaTexto.textContent = 'Muito bem! Você foi bem no quiz. 👏';
+      } else {
+        notaTexto.textContent = 'Vale reler o conteúdo e tentar de novo. 📚';
+      }
+
+      painel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  </script>
+</body>
+</html>
