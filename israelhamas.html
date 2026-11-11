@@ -101,13 +101,14 @@
 
     /* ---- CONTEÚDO DAS ABAS ---- */
     .conteudo { display: none; }
-    .conteudo.aberto { display: block; }
+    .conteudo.aberto { display: block !important; }
 
     .cartao-conteudo {
       background: var(--cor-cartao);
       border: 1px solid var(--cor-borda);
       border-radius: 18px;
       padding: 28px;
+      margin-bottom: 20px;
       box-shadow: 0 8px 24px rgba(0,0,0,.06);
     }
 
@@ -125,6 +126,7 @@
     .cartao-conteudo p { 
       margin: 0 0 14px; 
       word-wrap: break-word;
+      text-align: justify;
     }
 
     .cartao-conteudo ul {
@@ -154,6 +156,7 @@
       margin-top: 8px;
       text-align: center;
       font-style: italic;
+      font-weight: 600;
     }
 
     /* ---- TABELA RESPONSIVA ---- */
@@ -208,6 +211,13 @@
 
     .topico-impacto {
       margin-bottom: 20px;
+    }
+
+    .creditos {
+      margin-top: 15px;
+      font-weight: bold;
+      color: var(--cor-texto);
+      display: block;
     }
 
     /* =========================================================
@@ -368,7 +378,7 @@
 
     <header>
       <h1>Grupo 2: ISRAEL X HAMAS (Faixa de Gaza)</h1>
-      <p class="intro">Clique em um ícone para ver o conteúdo.</p>
+      <p class="intro">Clique em um botão para ver o conteúdo.</p>
     </header>
 
     <!-- =========================================================
@@ -384,10 +394,8 @@
     </div>
 
     <!-- =========================================================
-         OS 6 CONTEÚDOS
+         1. LOCALIZAÇÃO
     ========================================================== -->
-
-    <!-- 1. LOCALIZAÇÃO -->
     <div class="conteudo aberto" id="norte">
       <div class="cartao-conteudo">
         <h2>Onde acontece o conflito</h2>
@@ -395,24 +403,6 @@
           <img src="olivia.png" alt="Ataques Faixa de Gaza" onerror="semImagem(this)">
           <figcaption>Ataques aéreos à Faixa de Gaza deixam destruição — Mahmud Hams/AFP</figcaption>
         </figure>
-
-        <h2>Continente e localização geográfica</h2>
-        <p>
-          <strong>Continente:</strong> Ásia<br>
-          <strong>Região:</strong> Oriente Médio<br>
-          <strong>Mar próximo:</strong> Mar Mediterrâneo<br>
-          <strong>Localização da Faixa de Gaza:</strong> Costa oriental do Mar Mediterrâneo, entre Israel e Egito.<br>
-          <strong>Área Aproximada:</strong> 365 km²<br>
-          <strong>Características físicas:</strong> Planície costeira, com praias, dunas de areia e áreas urbanizadas.
-        </p>
-
-        <h2>Fronteiras da região:</h2>
-        <p>A Faixa de Gaza possui fronteiras terrestres e marítimas com:</p>
-        <ul>
-          <li><strong>Norte e Leste:</strong> Israel</li>
-          <li><strong>Sul:</strong> Egito</li>
-          <li><strong>Oeste:</strong> Mar Mediterrâneo</li>
-        </ul>
 
         <h2>Países Envolvidos</h2>
         <ul>
@@ -453,6 +443,24 @@
           </li>
         </ul>
 
+        <h2>Continente e localização geográfica</h2>
+        <p>
+          <strong>Continente:</strong> Ásia<br>
+          <strong>Região:</strong> Oriente Médio<br>
+          <strong>Mar próximo:</strong> Mar Mediterrâneo<br>
+          <strong>Localização da Faixa de Gaza:</strong> Costa oriental do Mar Mediterrâneo, entre Israel e Egito.<br>
+          <strong>Área Aproximada:</strong> 365 km²<br>
+          <strong>Características físicas:</strong> Planície costeira, com praias, dunas de areia e áreas urbanizadas.
+        </p>
+
+        <h2>Fronteiras da região</h2>
+        <p>A Faixa de Gaza possui fronteiras terrestres e marítimas com:</p>
+        <ul>
+          <li><strong>Norte e Leste:</strong> Israel</li>
+          <li><strong>Sul:</strong> Egito</li>
+          <li><strong>Oeste:</strong> Mar Mediterrâneo</li>
+        </ul>
+
         <h2>Recursos naturais existentes</h2>
         <p><strong>Gás natural:</strong> Existem reservas de gás natural no Mar Mediterrâneo, próximas à costa palestina, conhecidas como campos de Gaza Marine. Esse recurso pode contribuir para a produção de energia e para a economia palestina.</p>
         <p><strong>Terras agrícolas:</strong> Existem solos utilizados para o cultivo de hortaliças, frutas, oliveiras e outras culturas. A agricultura é importante para a alimentação e o sustento da população.</p>
@@ -467,11 +475,14 @@
           <li><strong>Recursos energéticos:</strong> O gás natural marítimo representa um possível recurso econômico e energético para os palestinos.</li>
           <li><strong>Importância política e histórica:</strong> Gaza faz parte da questão palestina, que envolve território, soberania, segurança, refugiados, direitos nacionais e a possibilidade de criação de um Estado palestino.</li>
         </ul>
-        <figcaption>Feito por: Olivia Possarle</figcaption>
+
+        <p class="creditos">Feito por: Olivia Possarle</p>
       </div>
     </div>
 
-    <!-- 2. SURGIMENTO -->
+    <!-- =========================================================
+         2. SURGIMENTO
+    ========================================================== -->
     <div class="conteudo" id="nordeste">
       <div class="cartao-conteudo">
         <h2>Razões para o surgimento do conflito</h2>
@@ -517,7 +528,7 @@
 
         <h2>6. Fatores étnicos</h2>
         <p>Os israelenses incluem pessoas de diferentes origens, sendo a maioria da população judaica. Já os palestinos são um povo predominantemente árabe, com identidade cultural, histórica e nacional própria.</p>
-        <p>Ao longo da história, as duas populações desenvolveram reivindicações sobre a mesma região, gerando disputas por território, reconhecimento e autodeterminação. É importante ressaltar que nem todos os judeus são israelenses, assim como nem todos os palestinos apoiam o Hamas.</p>
+        <p>Ao longo da história, as duas populações desenvolveram reivindicações sobre a mesma região, gerando disputas por território, reconhecimento e autodeterminação. É importante ressaltar que nem todos os judeus são israelenses, assim como nem todos os palestinos apoiam o Hamas. Os dois povos possuem diferentes opiniões políticas, religiosas e culturais.</p>
 
         <h2>Linha do tempo</h2>
         <ul>
@@ -533,11 +544,24 @@
           <li><strong>2023:</strong> Ataque do Hamas contra Israel em 7 de outubro e início da guerra atual.</li>
         </ul>
 
-        <figcaption>Feito por: Gabriela Oliveira</figcaption>      
+        <h2>7. Vídeo explicativo</h2>
+        <div class="video-container">
+          <iframe
+            src="https://www.youtube.com/embed/CtDRK1qeXlo"
+            title="Vídeo explicativo sobre o conflito entre Israel e Hamas"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <p class="creditos">Feito por: Gabriela Oliveira</p>      
       </div>
     </div>
 
-    <!-- 3. PARTICIPANTES -->
+    <!-- =========================================================
+         3. PARTICIPANTES
+    ========================================================== -->
     <div class="conteudo" id="centrooeste">
       <div class="cartao-conteudo">
         <h2>Quem participa?</h2>
@@ -632,17 +656,20 @@
         <p><strong>Civis palestinos:</strong> moradores da Faixa de Gaza e da Cisjordânia, que enfrentam deslocamentos, falta de alimentos, dificuldades de acesso à saúde e destruição de suas moradias.</p>
         <p><strong>Civis israelenses:</strong> população afetada pelos ataques do Hamas, pela insegurança e pelos deslocamentos nas áreas próximas às zonas de conflito.</p>
         <p><strong>Refugiados palestinos:</strong> pessoas que foram obrigadas a deixar suas casas ao longo da história do conflito e dependem, em muitos casos, de assistência internacional.</p>
-        <figcaption>Feito por: Natálya Lozovoy</figcaption>
+
+        <p class="creditos">Feito por: Natálya Lozovoy</p>
       </div>        
     </div>
 
-    <!-- 4. INTERESSES -->
+    <!-- =========================================================
+         4. INTERESSES
+    ========================================================== -->
     <div class="conteudo" id="sudeste">
       <div class="cartao-conteudo">
         <h2>Principais interesses envolvidos</h2>
 
         <figure class="foto">
-          <img src="julia.png" alt="Imagem representando os interesses econômicos e territoriais">
+          <img src="julia.png" alt="Imagem representando os interesses econômicos e territoriais" onerror="semImagem(this)">
           <figcaption>Interesses territoriais no Oriente Médio.</figcaption>
         </figure>
 
@@ -666,23 +693,14 @@
 
         <h2>7. Influência internacional</h2>
         <p>Outros países também participam indiretamente do conflito porque desejam proteger seus interesses políticos e estratégicos. Os Estados Unidos apoiam Israel, enquanto o Irã apoia o Hamas e outros grupos armados. Egito e Catar participam de negociações para tentar alcançar acordos de cessar-fogo.</p>
-        
-        <h2>8. Vídeo explicativo</h2>
-        <div class="video-container">
-          <iframe
-            src="https://www.youtube.com/embed/CtDRK1qeXlo"
-            title="Vídeo explicativo sobre o conflito entre Israel e Hamas"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
-        </div>
 
-        <figcaption>Feito por: Julia Prado</figcaption>
+        <p class="creditos">Feito por: Julia Prado</p>
       </div>
     </div>
 
-    <!-- 5. IMPACTOS -->
+    <!-- =========================================================
+         5. IMPACTOS
+    ========================================================== -->
     <div class="conteudo" id="sul">
       <div class="cartao-conteudo">
         <h2>Impactos do conflito</h2>
@@ -726,17 +744,19 @@
           <p>Quase 90% da infraestrutura de água e saneamento foi danificada ou destruída, gerando contaminação do solo e vazamento de esgoto. O acúmulo massivo de entulho dos bombardeios, a destruição de terras agrícolas e a falta de coleta de resíduos provocam sérios riscos sanitários e à agricultura.</p>
         </article>
 
-        <figcaption>Feito por: Manoela Barboza</figcaption>
+        <p class="creditos">Feito por: Manuela Barbosa</p>
       </div>
     </div>
 
-    <!-- 6. QUIZ (INTERATIVO & RESPONSIVO) -->
+    <!-- =========================================================
+         6. QUIZ
+    ========================================================== -->
     <div class="conteudo" id="quiz">
       <div class="cartao-conteudo">
         <h2>📝 Quiz: Israel x Hamas</h2>
         <p>Responda às 5 perguntas abaixo para testar seus conhecimentos sobre o conflito:</p>
 
-        <!-- Placar Final (Aparece após enviar) -->
+        <!-- Placar Final -->
         <div id="placar-resultado" class="placar-resultado">
           <div class="placar-numero" id="placar-texto">0 / 5</div>
           <p id="placar-mensagem" style="margin: 8px 0 0; font-weight: bold; font-size: 16px;"></p>
@@ -867,16 +887,33 @@
   ========================================================== -->
   <script>
     function abrir(id, botao) {
-      // esconde todos os conteúdos
       document.querySelectorAll('.conteudo').forEach(c => c.classList.remove('aberto'));
-      // mostra só o escolhido
-      document.getElementById(id).classList.add('aberto');
-      // tira o destaque de todos os botões e coloca só no clicado
+      
+      const elementoAlvo = document.getElementById(id);
+      if (elementoAlvo) {
+        elementoAlvo.classList.add('aberto');
+      }
+
       document.querySelectorAll('.botoes button').forEach(b => b.classList.remove('ativo'));
-      botao.classList.add('ativo');
+      if (botao) {
+        botao.classList.add('ativo');
+      }
     }
 
-    // Correção do Quiz em tempo real
+    function semImagem(img) {
+      if (img.dataset.ok) return;
+      img.dataset.ok = '1';
+      img.src = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(
+        '<svg xmlns="http://www.w3.org/2000/svg" width="600" height="340">' +
+        '<rect width="600" height="340" fill="#dfe8ef"/>' +
+        '<text x="300" y="165" font-family="Arial" font-size="22" fill="#7d8da0" ' +
+        'text-anchor="middle">Coloque sua imagem aqui</text>' +
+        '<text x="300" y="195" font-family="Arial" font-size="15" fill="#9aa8b8" ' +
+        'text-anchor="middle">' + img.getAttribute('src').split('?')[0] + '</text>' +
+        '</svg>'
+      );
+    }
+
     function corrigirQuiz(event) {
       event.preventDefault();
 
@@ -907,7 +944,6 @@
         }
       }
 
-      // Exibe Placar
       const placarBox = document.getElementById('placar-resultado');
       const placarTexto = document.getElementById('placar-texto');
       const placarMensagem = document.getElementById('placar-mensagem');
@@ -923,23 +959,7 @@
         placarMensagem.textContent = 'Vale reler o conteúdo e tentar de novo. 📚';
       }
 
-      // Rola a tela até o placar
       placarBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-
-    // Placeholder cinza quando a imagem não é encontrada
-    function semImagem(img) {
-      if (img.dataset.ok) return;
-      img.dataset.ok = '1';
-      img.src = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(
-        '<svg xmlns="http://www.w3.org/2000/svg" width="600" height="340">' +
-        '<rect width="600" height="340" fill="#dfe8ef"/>' +
-        '<text x="300" y="165" font-family="Arial" font-size="22" fill="#7d8da0" ' +
-        'text-anchor="middle">Coloque sua imagem aqui</text>' +
-        '<text x="300" y="195" font-family="Arial" font-size="15" fill="#9aa8b8" ' +
-        'text-anchor="middle">' + img.getAttribute('src').split('?')[0] + '</text>' +
-        '</svg>'
-      );
     }
   </script>
 </body>
