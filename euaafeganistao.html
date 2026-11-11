@@ -7,17 +7,19 @@
   <title>Grupo 8: EUA x Afeganistão — Atlas Geopolítico</title>
 
   <!-- =========================================================
-       CSS DA PÁGINA (GRUPO 8 - TOTALMENTE RESPONSIVO)
+       CSS DA PÁGINA (GRUPO 8 - CORES E FONTES PRESERVADAS)
   ========================================================== -->
   <style>
     :root {
-      --cor-fundo:    #e6c7c2;
+      --cor-fundo:    #e58b8b;
       --cor-texto:    #16202b;
       --cor-suave:    #5b6b7a;
       --cor-cartao:   #ffffff;
       --cor-destaque: #c94c4c;
       --cor-hover:    #a33434;
       --cor-borda:    #d6e0e8;
+      --cor-titulo:   #AC332A;
+      --cor-sub:      #FA855A;
       --cor-acerto:   #1e7e34;
       --cor-erro:     #bd2130;
     }
@@ -46,13 +48,13 @@
       align-items: center;
       gap: 6px;
       text-decoration: none;
-      color: var(--cor-suave);
+      color: #16202b;
       font-weight: bold;
       margin-bottom: 20px;
       font-size: 15px;
       transition: color 0.2s ease;
     }
-    .voltar:hover { color: var(--cor-destaque); }
+    .voltar:hover { color: #ffffff; }
 
     header {
       margin-bottom: 24px;
@@ -66,9 +68,10 @@
     }
 
     header p.intro {
-      color: var(--cor-suave);
+      color: #16202b;
       margin: 0 0 16px;
       font-size: 16px;
+      font-weight: 500;
     }
 
     /* ---- BARRA DE BOTÕES RESPONSIVA ---- */
@@ -104,7 +107,7 @@
       border-color: var(--cor-destaque);
     }
 
-    /* ---- CONTEÚDO ---- */
+    /* ---- CONTEÚDO DAS ABAS ---- */
     .conteudo { display: none; }
     .conteudo.aberto { display: block !important; }
 
@@ -113,19 +116,43 @@
       border: 1px solid var(--cor-borda);
       border-radius: 18px;
       padding: 26px;
-      box-shadow: 0 8px 24px rgba(0,0,0,.06);
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.08);
     }
 
     .cartao-conteudo h2 {
       margin: 22px 0 12px;
-      font-size: 22px;
-      color: var(--cor-destaque);
+      font-size: 24px;
+      color: var(--cor-titulo);
       line-height: 1.3;
     }
 
     .cartao-conteudo h2:first-child { margin-top: 0; }
-    .cartao-conteudo h3 { font-size: 18px; margin: 18px 0 8px; color: var(--cor-texto); }
-    .cartao-conteudo p  { margin: 0 0 14px; word-wrap: break-word; }
+    
+    .cartao-conteudo h3 { 
+      font-size: 18px; 
+      margin: 18px 0 8px; 
+      color: var(--cor-titulo); 
+    }
+
+    .cartao-conteudo p  { 
+      margin: 0 0 14px; 
+      text-align: justify; 
+      word-wrap: break-word; 
+    }
+
+    .texto-destaque {
+      color: var(--cor-sub);
+      font-weight: 600;
+    }
+
+    .subtitulo-destaque {
+      color: var(--cor-sub);
+      font-weight: bold;
+      margin-top: 16px;
+      margin-bottom: 6px;
+      font-size: 18px;
+    }
 
     /* ---- Imagens ---- */
     .foto { margin: 0 0 18px; }
@@ -146,20 +173,20 @@
       font-style: italic;
     }
 
-    /* ---- ESTILOS DOS CRÉDITOS DA PÁGINA ---- */
+    /* ---- CRÉDITOS DOS AUTORES ---- */
     .creditos {
       margin-top: 24px;
       padding-top: 12px;
       border-top: 1px dashed var(--cor-borda);
       font-size: 14px;
       color: var(--cor-suave);
-      font-weight: 600;
+      font-weight: bold;
       text-align: right;
     }
 
     /* ---- ESTILOS DO QUIZ ---- */
     .cartao-quiz {
-      background: var(--cor-cartao);
+      background: #fafcfd;
       border: 1px solid var(--cor-borda);
       border-radius: 14px;
       padding: 18px 20px;
@@ -168,29 +195,32 @@
 
     .cartao-quiz h2 {
       font-size: 17px;
-      color: var(--cor-destaque);
+      color: var(--cor-titulo);
       margin: 0 0 10px;
       line-height: 1.4;
     }
 
     .cartao-quiz label {
-      display: block;
-      padding: 8px 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 12px;
       margin-bottom: 6px;
-      background: #f8fafc;
+      background: #ffffff;
       border-radius: 8px;
       border: 1px solid var(--cor-borda);
       cursor: pointer;
       font-size: 15px;
-      transition: background 0.2s;
+      transition: background 0.2s, border-color 0.2s;
     }
 
     .cartao-quiz label:hover {
-      background: #eef3f7;
+      background: #f0f7f9;
+      border-color: var(--cor-destaque);
     }
 
     .cartao-quiz input[type="radio"] {
-      margin-right: 8px;
+      margin-top: 3px;
       accent-color: var(--cor-destaque);
     }
 
@@ -263,7 +293,7 @@
         font-size: 13px;
       }
       .cartao-conteudo { padding: 20px 16px; border-radius: 14px; }
-      .cartao-conteudo h2 { font-size: 19px; }
+      .cartao-conteudo h2 { font-size: 20px; }
     }
 
     @media (max-width: 480px) {
@@ -280,24 +310,24 @@
 
     <header>
       <h1>★ Grupo 8: EUA x Afeganistão</h1>
-      <p class="intro">Clique em um tópico para navegar pelo conteúdo.</p>
+      <p class="intro">Clique em uma região ou tópico para ver o conteúdo.</p>
     </header>
 
     <!-- =========================================================
          BOTÕES DE NAVEGAÇÃO
     ========================================================== -->
     <div class="botoes">
-      <button class="ativo" onclick="abrir('onde', this)">Onde acontece</button>
-      <button onclick="abrir('como', this)">Como surgiu</button>
+      <button class="ativo" onclick="abrir('onde', this)">Onde acontece o conflito</button>
+      <button onclick="abrir('como', this)">Como surgiu o conflito</button>
       <button onclick="abrir('quem', this)">Quem participa</button>
       <button onclick="abrir('quais', this)">Quais interesses?</button>
-      <button onclick="abrir('quais2', this)">Impactos</button>
-      <button onclick="abrir('atentados', this)">11 de Setembro</button>
+      <button onclick="abrir('quais2', this)">Quais os impactos</button>
+      <button onclick="abrir('atentados', this)">Atentados 11 de setembro</button>
       <button onclick="abrir('guerra', this)">Guerra ao Terror</button>
       <button onclick="abrir('taliba', this)">Talibã</button>
       <button onclick="abrir('otan', this)">OTAN</button>
-      <button onclick="abrir('retirada', this)">Retirada (2021)</button>
-      <button onclick="abrir('situacao', this)">Situação Atual</button>
+      <button onclick="abrir('retirada', this)">Retirada das tropas em 2021</button>
+      <button onclick="abrir('situacao', this)">Situação atual do Afeganistão</button>
       <button onclick="abrir('quiz', this)">Quiz</button>
     </div>
 
@@ -310,17 +340,20 @@
         <figure class="foto">
           <img src="afe.jpg" alt="EUA x Afeganistão" onerror="semImagem(this)">
         </figure>
-        <p><strong>O conflito entre os Estados Unidos e o Afeganistão (envolvendo o grupo extremista Talibã e a rede Al-Qaeda) ocorreu no território do próprio Afeganistão.</strong></p>
+        
+        <p class="texto-destaque"><strong><i>O conflito entre os Estados Unidos e o Afeganistão (envolvendo o grupo extremista Talibã e a rede Al-Qaeda) ocorreu no território do próprio Afeganistão.</i></strong></p>
+        
         <p>• <strong>Localização geográfica:</strong> O país fica localizado na Ásia Central, fazendo fronteira com Paquistão, Irã, Turquemenistão, Uzbequistão, Tajiquistão e China.<br>
         • <strong>Principais pontos de combate e sedes:</strong> As operações militares e os confrontos espalharam-se por todo o território afegão — incluindo as montanhas e áreas rurais onde o Talibã se escondia, bases militares estratégicas como a Base Aérea de Bagram, e a capital, Cabul, que foi o centro do poder derrubado em 2001 e retomado pelo Talibã em agosto de 2021.<br>
         • <strong>Duração:</strong> O conflito estendeu-se de outubro de 2001 até agosto de 2021, quando as tropas americanas concluíram sua retirada do país.</p>
 
-        <p><strong>O conflito concentrou-se principalmente em três regiões estratégicas dentro do Afeganistão (e na fronteira vizinha):</strong></p>
+        <p class="texto-destaque"><i><strong>O conflito concentrou-se principalmente em três regiões estratégicas dentro do Afeganistão (e na fronteira vizinha):</strong></i></p>
+
         <p>• <strong>Sul e Leste (Províncias de Helmand e Kandahar):</strong> Foi a região com os combates mais intensos. Kandahar é o berço histórico do Talibã, e o vale do rio Helmand era um forte reduto do grupo, exigindo grandes ofensivas dos EUA e aliados.<br>
         • <strong>Leste e Fronteira com o Paquistão (Montanhas de Tora Bora):</strong> Área montanhosa de difícil acesso onde líderes da Al-Qaeda, incluindo Osama bin Laden, esconderam-se após a invasão de 2001. O conflito também transbordou para a região tribal do noroeste do Paquistão (como o Waziristão), usada como refúgio pelos insurgentes.<br>
         • <strong>Centro-Leste (Cabul e Vale de Panjshir):</strong> A capital Cabul foi o principal centro político e alvo inicial da invasão, enquanto a região ao norte da capital (como Bagram) serviu como a principal base militar e logística dos Estados Unidos durante os 20 anos de guerra.</p>
 
-        <p class="creditos">Feito por Miguel L</p>
+        <div class="creditos">Feito por: Miguel L</div>
       </div>
     </div>
 
@@ -329,22 +362,23 @@
     ========================================================== -->
     <div class="conteudo" id="como">
       <div class="cartao-conteudo">
-        <h2>Como surgiu o conflito?</h2>
+        <h2>Como surgiu?</h2>
         <figure class="foto">
-          <img src="afe2.jpg" alt="Origem do conflito" onerror="semImagem(this)">
+          <img src="afe2.jpg" alt="EUA x Afeganistão" onerror="semImagem(this)">
         </figure>
-        <p><strong>O conflito entre os Estados Unidos e o Afeganistão surgiu em outubro de 2001, como uma resposta militar direta dos EUA aos ataques terroristas de 11 de setembro de 2001. A invasão teve como objetivo capturar Osama bin Laden e desmantelar a rede Al-Qaeda, que recebia abrigo do regime do Talibã no território afegão.</strong></p>
+        
+        <p class="texto-destaque"><strong>O conflito entre os Estados Unidos e o Afeganistão surgiu em outubro de 2001, como uma resposta militar direta dos EUA aos ataques terroristas de 11 de setembro de 2001. A invasão teve como objetivo capturar Osama bin Laden e desmantelar a rede Al-Qaeda, que recebia abrigo do regime do Talibã no território afegão.</strong></p>
 
         <h2>Antecedentes e Causas Diretas</h2>
-        <p>• <strong>Os ataques de 11 de setembro:</strong> Em 11 de setembro de 2001, militantes do grupo extremista Al-Qaeda sequestraram quatro aviões comerciais nos EUA, deixando quase três mil mortos.<br>
-        • <strong>O abrigo da Al-Qaeda no Afeganistão:</strong> O líder da Al-Qaeda, Osama bin Laden, operava a partir do Afeganistão, governado desde 1996 pelo Talibã.<br>
-        • <strong>A recusa do Talibã:</strong> Logo após os atentados, o presidente americano George W. Bush exigiu que o Talibã entregasse Osama bin Laden. O Talibã recusou o ultimato.</p>
+        <p>• <strong>Os ataques de 11 de setembro:</strong> Em 11 de setembro de 2001, militantes do grupo extremista Al-Qaeda sequestraram quatro aviões comerciais nos EUA. Eles lançaram duas aeronaves contra as Torres Gêmeas em Nova York e uma contra o Pentágono, deixando quase três mil mortos.<br>
+        • <strong>O abrigo da Al-Qaeda no Afeganistão:</strong> O líder da Al-Qaeda, Osama bin Laden, operava a partir do Afeganistão. O país era governado desde 1996 pelo Talibã, um grupo fundamentalista islâmico que compartilhava ideologias extremistas e protegia os campos de treinamento da rede terrorista.<br>
+        • <strong>A recusa do Talibã:</strong> Logo após os atentados, o presidente americano George W. Bush exigiu que o Talibã entregasse Osama bin Laden e fechasse todas as bases da Al-Qaeda no país. O Talibã recusou o ultimato, alegando falta de provas concretas do envolvimento de Bin Laden nos ataques.</p>
 
         <h2>O Início da Guerra</h2>
-        <p>• <strong>A invasão liderada pelos EUA:</strong> Diante da recusa, os Estados Unidos e aliados lançaram a Operação Liberdade Duradoura em 7 de outubro de 2001.<br>
-        • <strong>Queda rápida e guerrilha longa:</strong> A ofensiva derrubou o regime do Talibã em poucas semanas, tomando a capital Cabul em novembro de 2001. No entanto, os líderes insurgentes fugiram para as montanhas e para o Paquistão, dando início a uma guerra de guerrilha de 20 anos.</p>
+        <p>• <strong>A invasão liderada pelos EUA:</strong> Diante da recusa, os Estados Unidos, com o apoio do Reino Unido e de forças locais afegãs opositoras (a Aliança do Norte), lançaram a Operação Liberdade Duradoura em 7 de outubro de 2001.<br>
+        • <strong>Queda rápida e guerrilha longa:</strong> Os bombardeios aéreos e a ofensiva terrestre derrubaram o regime do Talibã em poucas semanas, tomando a capital Cabul em novembro de 2001. No entanto, os líderes do Talibã e da Al-Qaeda fugiram para as montanhas e para o vizinho Paquistão, dando início a uma guerra de guerrilha que durou 20 anos.</p>
 
-        <p class="creditos">Feito por Emily</p>
+        <div class="creditos">Feito por: Emily</div>
       </div>
     </div>
 
@@ -357,21 +391,22 @@
         <figure class="foto">
           <img src="afe3.jpg" alt="Participantes da Guerra" onerror="semImagem(this)">
         </figure>
-        <p><strong>O conflito envolveu principalmente dois grandes blocos: de um lado, uma coalizão internacional liderada pelos Estados Unidos e o governo afegão apoiado pelo Ocidente; do outro, o Talibã e redes extremistas aliadas.</strong></p>
+        
+        <p class="texto-destaque"><strong>O conflito envolveu principalmente dois grandes blocos: de um lado, uma coalizão internacional liderada pelos Estados Unidos e o governo afegão apoiado pelo Ocidente; do outro, o Talibã e redes extremistas aliadas.</strong></p>
 
         <h3>1. A Coalizão Liderada pelos Estados Unidos</h3>
-        <p>• <strong>Estados Unidos:</strong> Principal ator militar e financeiro.<br>
-        • <strong>OTAN e Aliados Internacionais:</strong> Países como Reino Unido, Canadá, Alemanha, França e Itália enviaram milhares de soldados.<br>
-        • <strong>Aliança do Norte:</strong> Frente unida de facções armadas afegãs contrárias ao Talibã.<br>
-        • <strong>Governo da República Islâmica do Afeganistão:</strong> Criado após a queda do Talibã em 2001.</p>
+        <p>• <strong>Estados Unidos:</strong> Foram o principal ator militar e financeiro, liderando a invasão inicial e mantendo o maior contingente de tropas durante os 20 anos de guerra.<br>
+        • <strong>OTAN e Aliados Internacionais:</strong> A Organização do Tratado do Atlântico Norte (OTAN) assumiu o comando da força internacional (ISAF) em 2003. Países como Reino Unido, Canadá, Alemanha, França, Itália e Austrália enviaram milhares de soldados.<br>
+        • <strong>Aliança do Norte:</strong> Uma frente unida de facções armadas afegãs que já lutavam contra o Talibã antes de 2001. Eles foram fundamentais no combate terrestre inicial ao lado das forças especiais americanas.<br>
+        • <strong>Governo da República Islâmica do Afeganistão:</strong> Criado após a queda do Talibã em 2001, esse governo contou com o apoio do Exército Nacional Afegão (treinado e equipado pelos EUA e aliados) para tentar manter o controle do país.</p>
 
         <h3>2. Os Grupos Insurgentes e Extremistas</h3>
-        <p>• <strong>Talibã:</strong> Movimento fundamentalista islâmico que governava o país até 2001.<br>
-        • <strong>Al-Qaeda:</strong> Rede terrorista liderada por Osama bin Laden.<br>
-        • <strong>Rede Haqqani:</strong> Facção insurgente fortemente ligada ao Talibã.<br>
-        • <strong>Estado Islâmico (ISIS-K):</strong> Surgiu por volta de 2015 como rival do governo afegão e do próprio Talibã.</p>
+        <p>• <strong>Talibã:</strong> O movimento fundamentalista islâmico que governava o país até 2001. Após ser derrubado, reorganizou-se como uma força de guerrilha e lutou para expulsar as tropas estrangeiras e retomar o poder.<br>
+        • <strong>Al-Qaeda:</strong> A rede terrorista liderada por Osama bin Laden, alvo original da invasão americana. Embora enfraquecida ao longo dos anos, manteve alianças históricas com o Talibã.<br>
+        • <strong>Rede Haqqani:</strong> Uma facção insurgente extremamente violenta e autônoma, fortemente ligada ao Talibã e à Al-Qaeda, que operava na fronteira com o Paquistão e realizava ataques complexos em Cabul.<br>
+        • <strong>Estado Islâmico - Província de Khorasan (ISIS-K):</strong> Surgiu na região por volta de 2015 como um braço local do Estado Islâmico. O grupo combateu tanto as forças americanas e o governo afegão quanto o próprio Talibã, por rivalidades ideológicas.</p>
 
-        <p class="creditos">Feito por Emily</p>
+        <div class="creditos">Feito por: Emily</div>
       </div>
     </div>
 
@@ -384,22 +419,25 @@
         <figure class="foto">
           <img src="afe4.jpg" alt="Interesses envolvidos" onerror="semImagem(this)">
         </figure>
+        
+        <p class="texto-destaque"><strong>Os interesses no conflito entre os Estados Unidos e o Afeganistão envolveram objetivos declarados de segurança nacional, disputas geopolíticas na Ásia Central e motivações ideológicas dos grupos locais.</strong></p>
 
         <h3>1. Interesses dos Estados Unidos e Aliados</h3>
-        <p>• <strong>Segurança e Contraterrorismo:</strong> Destruir as bases da Al-Qaeda e impedir novos atentados.<br>
-        • <strong>Posição Geopolítica Estratégica:</strong> Presença militar na Ásia Central, próxima à China, Irã e Rússia.<br>
-        • <strong>Estabilização e Construção de Estado:</strong> Promover um governo democrático aliado em Cabul.<br>
-        • <strong>Recursos Naturais:</strong> Reservas minerais (lítio, cobre) e rotas de gasodutos.</p>
+        <p>• <strong>Segurança e Contraterrorismo:</strong> O objetivo principal e imediato era destruir os campos de treinamento da Al-Qaeda, capturar Osama bin Laden e impedir que o Afeganistão voltasse a ser usado como base para ataques terroristas contra o Ocidente.<br>
+        • <strong>Posição Geopolítica Estratégica:</strong> O Afeganistão fica no coração da Ásia Central, fazendo fronteira com potências e rivais estratégicos dos EUA, como China, Irã e áreas de influência da Rússia. Manter bases militares na região garantia vigilância e projeção de poder militar americano.<br>
+        • <strong>Estabilização e Construção de Estado:</strong> Os EUA buscaram instalar um governo democrático aliado em Cabul para criar estabilidade regional e promover direitos humanos, especialmente os direitos das mulheres, como forma de legitimar a presença internacional a longo prazo.<br>
+        • <strong>Recursos Naturais e Rotas Energéticas:</strong> Embora não tenha sido o motivo inicial da invasão, o país possui vastas reservas minerais pouco exploradas (como lítio, cobre e terras raras) e ocupa uma rota importante para projetos de gasodutos ligando a Ásia Central ao sul da Ásia.</p>
 
         <h3>2. Interesses do Talibã e Grupos Insurgentes</h3>
-        <p>• <strong>Soberania e Retomada do Poder:</strong> Expulsar tropas estrangeiras e reassumir o controle do país.<br>
-        • <strong>Imposição Ideológica:</strong> Restabelecer o Emirado Islâmico sob a Sharia.</p>
+        <p>• <strong>Soberania e Retomada do Poder:</strong> O interesse central do Talibã era expulsar todas as tropas estrangeiras ocupantes, derrubar o governo apoiado pelo Ocidente e reassumir o controle político total do Afeganistão.<br>
+        • <strong>Imposição Ideológica e Religiosa:</strong> O grupo lutava para restabelecer o Emirado Islâmico do Afeganistão e governar o país sob sua interpretação rigorosa da lei islâmica (Sharia), rejeitando modelos políticos ocidentais.<br>
+        • <strong>Autonomia Local e Tribal:</strong> Muitas facções locais apoiaram a insurgência para resistir à interferência de um governo central forte em Cabul e de forças estrangeiras em seus territórios tradicionais.</p>
 
-        <h3>3. Interesses de Potências Regionais</h3>
-        <p>• <strong>Paquistão:</strong> Garantir influência na região.<br>
-        • <strong>Rússia, China e Irã:</strong> Manter vigilância na fronteira e conter o avanço militar ocidental.</p>
+        <h3>3. Interesses de Potências Regionais (Bastidores)</h3>
+        <p>• <strong>Paquistão:</strong> Buscava garantir "profundidade estratégica" na região, apoiando historicamente facções do Talibã para evitar que o Afeganistão se tornasse um aliado próximo de seu maior rival, a Índia.<br>
+        • <strong>Rússia, China e Irã:</strong> Tinham interesses ambíguos. Por um lado, queriam conter o extremismo islâmico e o tráfico de ópio na região; por outro, desejavam o enfraquecimento e a saída das tropas militares dos Estados Unidos de suas fronteiras vizinhas.</p>
 
-        <p class="creditos">Feito por Anna Zurdo</p>
+        <div class="creditos">Feito por: Anna Zurdo</div>
       </div>
     </div>
 
@@ -410,25 +448,27 @@
       <div class="cartao-conteudo">
         <h2>Quais foram os impactos que isso trouxe?</h2>
         <figure class="foto">
-          <img src="afe5.jpg" alt="Impactos da Guerra" onerror="semImagem(this)">
+          <img src="afe5.jpg" alt="Impactos do conflito" onerror="semImagem(this)">
         </figure>
         
+        <p class="texto-destaque"><strong>Os 20 anos de conflito entre os Estados Unidos e o Afeganistão (2001–2021) deixaram impactos profundos e duradouros em áreas humanas, políticas, econômicas e geopolíticas. O saldo envolve centenas de milhares de mortos, trilhões de dólares gastos e uma grave crise humanitária após o retorno do Talibã ao poder.</strong></p>
+
         <h3>1. Impactos Humanos e Sociais</h3>
-        <p>• Mais de 240 mil mortos diretamente na guerra (incluindo 70 mil civis).<br>
-        • Milhões de refugiados e deslocados internos.<br>
-        • Severo retrocesso nos direitos das mulheres com o retorno do Talibã.</p>
+        <p>• <strong>Perdas de vidas:</strong> Estima-se que mais de 240 mil pessoas morreram diretamente em decorrência da guerra. Esse número inclui cerca de 70 mil civis afegãos e paquistaneses, dezenas de milhares de soldados afegãos e insurgentes, além de aproximadamente 2.400 militares americanos e mais de 1.100 soldados de países aliados.<br>
+        • <strong>Deslocamento em massas:</strong> Milhões de afegãos foram forçados a abandonar suas casas, tornando-se deslocados internos ou refugiados em países vizinhos, como Paquistão e Irã.<br>
+        • <strong>Retrocesso nos direitos humanos:</strong> Com a retomada do poder pelo Talibã em agosto de 2021, houve uma rápida eliminação das conquistas sociais alcançadas durante a ocupação. As mulheres e meninas foram proibidas de frequentar escolas secundárias e universidades, além de serem excluídas da maioria dos empregos e da vida pública.</p>
 
         <h3>2. Impactos Econômicos e Humanitários</h3>
-        <p>• Colapso econômico e suspensão da ajuda financeira internacional ao Afeganistão.<br>
-        • Gasto superior a 2,3 trilhões de dólares pelos Estados Unidos.<br>
-        • Afeganistão como epicentro da produção mundial de ópio durante o conflito.</p>
+        <p>• <strong>Colapso econômico no Afeganistão:</strong> A saída abrupta das tropas estrangeiras interrompeu a ajuda financeira internacional, que representava cerca de 75% do orçamento público afegão. O congelamento de reservas financeiras do país no exterior agravou a pobreza extrema e a insegurança alimentar, afetando a maior parte da população.<br>
+        • <strong>Custo bilionário para os EUA:</strong> Os Estados Unidos gastaram mais de 2,3 trilhões de dólares com operações militares, treinamento de forças locais, reconstrução e cuidados futuros com veteranos de guerra.<br>
+        • <strong>Produção de ópio:</strong> Durante o conflito, o Afeganistão consolidou-se como o maior produtor mundial de ópio (matéria-prima da heroína), cuja venda financiou grande parte das operações do Talibã e alimentou a corrupção local.</p>
 
         <h3>3. Impactos Políticos e Geopolíticos</h3>
-        <p>• Retorno do Talibã ao poder em 2021.<br>
-        • Desgaste da imagem diplomática dos EUA perante aliados.<br>
-        • Reconfiguração da segurança regional na Ásia Central.</p>
+        <p>• <strong>Retorno do Talibã ao poder:</strong> Apesar de duas décadas de intervenção militar e tentativas de construir uma democracia, o governo apoiado pelo Ocidente entrou em colapso rápido em 2021. O Talibã retomou o controle do país com ainda mais armamentos deixados para trás pelo exército afegão.<br>
+        • <strong>Desgaste da imagem dos EUA:</strong> A forma caótica da retirada de Cabul em agosto de 2021 abalou a credibilidade diplomática e militar dos Estados Unidos perante aliados globais e fortaleceu o discurso de potências rivais, como China e Rússia.<br>
+        • <strong>Instabilidade regional:</strong> A mudança de poder reconfigurou o tabuleiro na Ásia Central, exigindo que países vizinhos negociassem diretamente com o Talibã para conter ameaças de grupos extremistas rivais, como o Estado Islâmico (ISIS-K).</p>
 
-        <p class="creditos">Feito por Anna Zurdo</p>
+        <div class="creditos">Feito por: Anna Zurdo</div>
       </div>
     </div>
 
@@ -441,19 +481,28 @@
         <figure class="foto">
           <img src="afe6.jpg" alt="11 de Setembro" onerror="semImagem(this)">
         </figure>
-        <p><strong>Os atentados de 11 de setembro de 2001 foram uma série de quatro ataques terroristas suicidas coordenados pela Al-Qaeda contra os EUA, deixando 2.977 vítimas fatais.</strong></p>
+        
+        <p class="texto-destaque"><strong>Os atentados de 11 de setembro de 2001 foram uma série de quatro ataques terroristas suicidas coordenados pelo grupo extremista Al-Qaeda contra os Estados Unidos. O evento deixou 2.977 vítimas fatais (além dos 19 sequestradores) e redefiniu a segurança global e a política externa americana.</strong></p>
 
-        <h3>Como Aconteceram os Ataques</h3>
-        <p>• <strong>Torres Gêmeas (Nova York):</strong> Dois aviões colidiram contra as torres do World Trade Center.<br>
-        • <strong>Pentágono (Virgínia):</strong> Um avião atingiu a sede do Departamento de Defesa dos EUA.<br>
-        • <strong>Shanksville (Pensilvânia):</strong> O quarto avião caiu em um campo após reação dos passageiros.</p>
+        <div class="subtitulo-destaque">Como Aconteceram os Ataques</div>
+        <p><i>Na manhã daquela terça-feira, 19 terroristas sequestraram quatro aviões comerciais que decolaram da costa leste americana com destino à Califórnia.</i><br>
+        • <strong>Torres Gêmeas (Nova York):</strong> Às 8h46, o voo 11 da American Airlines atingiu a Torre Norte do World Trade Center. Às 9h03, o voo 175 da United Airlines colidiu com a Torre Sul, fazendo com que ambos os edifícios desabassem em menos de duas horas.<br>
+        • <strong>Pentágono (Virgínia):</strong> Às 9h37, o voo 77 da American Airlines foi lançado contra a sede do Departamento de Defesa dos EUA, nos arredores de Washington, destruindo parte da estrutura.<br>
+        • <strong>Shanksville (Pensilvânia):</strong> O voo 93 da United Airlines seguia em direção a Washington (possivelmente visando o Capitólio ou a Casa Branca). Os passageiros reagiram aos sequestradores e o avião caiu em um campo às 10h03, sem atingir o alvo.</p>
 
-        <h3>Consequências Imediatas</h3>
-        <p>• Início da campanha global "Guerra ao Terror".<br>
-        • Reformas drásticas na segurança da aviação civil no mundo inteiro.<br>
-        • Criação de leis rígidas de vigilância (como o Patriot Act nos EUA).</p>
+        <div class="subtitulo-destaque">Responsáveis e Motivações</div>
+        <p><i>A autoria dos ataques foi reivindicada por Osama bin Laden, líder da rede islâmica radical Al-Qaeda, que operava a partir do Afeganistão sob proteção do regime do Talibã.</i><br>
+        • <strong>Motivações:</strong> Bin Laden justificou os ataques pela presença militar dos EUA no Oriente Médio (especialmente na Arábia Saudita), pelo apoio americano a Israel e pelas sanções econômicas impostas ao Iraque na década de 1990.<br>
+        • <strong>Desfecho de Bin Laden:</strong> Após quase dez anos de buscas, ele foi localizado e morto por forças especiais da Marinha americana (Navy SEALs) em maio de 2011, em um complexo na cidade de Abbottabad, no Paquistão.</p>
 
-        <p class="creditos">Feito por Miguel L</p>
+        <div class="subtitulo-destaque">Principais Consequências</div>
+        <p><i>O 11 de Setembro provocou mudanças profundas dentro e fora dos Estados Unidos, conforme registros históricos da Comissão do 11 de Setembro e da BBC News Brasil.</i><br>
+        • <strong>Guerra ao Terror:</strong> O governo de George W. Bush iniciou uma campanha militar global, resultando na invasão do Afeganistão em outubro de 2001 e na Guerra do Iraque em 2003.<br>
+        • <strong>Segurança e Vigilância:</strong> Os EUA criaram o Departamento de Segurança Interna (DHS) e aprovaram o Patriot Act, lei que ampliou o poder de vigilância e investigação do governo.<br>
+        • <strong>Aviação Mundial:</strong> Os procedimentos de embarque em aeroportos de todo o mundo passaram por reformas rigorosas, incluindo inspeção detalhada de bagagens, restrição a líquidos e reforço nas portas das cabines de comando.<br>
+        • <strong>Impactos na Saúde:</strong> Milhares de socorristas, bombeiros e moradores de Nova York desenvolveram doenças respiratórias graves e diferentes tipos de câncer devido à inalação da poeira tóxica dos escombros.</p>
+
+        <div class="creditos">Feito por: Miguel L</div>
       </div>
     </div>
 
@@ -466,12 +515,27 @@
         <figure class="foto">
           <img src="afe7.jpg" alt="Guerra ao Terror" onerror="semImagem(this)">
         </figure>
-        <p>Campanha militar e diplomática iniciada pelo governo George W. Bush para combater grupos terroristas internacionais.</p>
-        <p>• <strong>Principais frentes:</strong> Guerra do Afeganistão (2001–2021) e Guerra do Iraque (2003–2011).<br>
-        • <strong>Controvérsias:</strong> Doutrina de ataques preventivos, prisão de Guantánamo e ataques com drones.<br>
-        • <strong>Custo humano e financeiro:</strong> Centenas de milhares de mortes e custos globais trilionários.</p>
+        
+        <p class="texto-destaque"><strong>A Guerra ao Terror (oficialmente chamada de Global War on Terrorism pelos EUA) foi uma campanha militar, política e de inteligência internacional lançada pelo governo de George W. Bush logo após os atentados de 11 de setembro de 2001. O objetivo declarado era eliminar organizações terroristas globais, como a Al-Qaeda, e impedir que regimes apoiassem esses grupos.</strong></p>
 
-        <p class="creditos">Feito por Emily</p>
+        <div class="subtitulo-destaque">Principais Frentes Militares</div>
+        <p><i>Embora tenha envolvido operações em dezenas de países (como Paquistão, Iêmen, Somália e Filipinas), a campanha concentrou-se em dois grandes conflitos prolongados.</i><br>
+        • <strong>O Afeganistão (2001–2021):</strong> Iniciada em outubro de 2001 para derrubar o regime do Talibã e capturar Osama bin Laden. Apesar da morte de Bin Laden em 2011, o conflito durou 20 anos e terminou com a retirada das tropas americanas e o retorno do Talibã ao poder.<br>
+        • <strong>Guerra do Iraque (2003–2011):</strong> Os EUA lideraram uma coalizão para derrubar o ditador Saddam Hussein, alegando que o regime possuía armas de destruição em massa e laços com o terrorismo. As armas nunca foram encontradas, e a invasão gerou anos de guerra civil e o surgimento do grupo Estado Islâmico (ISIS).</p>
+
+        <div class="subtitulo-destaque">Doutrinas e Controvérsias</div>
+        <p><i>A campanha alterou o direito internacional e a política interna americana por meio de medidas de exceção, amplamente documentadas por organizações como a Anistia Internacional e o projeto Costs of War da Universidade Brown.</i><br>
+        • <strong>Ataques Preventivos:</strong> A chamada "Doutrina Bush" estabeleceu o direito de os Estados Unidos atacarem preventivamente nações ou grupos considerados ameaças potenciais, mesmo sem aprovação do Conselho de Segurança da ONU.<br>
+        • <strong>Prisão de Guantánamo e Tortura:</strong> Os EUA criaram um centro de detenção na base naval de Guantánamo (Cuba) para manter suspeitos de terrorismo fora da jurisdição da Justiça comum americana. O uso de técnicas severas de interrogatório, como o afogamento simulado (waterboarding), gerou condenações globais por violação dos direitos humanos.<br>
+        • <strong>Vigilância e Drones:</strong> O governo ampliou o monitoramento de comunicações globais (como revelado posteriormente por Edward Snowden) e popularizou o uso de drones armados para assassinatos seletivos no Oriente Médio e na África, frequentemente causando vítimas civis.</p>
+
+        <div class="subtitulo-destaque">Balanço e Legado</div>
+        <p><i>Estudos do projeto Costs of War apontam que a Guerra ao Terror deixou marcas profundas nas relações internacionais e nas regiões afetadas.</i><br>
+        • <strong>Custo Humano:</strong> Estima-se que mais de 900 mil pessoas morreram diretamente por causa da violência nas zonas de guerra (incluindo civis, militares e insurgentes), além de milhões de mortes indiretas por doenças e destruição de infraestrutura.<br>
+        • <strong>Deslocamento Populacional:</strong> Os conflitos geraram uma das maiores crises migratórias da história moderna, deslocando cerca de 38 milhões de pessoas de suas casas.<br>
+        • <strong>Custo Financeiro:</strong> O gasto total dos Estados Unidos com as guerras pós-11 de Setembro ultrapassa US$ 8 trilhões, considerando operações militares, reconstrução e cuidados médicos futuros para veteranos.</p>
+
+        <div class="creditos">Feito por: Emily</div>
       </div>
     </div>
 
@@ -484,11 +548,36 @@
         <figure class="foto">
           <img src="afe8.jpg" alt="O Talibã" onerror="semImagem(this)">
         </figure>
-        <p>Grupo fundamentalista fundado em 1994 no Afeganistão.</p>
-        <p>• Governou o país de 1996 a 2001 até ser derrubado pela invasão norte-americana.<br>
-        • Atuou como força de guerrilha por 20 anos até a assinatura do Acordo de Doha (2020) e a retomada do poder em agosto de 2021.</p>
+        
+        <p class="texto-destaque"><strong>Atuou sucessivamente como aliado indireto (durante a Guerra Fria), inimigo de guerra (2001–2021) e, atualmente, como o governo de fato com o qual Washington negocia à distância sem reconhecer oficialmente.</strong></p>
 
-        <p class="creditos">Feito por Miguel L</p>
+        <div class="subtitulo-destaque">1. Origem Indireta na Guerra Fria (Anos 1980)</div>
+        <p><i>A base que formou o Talibã nasceu de uma parceria estratégica entre Estados Unidos e Paquistão contra a União Soviética.</i><br>
+        • <strong>Apoio aos Mujahideen:</strong> Durante a invasão soviética ao Afeganistão (1979–1989), a CIA financiou e armou grupos guerrilheiros islâmicos (mujahideen) por meio do serviço de inteligência do Paquistão (ISI).<br>
+        • <strong>Formação do Grupo:</strong> Após a saída dos soviéticos e o abandono americano da região, o Afeganistão mergulhou em uma guerra civil. Ex-combatentes mujahideen e estudantes de escolas religiosas financiadas no Paquistão fundaram o Talibã em 1994, assumindo o poder em Cabul dois anos depois.</p>
+
+        <div class="subtitulo-destaque">2. Ruptura e Invasão Americana (2001)</div>
+        <p><i>No fim dos anos 1990, o Talibã passou a abrigar Osama bin Laden e a rede Al-Qaeda, o que colocou o regime em rota de colisão direta com Washington.</i><br>
+        • <strong>Recusa de Extradição:</strong> Logo após os atentados de 11 de setembro de 2001, o presidente George W. Bush exigiu que o Talibã entregasse Bin Laden e fechasse os campos de treinamento terrorista. O líder supremo Mulá Omar recusou, alegando falta de provas e citando códigos locais de hospitalidade.<br>
+        • <strong>Derrubada do Regime:</strong> Em outubro de 2001, os EUA invadiram o Afeganistão com apoio aéreo e forças especiais, derrubando o governo do Talibã em poucas semanas e forçando seus líderes a fugirem para as montanhas e para o Paquistão.</p>
+
+        <div class="subtitulo-destaque">3. Vinte Anos de Insurgência (2001–2021)</div>
+        <p><i>Embora afastado do poder, o Talibã reorganizou-se e travou uma guerra de desgaste contra os Estados Unidos e o governo afegão apoiado por Washington.</i><br>
+        • <strong>Táticas de Guerrilha:</strong> O grupo utilizou emboscadas, atentados suicidas e dispositivos explosivos improvisados (IEDs), aproveitando a corrupção e a fragilidade do governo central afegão para retomar o controle de áreas rurais.<br>
+        • <strong>Impasse Militar:</strong> Mesmo com o envio de mais de 100 mil soldados americanos no auge da guerra (governo Barack Obama), os EUA concluíram que não havia vitória militar definitiva possível sem um acordo político.</p>
+
+        <div class="subtitulo-destaque">4. Acordo de Doha e Retorno ao Poder (2020–2021)</div>
+        <p><i>Incapazes de derrotar a insurgência, os Estados Unidos passaram a negociar diretamente com o Talibã no Catar, deixando o governo oficial afegão de lado.</i><br>
+        • <strong>O Acordo de Doha (Fevereiro de 2020):</strong> Assinado pelo governo de Donald Trump, o pacto estabeleceu a retirada total das tropas americanas em troca da promessa do Talibã de impedir que a Al-Qaeda ou outros grupos usassem o Afeganistão para atacar os EUA.<br>
+        • <strong>Queda de Cabul (Agosto de 2021):</strong> Durante a execução da retirada pelo governo de Joe Biden, as forças de segurança afegãs entraram em colapso. O Talibã retomou Cabul em 15 de agosto de 2021, encerrando 20 anos de presença militar americana.</p>
+
+        <div class="subtitulo-destaque">5. Relações Atuais: Contenção sem Reconhecimento (2021–2026)</div>
+        <p><i>Cinco anos após o retorno do Talibã ao poder, a relação com Washington é marcada pelo pragmatismo securitário e pelo bloqueio diplomático.</i><br>
+        • <strong>Cooperação Antiterrorismo Pontual:</strong> Embora sejam adversários ideológicos, EUA e Talibã compartilham um inimigo em comum: o Estado Islâmico (ISIS-K), que realiza ataques dentro do Afeganistão e ameaça alvos externos. Os EUA mantêm vigilância aérea e trocas de inteligência limitadas para conter o grupo.<br>
+        • <strong>Sanções e Ativos Congelados:</strong> Washington não reconhece o Emirado Islâmico como governo legítimo e mantém congelados bilhões de dólares de reservas do Banco Central Afegão para evitar que o dinheiro seja usado pelo regime.<br>
+        • <strong>Impasses sobre Direitos Humanos e Imigração:</strong> O Departamento de Estado rejeitou pedidos recentes do Talibã para reabrir a embaixada americana em Cabul devido à opressão sistemática contra mulheres e meninas. Paralelamente, o atual governo americano encerrou programas de acolhimento a afegãos que colaboraram com os EUA durante a guerra, gerando disputas judiciais sobre deportações.</p>
+
+        <div class="creditos">Feito por: Miguel L</div>
       </div>
     </div>
 
@@ -497,15 +586,36 @@
     ========================================================== -->
     <div class="conteudo" id="otan">
       <div class="cartao-conteudo">
-        <h2>Atuação da OTAN</h2>
+        <h2>OTAN</h2>
         <figure class="foto">
           <img src="afe9.jpg" alt="Atuação da OTAN" onerror="semImagem(this)">
         </figure>
-        <p>A aliança invocou pela primeira vez na história o <strong>Artigo 5º</strong> (defesa coletiva) após o 11 de setembro.</p>
-        <p>• Liderou a missão ISAF (2003–2014) e a missão Resolute Support (2015–2021) para treinamento de forças afegãs.<br>
-        • Mais de 1.100 militares de aliados europeus e canadenses morreram durante as operações no país.</p>
+        
+        <p class="texto-destaque"><strong>OTAN (Organização do Tratado do Atlântico Norte) atuou como a principal força multinacional de apoio a Washington. O conflito marcou a primeira vez em que a aliança invocou sua cláusula de defesa coletiva e sua primeira grande operação militar fora do continente europeu.</strong></p>
 
-        <p class="creditos">Feito por Anna Zurdo</p>
+        <div class="subtitulo-destaque">1. O Artigo 5º e a Entrada na Guerra (2001)</div>
+        <p><i>Logo após os atentados de 11 de setembro de 2001, a aliança militar ocidental alinhou-se imediatamente aos Estados Unidos.</i><br>
+        • <strong>Defesa Coletiva:</strong> Em 12 de setembro de 2001, a OTAN invocou pela única vez em sua história o Artigo 5º de seu tratado fundador, que determina que um ataque armado contra um país-membro é considerado um ataque contra todos.<br>
+        • <strong>Apoio Inicial:</strong> Embora a invasão inicial em outubro de 2001 tenha sido liderada pelos EUA e pelo Reino Unido, países da OTAN forneceram inteligência, acesso a bases aéreas, espaço aéreo e recursos logísticos.</p>
+
+        <div class="subtitulo-destaque">2. A Missão ISAF (2003–2014)</div>
+        <p><i>Em agosto de 2003, a OTAN assumiu o comando formal da Força Internacional de Assistência à Segurança (ISAF), uma coalizão aprovada pelo Conselho de Segurança da ONU.</i><br>
+        • <strong>Expansão pelo País:</strong> Inicialmente restrita a garantir a segurança em Cabul, a missão da OTAN expandiu-se gradualmente para todo o território afegão, enfrentando o ressurgimento violento da insurgência do Talibã, especialmente no sul e no leste.<br>
+        • <strong>Força Multinacional:</strong> No auge das operações (por volta de 2011), a ISAF reuniu mais de 130 mil soldados de cerca de 50 países (incluindo membros da OTAN e parceiros como Austrália e Geórgia), sob comando operacional de generais americanos.<br>
+        • <strong>Reconstrução e Segurança:</strong> Além de combater o Talibã, a aliança criou Equipes de Reconstrução Provincial (PRTs) para construir estradas, escolas, hospitais e tentar estender a autoridade do governo central afegão.</p>
+
+        <div class="subtitulo-destaque">3. Treinamento e Transição: Missão Resolute Support (2015–2021)</div>
+        <p><i>Em dezembro de 2014, a OTAN encerrou oficialmente suas operações de combate direto e transferiu a responsabilidade pela segurança para o exército afegão.</i><br>
+        • <strong>Foco em Assessoria:</strong> Em janeiro de 2015, teve início a missão Resolute Support (Apoio Resoluto), com um contingente reduzido (entre 10 mil e 17 mil militares) dedicado a treinar, aconselhar e financiar as Forças Nacionais de Defesa e Segurança do Afeganistão.<br>
+        • <strong>Dependência dos EUA:</strong> Apesar do caráter multinacional, os aliados europeus dependiam quase totalmente da logística, do transporte aéreo, da inteligência e do apoio médico fornecidos pelos Estados Unidos.</p>
+
+        <div class="subtitulo-destaque">4. Retirada Conjunta e Tensões Transatlânticas (2020–2021)</div>
+        <p><i>A saída do Afeganistão expôs divergências estratégicas entre Washington e seus aliados europeus na aliança.</i><br>
+        • <strong>Decisão Unilateral:</strong> O Acordo de Doha (2020) foi negociado diretamente entre os EUA e o Talibã, com pouca consulta aos parceiros da OTAN, que operavam sob o princípio de "entrar juntos, ajustar juntos e sair juntos".<br>
+        • <strong>Evacuação Caótica:</strong> Quando o governo de Joe Biden confirmou a retirada total para agosto de 2021, os demais países da OTAN não tiveram condições logísticas de permanecer sozinhos e precisaram evacuar suas tropas e cidadãos às pressas durante a queda de Cabul.<br>
+        • <strong>Balanço e Impacto na Aliança:</strong> Mais de 1.100 militares de países aliados da OTAN (fora os EUA) morreram no conflito, com destaque para o Reino Unido (457 mortos), Canadá (158) e França (89). O desfecho acelerou debates na Europa sobre a necessidade de maior autonomia militar em relação às decisões de Washington.</p>
+
+        <div class="creditos">Feito por: Anna Zurdo</div>
       </div>
     </div>
 
@@ -518,9 +628,34 @@
         <figure class="foto">
           <img src="afe10.jpg" alt="Retirada das tropas" onerror="semImagem(this)">
         </figure>
-        <p>Em agosto de 2021, a saída final das forças dos EUA e da OTAN culminou no rápido colapso do governo afegão e em uma evacuação dramática pelo aeroporto de Cabul, com a retirada de mais de 124 mil pessoas.</p>
+        
+        <p class="texto-destaque"><strong>A retirada das tropas dos Estados Unidos e da OTAN em agosto de 2021 marcou o fim de 20 anos de guerra no Afeganistão. O processo ficou marcado pelo colapso imediato do governo afegão apoiado pelo Ocidente, pela retomada do poder pelo Talibã e por uma evacuação aérea caótica no aeroporto de Cabul.</strong></p>
 
-        <p class="creditos">Feito por Anna Zurdo</p>
+        <div class="subtitulo-destaque">1. O Antecedente: Acordo de Doha (2020)</div>
+        <p><i>A saída foi desenhada antes da posse de Joe Biden, durante o primeiro mandato de Donald Trump.</i><br>
+        • <strong>Negociação Direta:</strong> Em fevereiro de 2020, os EUA e o Talibã assinaram o Acordo de Doha no Catar, excluindo o governo oficial afegão das negociações.<br>
+        • <strong>Termos do Pacto:</strong> Washington comprometeu-se a retirar todas as tropas estrangeiras até maio de 2021 e a pressionar pela libertação de 5.000 prisioneiros do Talibã. Em troca, o grupo prometeu impedir que a Al-Qaeda e outros extremistas usassem o solo afegão contra os EUA.<br>
+        • <strong>Redução de Tropas:</strong> Entre 2020 e o início de 2021, o contingente americano foi reduzido de cerca de 13.000 para apenas 2.500 soldados.</p>
+
+        <div class="subtitulo-destaque">2. A Decisão de Joe Biden e o Colapso Afegão</div>
+        <p><i>Ao assumir a presidência em janeiro de 2021, Joe Biden decidiu manter a retirada, adiando apenas o prazo final para o fim de agosto.</i><br>
+        • <strong>Abandono da Base de Bagram:</strong> Em julho de 2021, as forças americanas deixaram discretamente a Base Aérea de Bagram, seu principal centro militar no país, transferindo o controle para o exército afegão.<br>
+        • <strong>Avanço Relâmpago do Talibã:</strong> Sem o apoio aéreo, a inteligência e a manutenção logística fornecidos pelos americanos, as Forças de Segurança do Afeganistão (estimadas em 300 mil homens no papel) desmoronaram rapidamente.<br>
+        • <strong>Queda de Cabul (15 de agosto de 2021):</strong> Em pouco mais de uma semana, o Talibã tomou quase todas as capitais provinciais sem resistência significativa. Em 15 de agosto, o presidente afegão Ashraf Ghani fugiu do país e os insurgentes entraram no palácio presidencial em Cabul.</p>
+
+        <div class="subtitulo-destaque">3. O Caos no Aeroporto de Cabul</div>
+        <p><i>Com a cidade sob controle do Talibã, o Aeroporto Internacional Hamid Karzai tornou-se a única rota de saída do país, protegida às pressas por cerca de 6.000 militares americanos enviados para garantir a evacuação.</i><br>
+        • <strong>Cenas de Desespero:</strong> Milhares de afegãos invadiram a pista do aeroporto tentando embarcar nos aviões militares. Imagens de civis se agarrando à fuselagem de cargueiros americanos C-17 em movimento (alguns caindo após a decolagem) tornaram-se o símbolo do colapso da missão.<br>
+        • <strong>Atentado em Abbey Gate:</strong> Em 26 de agosto de 2021, um homem-bomba do grupo rival Estado Islâmico (ISIS-K) detonou explosivos em um dos portões do aeroporto lotado de civis. O ataque matou cerca de 170 afegãos e 13 militares americanos (as últimas baixas dos EUA na guerra).<br>
+        • <strong>Operação de Resgate:</strong> Entre 14 e 30 de agosto, os EUA e aliados realizaram a maior ponte aérea de evacuação da história militar, retirando mais de 124.000 pessoas (cidadãos estrangeiros, diplomatas e afegãos vulneráveis). Ainda assim, dezenas de milhares de aliados locais ficaram para trás.</p>
+
+        <div class="subtitulo-destaque">4. Consequências Políticas e Estratégicas</div>
+        <p><i>O último avião militar americano decolou de Cabul nos minutos finais de 30 de agosto de 2021, encerrando oficialmente a guerra.</i><br>
+        • <strong>Desgaste Político:</strong> A execução caótica da retirada derrubou os índices de aprovação de Joe Biden nos Estados Unidos e gerou duras críticas de aliados europeus da OTAN pela falta de coordenação.<br>
+        • <strong>Crise de Refugiados e Deportações:</strong> A saída gerou uma onda global de refugiados afegãos. Nos anos seguintes, a política americana para esses aliados mudou drasticamente, culminando em disputas judiciais sobre o corte de programas de acolhimento e planos de deportação.<br>
+        • <strong>Mudança de Foco Global:</strong> Para Washington, o fim da ocupação encerrou a era das grandes intervenções terrestres no Oriente Médio e na Ásia Central, permitindo redirecionar recursos militares para a competição estratégica com a China e a contenção da Rússia.</p>
+
+        <div class="creditos">Feito por: Anna Zurdo</div>
       </div>
     </div>
 
@@ -533,11 +668,31 @@
         <figure class="foto">
           <img src="afe11.jpg" alt="Situação Atual" onerror="semImagem(this)">
         </figure>
-        <p>• <strong>Crise Humanitária:</strong> Milhões de pessoas enfrentam pobreza extrema e insegurança alimentar.<br>
-        • <strong>Direitos Humanos:</strong> Severas restrições ao trabalho e estudo de mulheres e meninas.<br>
-        • <strong>Isolamento Internacional:</strong> Falta de reconhecimento diplomático formal por potências ocidentais.</p>
+        
+        <p class="texto-destaque"><strong>Situação Atual do Afeganistão</strong></p>
 
-        <p class="creditos">Feito por Anna Zurdo</p>
+        <div class="subtitulo-destaque">1. Crise Humanitária e Colapso dos Serviços</div>
+        <p><i>De acordo com dados da ONU News e do governo do Reino Unido, a situação socioeconômica da população deteriorou-se rapidamente:</i><br>
+        • <strong>Fome e Pobreza:</strong> Cerca de 21,9 milhões de pessoas (quase metade da população) dependem de ajuda humanitária para sobreviver. Mais de 14 milhões enfrentam insegurança alimentar aguda e cerca de 3,5 milhões de crianças sofrem de desnutrição severa.<br>
+        • <strong>Saúde em Colapso:</strong> Devido aos cortes drásticos no financiamento internacional, mais de 700 centros de saúde (cerca de 40% da rede de atenção primária) fecharam as portas entre 2025 e 2026.<br>
+        • <strong>Crise de Retornados:</strong> Desde o final de 2023 até o segundo semestre de 2026, mais de 6,5 milhões de afegãos retornaram ao país (muitos deportados em massa pelo Paquistão e pelo Irã). A chegada dessas famílias sem abrigo ou renda pressiona ainda mais uma economia estagnada e afetada por secas prolongadas.</p>
+
+        <div class="subtitulo-destaque">2. Direitos Humanos e Exclusão das Mulheres</div>
+        <p><i>O governo do Emirado Islâmico endureceu suas leis e aprofundou o que especialistas da ONU classificam como "apartheid de gênero":</i><br>
+        • <strong>Bloqueio Educacional:</strong> Meninas continuam proibidas de frequentar o ensino médio e universidades. Segundo relatório da UNESCO, mais de 2,6 milhões de adolescentes estão excluídas da escola secundária, além de 53% das crianças em idade primária estarem fora do ensino formal.<br>
+        • <strong>Restrições à Vida Pública:</strong> Mais de 160 decretos restringem a presença feminina na sociedade. A participação das mulheres no mercado de trabalho caiu para cerca de 5% a 7%, e a maioria precisa da permissão e companhia de um parente homem (mahram) para sair de casa ou viajar.<br>
+        • <strong>Perseguição e Justiça Internacional:</strong> Jornalistas, opositores e minorias religiosas (como os xiitas) sofrem repressão constante e prisões arbitrárias. O Tribunal Penal Internacional (TPI) emitiu mandados de prisão contra o líder supremo do Talibã, Hibatullah Akhundzada, e o chefe do Judiciário por crimes contra a humanidade ligados à perseguição de gênero.</p>
+
+        <div class="subtitulo-destaque">3. Segurança e Conflito com o Paquistão</div>
+        <p><i>Embora o Talibã mantenha controle territorial sobre a maior parte do país, a estabilidade regional piorou significativamente:</i><br>
+        • <strong>Confronto com o Paquistão:</strong> As relações com Islamabad deterioraram-se a ponto de o Paquistão declarar "guerra aberta" contra o regime afegão em 2026. Os paquistaneses acusam o Talibã de abrigar militantes do grupo TTP (Talibã Paquistanês), realizando ataques aéreos em território afegão — incluindo bombardeios em Cabul e na fronteira que deixaram centenas de civis mortos e milhares de deslocados.<br>
+        • <strong>Ameaça do Estado Islâmico (ISIS-K):</strong> O grupo rival continua realizando atentados dentro do Afeganistão e recrutando combatentes na região, representando uma preocupação de segurança compartilhada até mesmo pelos países vizinhos.<br>
+        • <strong>Retorno do Ópio:</strong> Após proibir o cultivo de papoula em 2022 e derrubar a produção, relatórios da ONU apontam que o cultivo ilícito de ópio voltou a crescer como alternativa de sobrevivência para agricultores empobrecidos.</p>
+
+        <div class="subtitulo-destaque">4. Diplomacia e Economia</div>
+        <p>• <strong>Isolamento Ocidental vs. Pragmatismo Regional:</strong> Estados Unidos e União Europeia mantêm sanções financeiras, ativos congelados e recusam o reconhecimento diplomático até que os direitos humanos sejam respeitados. Por outro lado, apenas a Rússia reconheceu formalmente o governo, enquanto potências regionais como China e Emirados Árabes Unidos mantêm laços comerciais e investimentos pragmáticos (especialmente em mineração e energia).</p>
+
+        <div class="creditos">Feito por: Anna Zurdo</div>
       </div>
     </div>
 
@@ -557,53 +712,53 @@
           
           <div class="cartao-quiz">
             <h2>1. Qual foi o principal motivo que levou os Estados Unidos a invadirem o Afeganistão em outubro de 2001?</h2>
-            <label><input type="radio" name="p1" value="a" required> Uma disputa comercial sobre tarifas de exportação de trigo.</label>
-            <label><input type="radio" name="p1" value="b"> Os ataques terroristas de 11 de setembro de 2001 e a recusa do regime em entregar Osama bin Laden.</label>
-            <label><input type="radio" name="p1" value="c"> A descoberta de grandes reservas de petróleo na capital Cabul.</label>
-            <label><input type="radio" name="p1" value="d"> A invasão prévia do Afeganistão a territórios da Europa Ocidental.</label>
+            <label><input type="radio" name="p1" value="a" required> <span>Uma disputa comercial sobre tarifas de exportação de trigo.</span></label>
+            <label><input type="radio" name="p1" value="b"> <span>Os ataques terroristas de 11 de setembro de 2001 e a recusa do regime em entregar Osama bin Laden.</span></label>
+            <label><input type="radio" name="p1" value="c"> <span>A descoberta de grandes reservas de petróleo na capital Cabul.</span></label>
+            <label><input type="radio" name="p1" value="d"> <span>A invasão prévia do Afeganistão a territórios da Europa Ocidental.</span></label>
             <p id="msg1" class="feedback"></p>
           </div>
 
           <div class="cartao-quiz">
             <h2>2. Por aproximadamente quanto tempo durou a presença militar direta dos Estados Unidos e de seus aliados no Afeganistão?</h2>
-            <label><input type="radio" name="p2" value="a" required> Apenas 6 meses.</label>
-            <label><input type="radio" name="p2" value="b"> Cerca de 20 anos.</label>
-            <label><input type="radio" name="p2" value="c"> Quase 50 anos.</label>
-            <label><input type="radio" name="p2" value="d"> Exatamente 2 anos.</label>
+            <label><input type="radio" name="p2" value="a" required> <span>Apenas 6 meses.</span></label>
+            <label><input type="radio" name="p2" value="b"> <span>Cerca de 20 anos.</span></label>
+            <label><input type="radio" name="p2" value="c"> <span>Quase 50 anos.</span></label>
+            <label><input type="radio" name="p2" value="d"> <span>Exatamente 2 anos.</span></label>
             <p id="msg2" class="feedback"></p>
           </div>
 
           <div class="cartao-quiz">
             <h2>3. Qual grupo fundamentalista islâmico estava no poder no Afeganistão quando os Estados Unidos invadiram o país em 2001?</h2>
-            <label><input type="radio" name="p3" value="a" required> ISIS (Estado Islâmico)</label>
-            <label><input type="radio" name="p3" value="b"> Talibã</label>
-            <label><input type="radio" name="p3" value="c"> Al-Qaeda</label>
-            <label><input type="radio" name="p3" value="d"> Aliança do Norte</label>
+            <label><input type="radio" name="p3" value="a" required> <span>ISIS (Estado Islâmico)</span></label>
+            <label><input type="radio" name="p3" value="b"> <span>Talibã</span></label>
+            <label><input type="radio" name="p3" value="c"> <span>Al-Qaeda</span></label>
+            <label><input type="radio" name="p3" value="d"> <span>Aliança do Norte</span></label>
             <p id="msg3" class="feedback"></p>
           </div>
 
           <div class="cartao-quiz">
             <h2>4. O que aconteceu em agosto de 2021, logo após a retirada das últimas tropas dos Estados Unidos do Afeganistão?</h2>
-            <label><input type="radio" name="p4" value="a" required> O Talibã retomou rapidamente o controle de Cabul e do governo do país.</label>
-            <label><input type="radio" name="p4" value="b"> A Organização das Nações Unidas assumiu a administração militar direta.</label>
-            <label><input type="radio" name="p4" value="c"> Houve eleições livres vencidas por um partido moderado.</label>
-            <label><input type="radio" name="p4" value="d"> O país tornou-se uma monarquia constitucional.</label>
+            <label><input type="radio" name="p4" value="a" required> <span>O Talibã retomou rapidamente o controle de Cabul e do governo do país.</span></label>
+            <label><input type="radio" name="p4" value="b"> <span>A Organização das Nações Unidas assumiu a administração militar direta.</span></label>
+            <label><input type="radio" name="p4" value="c"> <span>Houve eleições livres vencidas por um partido moderado.</span></label>
+            <label><input type="radio" name="p4" value="d"> <span>O país tornou-se uma monarquia constitucional.</span></label>
             <p id="msg4" class="feedback"></p>
           </div>
 
           <div class="cartao-quiz">
             <h2>5. Qual é a situação atual no Afeganistão sob o governo do Talibã em relação às mulheres e à diplomacia?</h2>
-            <label><input type="radio" name="p5" value="a" required> As mulheres possuem plena liberdade para trabalhar e estudar em todos os níveis de ensino.</label>
-            <label><input type="radio" name="p5" value="b"> O governo é reconhecido oficialmente por todos os países do mundo como uma democracia plena.</label>
-            <label><input type="radio" name="p5" value="c"> O Talibã impõe severas restrições ao estudo e ao trabalho das mulheres, sem reconhecimento diplomático formal global.</label>
-            <label><input type="radio" name="p5" value="d"> Há um sistema econômico de livre mercado com eleições multipartidárias anuais.</label>
+            <label><input type="radio" name="p5" value="a" required> <span>As mulheres possuem plena liberdade para trabalhar e estudar em todos os níveis de ensino.</span></label>
+            <label><input type="radio" name="p5" value="b"> <span>O governo é reconhecido oficialmente por todos os países do mundo como uma democracia plena.</span></label>
+            <label><input type="radio" name="p5" value="c"> <span>O Talibã impõe severas restrições ao estudo e ao trabalho das mulheres, sem reconhecimento diplomático formal global.</span></label>
+            <label><input type="radio" name="p5" value="d"> <span>Há um sistema econômico de livre mercado com eleições multipartidárias anuais.</span></label>
             <p id="msg5" class="feedback"></p>
           </div>
 
           <button type="submit" class="btn-submit-quiz">Ver resultado</button>
         </form>
 
-        <p class="creditos">Feito por Anna Zurdo</p>
+        <div class="creditos">Formulado pelo Grupo 8 / Anna Zurdo</div>
       </div>
     </div>
 
