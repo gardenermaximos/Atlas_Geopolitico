@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Grupo 6: Conflito no Iêmen — Atlas Geopolítico</title>
+
+  <!-- =========================================================
+       CSS UNIFICADO E RESPONSIVO (GRUPO 6)
+  ========================================================== -->
+  <style>
+    :root {
+      --cor-fundo:    #d6cbbce8;
+      --cor-texto:    #2b2316;
+      --cor-suave:    #7a6e5b;
+      --cor-cartao:   #e7c09c;
+      --cor-destaque: #be783e;
+      --cor-borda:    #e2b458;
+      --cor-acerto:   #1e7e34;
+      --cor-erro:     #bd2130;
+    }
+
+    * { 
+      box-sizing: border-box; 
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: var(--cor-fundo);
+      color: var(--cor-texto);
+      line-height: 1.6;
+    }
+
+    .pagina { 
+      max-width: 860px; 
+      margin: 0 auto; 
+      padding: 32px 20px 60px; 
+    }
+
+    .voltar {
+      display: inline-flex; 
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: var(--cor-suave); 
+      font-weight: bold; 
+      margin-bottom: 20px;
+      font-size: 15px;
+      transition: color 0.2s ease;
+    }
+
+    .voltar:hover { 
+      color: var(--cor-destaque); 
+    }
+
+    header h1 { 
+      font-size: 32px; 
+      margin: 0 0 6px; 
+      color: var(--cor-texto);
+      line-height: 1.2;
+    }
+
+    header p.intro { 
+      color: var(--cor-suave); 
+      margin: 0 0 24px; 
+      font-size: 16px;
+    }
+
+    /* ---- BARRA DE BOTÕES RESPONSIVA ---- */
+    .botoes {
+      display: flex; 
+      flex-wrap: wrap; 
+      gap: 10px; 
+      margin-bottom: 24px;
+    }
+
+    .botoes button {
+      font-family: inherit; 
+      font-size: 15px; 
+      font-weight: bold;
+      padding: 11px 20px; 
+      border-radius: 30px; 
+      cursor: pointer;
+      background: var(--cor-cartao); 
+      color: var(--cor-texto);
+      border: 2px solid var(--cor-borda);
+      transition: all 0.2s ease;
+      touch-action: manipulation;
+    }
+
+    .botoes button:hover { 
+      border-color: var(--cor-destaque); 
+      color: var(--cor-destaque);
+    }
+
+    .botoes button.ativo {
+      background: var(--cor-destaque); 
+      color: #f1edd5; 
+      border-color: var(--cor-destaque);
+    }
+
+    /* ---- CONTEÚDOS ---- */
+    .conteudo { 
+      display: none; 
+    }
+
+    .conteudo.aberto { 
+      display: block !important; 
+    }
+
+    .cartao-conteudo {
+      background: var(--cor-cartao);
+      border: 1px solid var(--cor-borda);
+      border-radius: 18px;
+      padding: 26px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.06);
+    }
+
+    .cartao-conteudo h2 { 
+      margin: 22px 0 12px; 
+      font-size: 22px; 
+      color: var(--cor-destaque); 
+      line-height: 1.3;
+    }
+
+    .cartao-conteudo h2:first-child {
+      margin-top: 0;
+    }
+
+    .cartao-conteudo p { 
+      margin: 0 0 14px; 
+      word-wrap: break-word;
+    }
+
+    .cartao-conteudo ul { 
+      margin: 0 0 14px; 
+      padding-left: 20px; 
+    }
+
+    .cartao-conteudo li { 
+      margin-bottom: 8px; 
+    }
+
+    footer {
+      margin-top: 20px;
+      padding-top: 12px;
+      border-top: 1px solid var(--cor-borda);
+      font-size: 13px;
+      color: var(--cor-suave);
+      font-weight: bold;
+    }
+
+    /* ---- IMAGENS RESPONSIVAS ---- */
+    .foto { 
+      margin: 0 0 18px; 
+    }
+
+    .foto img {
+      width: 100%; 
+      max-width: 100%; 
+      height: auto;
+      border-radius: 12px; 
+      display: block; 
+      background: #dfe8ef;
+      object-fit: cover;
+    }
+
+    .foto figcaption {
+      font-size: 13px; 
+      color: var(--cor-suave); 
+      margin-top: 8px; 
+      text-align: center;
+      font-style: italic;
+    }
+
+    /* ---- LINHA DO TEMPO ---- */
+    .linha-tempo {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 20px;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .linha-tempo::before {
+      content: '';
+      position: absolute;
+      top: 15px;
+      bottom: 15px;
+      left: 31px;
+      width: 3px;
+      background-color: var(--cor-destaque);
+      border-radius: 2px;
+    }
+
+    .item-linha-tempo {
+      display: flex;
+      gap: 16px;
+      background: var(--cor-cartao);
+      border: 1px solid var(--cor-borda);
+      border-radius: 12px;
+      padding: 16px 20px;
+      align-items: flex-start;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .numero-ano {
+      background: var(--cor-destaque);
+      color: #ffffff;
+      font-weight: bold;
+      font-size: 14px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 4px var(--cor-cartao);
+    }
+
+    .detalhe-ano h3 {
+      margin: 0 0 6px 0;
+      font-size: 17px;
+      color: var(--cor-texto);
+    }
+
+    .detalhe-ano p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--cor-suave);
+    }
+
+    /* ---- ESTILOS DO QUIZ ---- */
+    .cartao-quiz {
+      background: var(--cor-cartao);
+      border: 1px solid var(--cor-borda);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 18px;
+    }
+
+    .cartao-quiz h2 {
+      font-size: 17px;
+      color: var(--cor-destaque);
+      margin: 0 0 10px;
+      line-height: 1.4;
+    }
+
+    .cartao-quiz label {
+      display: block;
+      padding: 8px 12px;
+      margin-bottom: 6px;
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 8px;
+      border: 1px solid var(--cor-borda);
+      cursor: pointer;
+      font-size: 15px;
+      transition: background 0.2s;
+    }
+
+    .cartao-quiz label:hover {
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    .cartao-quiz input[type="radio"] {
+      margin-right: 8px;
+      accent-color: var(--cor-destaque);
+    }
+
+    .nota {
+      text-align: center;
+      background: #ffffff;
+      border: 2px solid var(--cor-destaque);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    .nota .numero {
+      font-size: 42px;
+      font-weight: bold;
+      color: var(--cor-destaque);
+    }
+
+    .feedback {
+      font-weight: bold;
+      margin: 10px 0 0;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      display: none;
+    }
+
+    .feedback-acerto {
+      color: var(--cor-acerto);
+      background: #e8f5e9;
+      border: 1px solid #c8e6c9;
+    }
+
+    .feedback-erro {
+      color: var(--cor-erro);
+      background: #ffebee;
+      border: 1px solid #ffcdd2;
+    }
+
+    .btn-submit-quiz {
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 12px 28px;
+      border-radius: 30px;
+      cursor: pointer;
+      background: var(--cor-destaque);
+      color: #fff;
+      border: none;
+      transition: background 0.2s;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .btn-submit-quiz:hover {
+      background: #9e602f;
+    }
+
+    /* ---- ADAPTAÇÕES MOBILE ---- */
+    @media (max-width: 768px) {
+      .pagina {
+        padding: 20px 15px 40px;
+      }
+
+      header h1 { 
+        font-size: 26px; 
+      }
+
+      header p.intro { 
+        font-size: 14px; 
+        margin-bottom: 18px;
+      }
+
+      .botoes {
+        gap: 8px;
+      }
+
+      .botoes button {
+        flex: 1 1 calc(50% - 8px);
+        text-align: center;
+        padding: 10px 14px;
+        font-size: 14px;
+      }
+
+      .cartao-conteudo {
+        padding: 20px 16px;
+        border-radius: 14px;
+      }
+
+      .cartao-conteudo h2 {
+        font-size: 19px;
+      }
+
+      .linha-tempo {
+        padding-left: 10px;
+      }
+      
+      .linha-tempo::before {
+        left: 21px;
+      }
+      
+      .item-linha-tempo {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .botoes button {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="pagina">
+
+    <!-- Volta para o carrossel -->
+    <a class="voltar" href="index.html">← Voltar aos temas</a>
+
+    <header>
+      <h1>Grupo 6: Conflito no Iêmen</h1>
+      <p class="intro">Clique em um tópico para ver o conteúdo.</p>
+    </header>
+
+    <!-- =========================================================
+         BOTÕES DE NAVEGAÇÃO
+    ========================================================== -->
+    <div class="botoes">
+      <button class="ativo" onclick="abrir('localizacao', this)">Onde acontece o conflito</button>
+      <button onclick="abrir('surgimento', this)">Como surgiu o conflito</button>
+      <button onclick="abrir('linhatempo', this)">Linha do Tempo</button>
+      <button onclick="abrir('participantes', this)">Quem participa</button>
+      <button onclick="abrir('interesses', this)">Quais interesses?</button>
+      <button onclick="abrir('impactos', this)">Quais os impactos</button>
+      <button onclick="abrir('quiz', this)">Quiz</button>
+    </div>
+
+    <!-- =========================================================
+         CONTEÚDOS DOS BOTÕES
+    ========================================================== -->
+
+    <!-- 1. Onde acontece o conflito (ABERTO POR PADRÃO) -->
+    <div class="conteudo aberto" id="localizacao">
+      <div class="cartao-conteudo">
+        <h2>Onde acontece o conflito (Mapeamento Territorial)</h2>
+        <figure class="foto">
+          <img src="foto.jpg" alt="Mapa da localização estratégica do Iêmen e Estreito de Bab el-Mandeb" onerror="semImagem(this)">
+          <figcaption>Localização geográfica do Iêmen na Península Arábica e a rota estratégica do Estreito de Bab el-Mandeb.</figcaption>
+        </figure>
+        <p>O Iêmen está localizado na extremidade sudoeste da Península Arábica, no Oriente Médio. Em termos de fronteiras terrestres, o país faz divisa ao norte com a <strong>Arábia Saudita</strong> e ao leste com <strong>Omã</strong>. Suas costas marítimas são voltadas ao sul pelo <strong>Golfo de Áden</strong> e ao oeste pelo <strong>Mar Vermelho</strong>.</p>
+        <p>Do ponto de vista da geografia física e geopolítica, o ponto de maior relevância do país é o <strong>Estreito de Bab el-Mandeb</strong>. Esse canal marítimo é uma das "gargantas estratégicas" (chokepoints) do comércio global, pois faz a ligação entre o Mar Vermelho e o Oceano Índico (através do Golfo de Áden).</p>
+        <p>Por conta dessa posição geográfica, quem controla o território do Iêmen consegue monitorar ou intervir diretamente na rota que leva ao Canal de Suez, por onde navegam diariamente navios petroleiros e cargueiros que abastecem a Europa e a Ásia.</p>
+        
+        <footer>
+            Integrante: Giovanna M.
+        </footer> 
+       </div>
+    </div>
+
+    <!-- 2. Como surgiu o conflito -->
+    <div class="conteudo" id="surgimento">
+      <div class="cartao-conteudo">
+        <h2>Como surgiu o conflito</h2>
+        <figure class="foto">
+          <img src="foto2.jpg" alt="Divisão territorial e instabilidade política no Iêmen" onerror="semImagem(this)">
+          <figcaption>Fragmentação do território e disputas históricas de controle.</figcaption>
+        </figure>
+        <p>A origem do conflito no Iêmen envolve um histórico de fragilidade econômica, desemprego e disputas entre diferentes grupos étnicos e religiosos. Historicamente, o país já era dividido entre Iêmen do Norte e Iêmen do Sul, tendo sido unificado apenas em 1990, o que manteve tensões políticas profundas.</p>
+        <p>O estopim para a crise atual ocorreu no contexto da <strong>Primavera Árabe em 2011</strong>, quando intensos protestos populares forçaram a renúncia do presidente Ali Abdullah Saleh. A transição de governo para seu vice, Abdrabbuh Mansur Hadi, não conseguiu estabilizar a economia nem unir o país.</p>
+        <p>Aproveitando a fraqueza institucional do Estado, o grupo rebelde <strong>Houthi (Ansar Allah)</strong> — alinhado a uma vertente do islamismo xiita e com base no norte do país — iniciou uma ofensiva militar. Em 2014 e 2015, os Houthis tomaram o controle da capital Sanaa, forçando o governo oficial a se deslocar para a cidade portuária de Áden e dando início à guerra civil moderna.</p>
+        
+        <footer>
+            Integrante: David
+        </footer> 
+      </div>
+    </div>
+
+    <!-- 3. Linha do Tempo -->
+    <div class="conteudo" id="linhatempo">
+      <div class="cartao-conteudo">
+        <h2>Linha do Tempo: Conflito no Iêmen (2011–2026)</h2>
+        <p>Acompanhe os principais marcos históricos e geopolíticos do conflito iemenita ao longo dos anos:</p>
+        
+        <div class="linha-tempo">
+          <div class="item-linha-tempo">
+            <span class="numero-ano">1. 2011</span>
+            <div class="detalhe-ano">
+              <h3>Primavera Árabe e Instabilidade</h3>
+              <p>Protestos massivos no Iêmen forçam a renúncia do presidente autoritário Ali Abdullah Saleh, iniciando uma transição política instável.</p>
+            </div>
+          </div>
+
+          <div class="item-linha-tempo">
+            <span class="numero-ano">2. 2014</span>
+            <div class="detalhe-ano">
+              <h3>Invasão de Sanaa pelos Houthis</h3>
+              <p>O grupo rebelde xiita Houthi, descontente com o novo governo, invade e domina a capital do país, Sanaa, depondo o presidente Hadi.</p>
+            </div>
+          </div>
+
+          <div class="item-linha-tempo">
+            <span class="numero-ano">3. 2015</span>
+            <div class="detalhe-ano">
+              <h3>Intervenção da Coalizão Saudita</h3>
+              <p>A Arábia Saudita, temendo a influência do Irã na região, lidera uma coalizão militar de países sunitas e inicia bombardeios aéreos no Iêmen.</p>
+            </div>
+          </div>
+
+          <div class="item-linha-tempo">
+            <span class="numero-ano">4. 2017</span>
+            <div class="detalhe-ano">
+              <h3>O Pior Surto de Cólera do Mundo</h3>
+              <p>Devido à destruição dos sistemas de água e esgoto pelos bombardeios, o Iêmen registra mais de 1 milhão de casos de cólera em uma crise sanitária histórica.</p>
+            </div>
+          </div>
+
+          <div class="item-linha-tempo">
+            <span class="numero-ano">5. 2018</span>
+            <div class="detalhe-ano">
+              <h3>Cerco e Acordo de Estocolmo</h3>
+              <p>Combates intensificados pelo controle de Hodeidah, porto por onde entra 80% da ajuda humanitária. Um cessar-fogo parcial é assinado na Suécia, mas as violações continuam.</p>
+            </div>
+          </div>
+
+          <div class="item-linha-tempo">
+            <span class="numero-ano">6. 2022</span>
+            <div class="detalhe-ano">
+              <h3>Trégua Temporária Mediada pela ONU</h3>
+              <p>É assinada uma trégua que reduz temporariamente a intensidade dos combates e permite a entrada de alguns navios de combustível, trazendo um alívio breve aos civis.</p>
+            </div>
+          </div>
+
+          <div class="item-linha-tempo">
+            <span class="numero-ano">7. 2024</span>
+            <div class="detalhe-ano">
+              <h3>Crise e Escalada no Mar Vermelho</h3>
+              <p>Os Houthis iniciam ataques com drones e mísseis contra navios comerciais no Estreito de Bab el-Mandeb em solidariedade à Faixa de Gaza, provocando contra-ataques navais dos EUA e do Reino Unido.</p>
+            </div>
+          </div>
+
+          <div class="item-linha-tempo">
+            <span class="numero-ano">8. 2026</span>
+            <div class="detalhe-ano">
+              <h3>Fragmentação Territorial e Crise Contínua</h3>
+              <p>O Iêmen segue dividido em dois governos paralelos. Mais de 22 milhões de iemenitas continuam dependendo de ajuda internacional para sobreviver em meio ao colapso econômico.</p>
+            </div>
+          </div>
+        </div>
+
+        <footer>
+          Integrantes: Luccas, Giovanna M. e David
+        </footer>    
+      </div>
+    </div>
+
+    <!-- 4. Quem participa -->
+    <div class="conteudo" id="participantes">
+      <div class="cartao-conteudo">
+        <h2>Quem participa (Divisão e Controle Territorial)</h2>
+        <figure class="foto">
+          <img src="foto3.jpg" alt="Divisão do controle territorial no Iêmen" onerror="semImagem(this)">
+          <figcaption>Zonas de controle no Iêmen: Norte/Sanaa e Sul/Áden.</figcaption>
+        </figure>
+        <p>O território iemenita não possui uma autoridade central única e encontra-se severamente dividido entre forças locais e atores internacionais:</p>
+        <ul>
+          <li><strong>Insurgentes Houthis (Ansar Allah):</strong> Controlam o Norte e o Oeste do país (incluindo o Planalto Central, a capital Sanaa e a linha de costa do Mar Vermelho). O grupo recebe apoio financeiro e militar do <strong>Irã</strong>.</li>
+          <li><strong>Governo Internacionalmente Reconhecido:</strong> Mantém base na região Sul e Leste, operando principalmente a partir de Áden. Esse governo é sustentado por uma <strong>coalizão militar liderada pela Arábia Saudita e pelos Emirados Árabes Unidos</strong>.</li>
+          <li><strong>Outros atores locais:</strong> Na região sul existem também movimentos separatistas (como o Conselho de Transição do Sul) e a presença de grupos extremistas que aproveitam o vácuo de poder em áreas desérticas do interior.</li>
+        </ul>
+        
+        <footer>
+            Integrante: Luccas
+        </footer>
+      </div>
+    </div>
+
+    <!-- 5. Quais interesses? -->
+    <div class="conteudo" id="interesses">
+      <div class="cartao-conteudo">
+        <h2>Quais os interesses envolvidos (Recursos e Rotas Estratégicas)</h2>
+        <figure class="foto">
+          <img src="foto4.jpg" alt="Rota comercial de petróleo no Estreito de Bab el-Mandeb" onerror="semImagem(this)">
+          <figcaption>Tráfego petroleiro e rotas comerciais marítimas globais.</figcaption>
+        </figure>
+        <p>Embora a guerra tenha origens locais, os interesses em jogo ultrapassam as fronteiras do Iêmen e envolvem fatores geopolíticos e econômicos mundiais:</p>
+        <ul>
+          <li><strong>Segurança das Rotas Marítimas:</strong> O controle do Estreito de Bab el-Mandeb é vital para a economia global. Ataques ou bloqueios nessa região forçam o desvio de navios de carga e petroleiros, alterando os preços de mercadorias no mundo todo.</li>
+          <li><strong>Disputa de Hegemonia Regional:</strong> O conflito virou um cenário de disputa indireta (guerra de procuração) entre a Arábia Saudita (de maioria sunita) e o Irã (de maioria xiita) pelo controle de influência no Oriente Médio.</li>
+          <li><strong>Recursos Naturais e Infraestrutura:</strong> Embora o Iêmen não seja um gigante petrolífero como a Arábia Saudita, o controle de refinarias, portos (como o de Hudaydah) e pequenas reservas de gás e óleo é fundamental para o financiamento dos grupos em combate.</li>
+        </ul>
+        
+        <footer>
+            Integrante: Giovanna M.
+        </footer>
+      </div>
+    </div>
+
+    <!-- 6. Quais os impactos -->
+    <div class="conteudo" id="impactos">
+      <div class="cartao-conteudo">
+        <h2>Quais os impactos do conflito</h2>
+        <figure class="foto">
+          <img src="foto5.jpg" alt="Impactos humanitários e geopolíticos no Iêmen" onerror="semImagem(this)">
+          <figcaption>Impactos no comércio marítimo mundial e severa crise humanitária.</figcaption>
+        </figure>
+        <p>As consequências do conflito afetam tanto a população local quanto o comércio internacional:</p>
+        <ul>
+          <li><strong>Grave Crise Humanitária:</strong> De acordo com dados de organismos internacionais como a ONU, o conflito gerou uma das piores crises humanitárias do século XXI. Há destruição de hospitais e escolas, surtos de doenças (como o cólera) e milhões de pessoas em situação de extrema pobreza e fome.</li>
+          <li><strong>Deslocamento Populacional:</strong> Milhares de mortos e milhões de iemenitas que tiveram que abandonar suas casas, tornando-se refugiados internos ou buscando abrigo em países vizinhos.</li>
+          <li><strong>Impacto no Comércio Global:</strong> As instabilidades e os recentes ataques no Mar Vermelho forçam navios cargueiros a fazer a rota mais longa contornando o continente africano (pelo Cabo da Boa Esperança), o que aumenta o tempo de viagem, o consumo de combustível e o frete dos produtos exportados.</li>
+        </ul>
+        
+        <footer>
+            Integrante: David
+        </footer>
+      </div>
+    </div>
+
+    <!-- 7. ABA DO QUIZ -->
+    <div class="conteudo" id="quiz">
+      <div class="cartao-conteudo">
+        <h2>📝 Quiz: Conflito no Iêmen</h2>
+
+        <div id="painel-nota" class="nota">
+          <div id="nota-numero" class="numero">0 / 5</div>
+          <p id="nota-texto" style="font-weight: bold; margin-top: 8px;"></p>
+        </div>
+
+        <form id="form-quiz" onsubmit="corrigirQuiz(event)">
+          
+          <div class="cartao-quiz">
+            <h2>1. Em qual região estratégica o Iêmen está localizado, conectando o Mar Vermelho ao Golfo de Áden?</h2>
+            <label><input type="radio" name="p1" value="a" required> Canal de Suez</label>
+            <label><input type="radio" name="p1" value="b"> Estreito de Ormuz</label>
+            <label><input type="radio" name="p1" value="c"> Estreito de Bab el-Mandeb</label>
+            <label><input type="radio" name="p1" value="d"> Estreito de Gibraltar</label>
+            <p id="msg1" class="feedback"></p>
+          </div>
+
+          <div class="cartao-quiz">
+            <h2>2. Qual evento histórico em 2011 serviu de estopim para a instabilidade política no Iêmen?</h2>
+            <label><input type="radio" name="p2" value="a" required> Primavera Árabe</label>
+            <label><input type="radio" name="p2" value="b"> Queda do Muro de Berlim</label>
+            <label><input type="radio" name="p2" value="c"> Crise do Petróleo de 1973</label>
+            <label><input type="radio" name="p2" value="d"> Guerra do Golfo</label>
+            <p id="msg2" class="feedback"></p>
+          </div>
+
+          <div class="cartao-quiz">
+            <h2>3. Qual grupo rebelde domina a capital Sanaa e o norte do país com apoio do Irã?</h2>
+            <label><input type="radio" name="p3" value="a" required> Al-Qaeda</label>
+            <label><input type="radio" name="p3" value="b"> Houthis (Ansar Allah)</label>
+            <label><input type="radio" name="p3" value="c"> Estado Islâmico</label>
+            <label><input type="radio" name="p3" value="d"> Conselho de Transição do Sul</label>
+            <p id="msg3" class="feedback"></p>
+          </div>
+
+          <div class="cartao-quiz">
+             <h2>4. Quais dois países do Oriente Médio travam uma disputa de influência (guerra indireta) no conflito do Iêmen?</h2>
+             <label><input type="radio" name="p4" value="a" required> Arábia Saudita e Irã</label>
+             <label><input type="radio" name="p4" value="b"> Egito e Turquia</label>
+             <label><input type="radio" name="p4" value="c"> Iraque e Síria</label>
+             <label><input type="radio" name="p4" value="d"> Omã e Catar</label>
+             <p id="msg4" class="feedback"></p>
+          </div>
+
+          <div class="cartao-quiz">
+            <h2>5. Qual grave crise de saúde atingiu o país em 2017 devido ao colapso do saneamento?</h2>
+            <label><input type="radio" name="p5" value="a" required> Surto de Febre Amarela</label>
+            <label><input type="radio" name="p5" value="b"> Epidemia de Ébola</label>
+            <label><input type="radio" name="p5" value="c"> O pior surto de Cólera do mundo</label>
+            <label><input type="radio" name="p5" value="d"> Pandemia de Gripe A</label>
+            <p id="msg5" class="feedback"></p>
+          </div>
+
+          <button type="submit" class="btn-submit-quiz">Ver resultado</button>
+        </form>
+
+        <footer>
+          Integrantes: Luccas
+        </footer>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SCRIPT DAS ABAS E CORREÇÃO DO QUIZ -->
+  <script>
+    function abrir(id, botao) {
+      document.querySelectorAll('.conteudo').forEach(function(c) {
+        c.classList.remove('aberto');
+      });
+
+      var elementoAlvo = document.getElementById(id);
+      if (elementoAlvo) {
+        elementoAlvo.classList.add('aberto');
+      }
+
+      document.querySelectorAll('.botoes button').forEach(function(b) {
+        b.classList.remove('ativo');
+      });
+      
+      if (botao) {
+        botao.classList.add('ativo');
+      }
+    }
+
+    function semImagem(img) {
+      if (img.dataset.ok) return;
+      img.dataset.ok = '1';
+      img.src = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(
+        '<svg xmlns="http://www.w3.org/2000/svg" width="600" height="340">' +
+        '<rect width="600" height="340" fill="#dfe8ef"/>' +
+        '<text x="300" y="165" font-family="Arial" font-size="22" fill="#7d8da0" ' +
+        'text-anchor="middle">Coloque sua imagem aqui</text>' +
+        '<text x="300" y="195" font-family="Arial" font-size="15" fill="#9aa8b8" ' +
+        'text-anchor="middle">' + img.getAttribute('src').split('?')[0] + '</text>' +
+        '</svg>'
+      );
+    }
+
+    function corrigirQuiz(event) {
+      event.preventDefault();
+
+      var gabarito = {
+        p1: { certa: 'c', texto: 'Estreito de Bab el-Mandeb.' },
+        p2: { certa: 'a', texto: 'Primavera Árabe.' },
+        p3: { certa: 'b', texto: 'Houthis (Ansar Allah).' },
+        p4: { certa: 'a', texto: 'Arábia Saudita e Irã.' },
+        p5: { certa: 'c', texto: 'O pior surto de Cólera do mundo.' }
+      };
+
+      var pontos = 0;
+
+      for (var i = 1; i <= 5; i++) {
+        var campo = 'p' + i;
+        var resposta = document.querySelector('input[name="' + campo + '"]:checked');
+        var msgEl = document.getElementById('msg' + i);
+
+        msgEl.style.display = 'block';
+
+        if (resposta && resposta.value === gabarito[campo].certa) {
+          pontos++;
+          msgEl.className = 'feedback feedback-acerto';
+          msgEl.textContent = '✔ Acertou!';
+        } else {
+          msgEl.className = 'feedback feedback-erro';
+          msgEl.textContent = '✘ Errou. A resposta certa era: ' + gabarito[campo].texto;
+        }
+      }
+
+      var painel = document.getElementById('painel-nota');
+      var notaNum = document.getElementById('nota-numero');
+      var notaTexto = document.getElementById('nota-texto');
+
+      painel.style.display = 'block';
+      notaNum.textContent = pontos + ' / 5';
+
+      if (pontos === 5) {
+        notaTexto.textContent = 'Perfeito! Você acertou tudo! 🎉';
+      } else if (pontos >= 3) {
+        notaTexto.textContent = 'Muito bem! Você foi bem no quiz. 👏';
+      } else {
+        notaTexto.textContent = 'Vale reler o conteúdo e tentar de novo. 📚';
+      }
+
+      painel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  </script>
+</body>
+</html>

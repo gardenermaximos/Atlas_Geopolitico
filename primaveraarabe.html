@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Grupo 7: Primavera Árabe e a Guerra Civil da Síria — Atlas Geopolítico</title>
+
+  <!-- =========================================================
+       CSS DA PÁGINA (TOTALMENTE RESPONSIVO - PC & MOBILE)
+  ========================================================== -->
+  <style>
+    :root {
+      --cor-fundo: #eef3f7;
+      --cor-texto: #16202b;
+      --cor-suave: #5b6b7a;
+      --cor-cartao: #ffffff;
+      --cor-destaque: #1f7a8c;
+      --cor-hover: #145966;
+      --cor-borda: #d6e0e8;
+      --cor-acerto: #1e7e34;
+      --cor-erro: #bd2130;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: var(--cor-fundo);
+      color: var(--cor-texto);
+      line-height: 1.6;
+    }
+
+    .pagina {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    /* ---- Topo com o botão de voltar ---- */
+    .voltar {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: var(--cor-suave);
+      font-weight: bold;
+      margin-bottom: 20px;
+      font-size: 15px;
+      transition: color 0.2s ease;
+    }
+
+    .voltar:hover {
+      color: var(--cor-destaque);
+    }
+
+    header h1 {
+      font-size: 32px;
+      margin: 0 0 6px;
+      color: var(--cor-texto);
+      line-height: 1.2;
+    }
+
+    header p.intro {
+      color: var(--cor-suave);
+      margin: 0 0 24px;
+      font-size: 16px;
+    }
+
+    /* ---- BARRA DE BOTÕES RESPONSIVA ---- */
+    .botoes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .botoes button {
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: bold;
+      padding: 11px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      background: var(--cor-cartao);
+      color: var(--cor-texto);
+      border: 2px solid var(--cor-borda);
+      transition: all 0.2s ease;
+      touch-action: manipulation;
+    }
+
+    .botoes button:hover {
+      border-color: var(--cor-destaque);
+      color: var(--cor-destaque);
+    }
+
+    .botoes button.ativo {
+      background: var(--cor-destaque);
+      color: #ffffff;
+      border-color: var(--cor-destaque);
+    }
+
+    /* ---- CONTEÚDO DAS ABAS ---- */
+    .conteudo {
+      display: none;
+    }
+
+    .conteudo.aberto {
+      display: block !important;
+    }
+
+    .cartao-conteudo {
+      background: var(--cor-cartao);
+      border: 1px solid var(--cor-borda);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .06);
+    }
+
+    .cartao-conteudo h2 {
+      margin: 22px 0 12px;
+      font-size: 22px;
+      color: var(--cor-destaque);
+      line-height: 1.3;
+    }
+
+    .cartao-conteudo h2:first-child {
+      margin-top: 0;
+    }
+
+    .cartao-conteudo p {
+      margin: 0 0 14px;
+      word-wrap: break-word;
+    }
+
+    .cartao-conteudo ul {
+      margin: 0 0 16px;
+      padding-left: 22px;
+    }
+
+    .cartao-conteudo li {
+      margin-bottom: 8px;
+    }
+
+    /* ---- Imagens ---- */
+    .foto {
+      margin: 0 0 20px;
+    }
+
+    .foto img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+      background: #dfe8ef;
+      object-fit: cover;
+    }
+
+    .foto figcaption, figcaption {
+      font-size: 13px;
+      color: var(--cor-suave);
+      margin-top: 8px;
+      text-align: center;
+      font-style: italic;
+    }
+
+    /* Rodapé dos autores dentro do cartão */
+    footer.creditos-autor {
+      margin-top: 25px;
+      padding-top: 12px;
+      border-top: 1px solid var(--cor-borda);
+      text-align: right;
+      font-size: 13px;
+      color: var(--cor-suave);
+      font-style: italic;
+    }
+
+    footer.creditos-autor p {
+      margin: 0;
+    }
+
+    /* ---- ESTILOS DO QUIZ ---- */
+    .cartao-quiz {
+      background: var(--cor-cartao);
+      border: 1px solid var(--cor-borda);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 18px;
+    }
+
+    .cartao-quiz h2 {
+      font-size: 17px;
+      color: var(--cor-destaque);
+      margin: 0 0 10px;
+      line-height: 1.4;
+    }
+
+    .cartao-quiz label {
+      display: block;
+      padding: 8px 12px;
+      margin-bottom: 6px;
+      background: #f8fafc;
+      border-radius: 8px;
+      border: 1px solid var(--cor-borda);
+      cursor: pointer;
+      font-size: 15px;
+      transition: background 0.2s;
+    }
+
+    .cartao-quiz label:hover {
+      background: #eef3f7;
+    }
+
+    .cartao-quiz input[type="radio"],
+    .cartao-quiz input[type="checkbox"] {
+      margin-right: 8px;
+      accent-color: var(--cor-destaque);
+    }
+
+    .nota {
+      text-align: center;
+      background: #ffffff;
+      border: 2px solid var(--cor-destaque);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    .nota .numero {
+      font-size: 42px;
+      font-weight: bold;
+      color: var(--cor-destaque);
+    }
+
+    .feedback {
+      font-weight: bold;
+      margin: 10px 0 0;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      display: none;
+    }
+
+    .feedback-acerto {
+      color: var(--cor-acerto);
+      background: #e8f5e9;
+      border: 1px solid #c8e6c9;
+    }
+
+    .feedback-erro {
+      color: var(--cor-erro);
+      background: #ffebee;
+      border: 1px solid #ffcdd2;
+    }
+
+    .btn-submit-quiz {
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 12px 28px;
+      border-radius: 30px;
+      cursor: pointer;
+      background: var(--cor-destaque);
+      color: #fff;
+      border: none;
+      transition: background 0.2s;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .btn-submit-quiz:hover {
+      background: var(--cor-hover);
+    }
+
+    /* =========================================================
+         ADAPTAÇÕES RESPONSIVAS (MOBILE & TABLETS)
+    ========================================================== -->
+    @media (max-width: 768px) {
+      .pagina {
+        padding: 20px 15px 40px;
+      }
+
+      header h1 {
+        font-size: 26px;
+      }
+
+      header p.intro {
+        font-size: 14px;
+        margin-bottom: 18px;
+      }
+
+      .botoes {
+        gap: 8px;
+      }
+
+      .botoes button {
+        flex: 1 1 calc(50% - 8px);
+        text-align: center;
+        padding: 10px 14px;
+        font-size: 14px;
+      }
+
+      .cartao-conteudo {
+        padding: 20px 16px;
+        border-radius: 14px;
+      }
+
+      .cartao-conteudo h2 {
+        font-size: 19px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .botoes button {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="pagina">
+
+    <!-- Volta para o carrossel -->
+    <a class="voltar" href="index.html">← Voltar aos temas</a>
+
+    <header>
+      <h1>Grupo 7: Primavera Árabe e a Guerra Civil da Síria</h1>
+      <p class="intro">Clique em um tópico para ver o conteúdo.</p>
+    </header>
+
+    <!-- =========================================================
+         OS BOTÕES DE NAVEGAÇÃO
+    ========================================================== -->
+    <div class="botoes">
+      <button class="ativo" onclick="abrir('norte', this)">Onde acontece o conflito</button>
+      <button onclick="abrir('nordeste', this)">Como surgiu o conflito</button>
+      <button onclick="abrir('centrooeste', this)">Quem participa</button>
+      <button onclick="abrir('sudeste', this)">Quais interesses?</button>
+      <button onclick="abrir('sul', this)">Quais os impactos</button>
+      <button onclick="abrir('quiz', this)">Quiz</button>
+    </div>
+
+    <!-- =========================================================
+         CONTEÚDOS DAS ABAS
+    ========================================================== -->
+
+    <!-- ===================== ONDE ACONTECE ===================== -->
+    <div class="conteudo aberto" id="norte">
+      <div class="cartao-conteudo">
+        <h2>Onde acontece o conflito?</h2>
+        <figure class="foto">
+          <img src="localizacao.jpg" alt="Mapa da Síria e dos países vizinhos" onerror="semImagem(this)">
+        </figure>
+
+        <p><strong>Localização geográfica:</strong> a Síria fica no continente asiático,
+          na região do Oriente Médio (também chamada de Sudoeste Asiático), perto do
+          Mar Mediterrâneo. Sua posição é estratégica, entre a Ásia e a Europa. A capital
+          é Damasco, uma das cidades mais antigas do mundo.</p>
+
+        <p><strong>Fronteiras:</strong></p>
+        <ul>
+          <li><strong>Norte:</strong> Turquia</li>
+          <li><strong>Leste:</strong> Iraque</li>
+          <li><strong>Sul:</strong> Jordânia</li>
+          <li><strong>Sudoeste:</strong> Israel</li>
+          <li><strong>Oeste:</strong> Líbano</li>
+          <li><strong>Costa:</strong> Mar Mediterrâneo, que dá acesso a importantes rotas marítimas e comerciais.</li>
+        </ul>
+
+        <p><strong>Países envolvidos e suas capitais:</strong></p>
+        <ul>
+          <li><strong>Rússia (Moscou) e Irã (Teerã):</strong> apoiaram o governo de Bashar al-Assad.</li>
+          <li><strong>Turquia (Ancara) e Estados Unidos (Washington):</strong> apoiaram forças opositoras ou combateram
+            grupos extremistas.</li>
+          <li><strong>Israel (Jerusalém):</strong> realizou operações militares na região.</li>
+          <li><strong>Outros envolvidos:</strong> Arábia Saudita (Riade), Catar (Doha), Líbano (Beirute) e Iraque
+            (Bagdá).</li>
+        </ul>
+
+        <p><strong>Recursos naturais:</strong></p>
+        <ul>
+          <li><strong>Petróleo e gás natural:</strong> de grande importância econômica e estratégica, principalmente no
+            leste e no nordeste do país.</li>
+          <li><strong>Minerais:</strong> fosfato, calcário e sal.</li>
+          <li><strong>Água e terras férteis:</strong> o rio Eufrates e as terras usadas na agricultura.</li>
+        </ul>
+
+        <p><strong>Importância estratégica:</strong> o acesso ao Mediterrâneo, as reservas
+          de petróleo e gás e a proximidade com Israel, Turquia e Iraque despertam o
+          interesse de várias potências. Por isso, o território sírio se tornou central
+          nas disputas políticas, econômicas e militares da região.</p>
+
+        <footer class="creditos-autor">
+          <p>© Pesquisas feitas por Enzo.</p>
+        </footer>
+      </div>
+    </div>
+
+    <!-- ===================== COMO SURGIU ===================== -->
+    <div class="conteudo" id="nordeste">
+      <div class="cartao-conteudo">
+        <h2>Como surgiu o conflito?</h2>
+        <figure class="foto">
+          <img src="surgimento.jpg" alt="Protestos na Síria em 2011" onerror="semImagem(this)">
+        </figure>
+
+        <p>A guerra civil na Síria começou em 2011, durante a <strong>Primavera Árabe</strong>,
+          uma onda de protestos populares em vários países do Oriente Médio e do norte da África.</p>
+
+        <p><strong>Da revolta à guerra civil:</strong></p>
+        <ul>
+          <li><strong>Protestos:</strong> a população foi às ruas contra o governo de Bashar al-Assad, exigindo reformas
+            políticas e mais liberdade.</li>
+          <li><strong>Repressão:</strong> as manifestações foram reprimidas com violência, o que aumentou a revolta
+            popular.</li>
+          <li><strong>Luta armada:</strong> parte da oposição passou a pegar em armas contra o governo, e os protestos
+            se transformaram em guerra civil.</li>
+        </ul>
+
+        <p><strong>Como a guerra se tornou internacional?</strong></p>
+        <ul>
+          <li><strong>Rússia e Irã:</strong> apoiaram o governo de Assad com assistência militar e política.</li>
+          <li><strong>Estados Unidos e países ocidentais:</strong> apoiaram setores da oposição e, depois, lideraram
+            ações militares contra o Estado Islâmico.</li>
+          <li><strong>Turquia:</strong> interveio militarmente por segurança de suas fronteiras e para combater grupos
+            curdos que considera ameaças.</li>
+          <li><strong>Países árabes e outras potências regionais:</strong> apoiaram diferentes lados, de acordo com seus
+            interesses.</li>
+          <li><strong>Estado Islâmico:</strong> aproveitou o enfraquecimento do Estado sírio para conquistar
+            territórios, o que provocou novas intervenções.</li>
+        </ul>
+
+        <p><strong>Linha do tempo:</strong></p>
+        <ul>
+          <li><strong>2011:</strong> protestos e repressão.</li>
+          <li><strong>2013–2014:</strong> fragmentação da oposição e crescimento do Estado Islâmico.</li>
+          <li><strong>2014:</strong> os EUA passam a liderar operações contra o Estado Islâmico.</li>
+          <li><strong>2015:</strong> a Rússia intervém militarmente para sustentar Assad.</li>
+          <li><strong>8 de dezembro de 2024:</strong> ofensiva rebelde chega a Damasco e Assad foge para a Rússia.</li>
+        </ul>
+
+        <p>Assim, a guerra deixou de ser apenas uma disputa interna pelo poder e passou a
+          envolver interesses geopolíticos, rivalidades regionais, terrorismo e intervenções
+          estrangeiras.</p>
+
+        <footer class="creditos-autor">
+          <p>© Pesquisas feitas por Alana/Julia.</p>
+        </footer>
+      </div>
+    </div>
+
+    <!-- ===================== QUEM PARTICIPA ===================== -->
+    <div class="conteudo" id="centrooeste">
+      <div class="cartao-conteudo">
+        <h2>Quem participa da guerra?</h2>
+        <figure class="foto">
+          <img src="participantes.jpg" alt="Atores envolvidos na Guerra Civil da Síria"
+            onerror="semImagem(this)">
+        </figure>
+
+        <p>A guerra começou em 2011 como uma crise interna, mas passou a envolver
+          governos, grupos armados, organizações internacionais e potências
+          estrangeiras, o que a transformou em um conflito internacional.</p>
+
+        <p><strong>Governos envolvidos:</strong></p>
+        <ul>
+          <li><strong>Síria (Bashar al-Assad):</strong> lutava para permanecer no poder contra quem queria derrubá-lo. O
+            governo caiu em dezembro de 2024, e Assad recebeu asilo na Rússia.</li>
+          <li><strong>Rússia:</strong> apoiou Assad com aviões, soldados e armamentos.</li>
+          <li><strong>Irã:</strong> apoiou Assad com recursos, armas e auxílio militar.</li>
+          <li><strong>Turquia:</strong> apoiou a oposição síria e fez operações militares no norte do país.</li>
+          <li><strong>Estados Unidos:</strong> apoiaram grupos curdos e participaram de operações contra o Estado
+            Islâmico.</li>
+          <li><strong>Israel:</strong> atacou posições militares iranianas e grupos aliados do Irã na Síria.</li>
+        </ul>
+
+        <p><strong>Grupos armados:</strong></p>
+        <ul>
+          <li><strong>Exército Livre da Síria (ELS):</strong> formado por militares que abandonaram o governo de Assad.</li>
+          <li><strong>Estado Islâmico (ISIS):</strong> grupo extremista que conquistou territórios na Síria e no Iraque.</li>
+          <li><strong>Forças Democráticas Sírias (FDS):</strong> lideradas por curdos, apoiadas pelos EUA e focadas em
+            combater o Estado Islâmico.</li>
+          <li><strong>Hay'at Tahrir al-Sham (HTS):</strong> ganhou força no norte e liderou a ofensiva que derrubou
+            Assad.</li>
+          <li><strong>Exército Nacional Sírio (ENS):</strong> oposição apoiada pela Turquia, ativa principalmente no
+            norte.</li>
+        </ul>
+
+        <p><strong>Organizações internacionais:</strong></p>
+        <ul>
+          <li><strong>ONU:</strong> tentou promover acordos de paz e proteger os civis.</li>
+          <li><strong>ACNUR:</strong> ajudou refugiados com proteção e assistência.</li>
+          <li><strong>CICV (Cruz Vermelha):</strong> prestou atendimento médico, alimentos e apoio humanitário.</li>
+          <li><strong>OPAQ:</strong> investigou denúncias de uso de armas químicas.</li>
+        </ul>
+
+        <p><strong>Como isso internacionalizou a guerra?</strong> Rússia e Irã apoiaram
+          Assad, enquanto Estados Unidos e Turquia apoiaram diferentes grupos de
+          oposição, enviando armas, dinheiro e soldados. As diferenças entre esses
+          países, principalmente no Conselho de Segurança da ONU, dificultaram os
+          acordos de paz e prolongaram o conflito.</p>
+
+        <footer class="creditos-autor">
+          <p>© Pesquisas feitas por Alana.</p>
+        </footer>
+      </div>
+    </div>
+
+    <!-- ===================== QUAIS INTERESSES ===================== -->
+    <div class="conteudo" id="sudeste">
+      <div class="cartao-conteudo">
+        <h2>Quais interesses estavam em jogo?</h2>
+        <figure class="foto">
+          <img src="interesses.jpg" alt="Mapa da Síria com áreas disputadas" onerror="semImagem(this)">
+        </figure>
+
+        <p>A guerra da Síria virou um conflito internacional porque vários países
+          passaram a defender interesses próprios no território. A disputa não foi
+          só por recursos: também estavam em jogo segurança de fronteiras, controle
+          político e influência regional.</p>
+
+        <p><strong>Interesses econômicos e territoriais:</strong></p>
+        <ul>
+          <li><strong>Petróleo e gás:</strong> concentrados no leste e nordeste. Quem controla os campos controla a
+            arrecadação e o fornecimento de energia.</li>
+          <li><strong>Água:</strong> os rios Eufrates e Tigre e suas barragens são essenciais para agricultura,
+            abastecimento e energia.</li>
+          <li><strong>Minérios:</strong> fosfato, gesso, sal e mármore, importantes para fertilizantes e exportação.</li>
+          <li><strong>Rotas e portos:</strong> Tartus e Latakia dão acesso ao Mediterrâneo; corredores terrestres ligam
+            a Síria à Turquia, ao Iraque e à Jordânia.</li>
+        </ul>
+
+        <p><strong>Interesses das potências e dos vizinhos:</strong></p>
+        <ul>
+          <li><strong>Rússia:</strong> apoiou Assad a partir de 2015 para manter influência no Oriente Médio e proteger
+            as bases de Hmeimim e Tartus, sua projeção militar no Mediterrâneo.</li>
+          <li><strong>Estados Unidos:</strong> combateram o Estado Islâmico, apoiaram as Forças Democráticas Sírias (de
+            maioria curda) e pressionaram Assad com sanções.</li>
+          <li><strong>Irã:</strong> apoiou Assad com ajuda militar e grupos aliados, para preservar sua influência
+            regional.</li>
+          <li><strong>Turquia:</strong> apoiou opositores e interveio no norte para conter a expansão de forças curdas.</li>
+          <li><strong>Israel:</strong> atacou alvos militares sírios e ampliou sua presença perto do Golan, território
+            disputado desde 1967.</li>
+        </ul>
+
+        <p><strong>Atenção:</strong> petróleo, gás, água e rotas comerciais aumentaram a
+          importância estratégica da Síria, mas não são a causa única da guerra.
+          A repressão política, a luta pelo poder e as divisões internas também foram
+          fatores fundamentais.</p>
+
+        <footer class="creditos-autor">
+          <p>© Pesquisas feitas por João Victor.</p>
+        </footer>
+      </div>
+    </div>
+
+    <!-- ===================== QUAIS OS IMPACTOS ===================== -->
+    <div class="conteudo" id="sul">
+      <div class="cartao-conteudo">
+        <h2>Quais foram os impactos da guerra?</h2>
+        <figure class="foto">
+          <img src="impactos.jpg" alt="Destruição e refugiados da guerra civil na Síria"
+            onerror="semImagem(this)">
+        </figure>
+
+        <p>A guerra civil síria causou perdas humanas enormes, deslocamentos em massa,
+          pobreza, destruição de serviços públicos e danos ambientais. Mesmo após a
+          queda de Assad, em 2024, a reconstrução continua sendo um grande desafio.</p>
+
+        <p><strong>Impactos humanos:</strong></p>
+        <ul>
+          <li><strong>Mortos:</strong> centenas de milhares de vidas perdidas, entre civis, crianças, combatentes e
+            profissionais de saúde. O PNUD calculou cerca de 618 mil mortes relacionadas ao conflito até 2025. O número
+            exato é difícil de determinar, porque muitas mortes não foram registradas.</li>
+          <li><strong>Feridos:</strong> amputações, queimaduras, fraturas e lesões por explosões, além de traumas
+            psicológicos, ansiedade e depressão. Hospitais foram destruídos ou ficaram sem medicamentos e profissionais.</li>
+          <li><strong>Refugiados:</strong> milhões de sírios fugiram do país, principalmente para Turquia, Líbano,
+            Jordânia, Iraque e Egito, onde enfrentaram pobreza, falta de moradia e trabalho, barreiras de idioma e
+            dificuldade de acesso a escola e saúde.</li>
+          <li><strong>Deslocados internos:</strong> pessoas que deixaram suas casas, mas continuam na Síria. Muitas
+            vivem em campos, tendas ou construções improvisadas, sem água potável, saneamento, eletricidade e segurança.
+            Em 2026, ainda eram cerca de 5,5 milhões.</li>
+        </ul>
+
+        <p><strong>Impactos econômicos:</strong></p>
+        <ul>
+          <li><strong>Perda de empregos:</strong> empresas, fábricas e comércios fecharam.</li>
+          <li><strong>Pobreza:</strong> em 2025, cerca de 90% da população vivia na pobreza (PNUD).</li>
+          <li><strong>Inflação:</strong> os preços subiram e a moeda síria perdeu valor.</li>
+          <li><strong>Infraestrutura:</strong> estradas, hospitais, escolas, redes elétricas e sistemas de água foram
+            danificados.</li>
+          <li><strong>Perdas no PIB:</strong> cerca de US$ 800 bilhões ao longo de 14 anos de conflito (PNUD).</li>
+        </ul>
+
+        <p><strong>Impactos sociais:</strong></p>
+        <ul>
+          <li><strong>Educação:</strong> escolas destruídas ou fechadas. Entre 40% e 50% das crianças de 6 a 15 anos
+            estavam fora da escola (PNUD).</li>
+          <li><strong>Saúde:</strong> faltaram médicos, medicamentos e equipamentos.</li>
+          <li><strong>Famílias separadas e saúde mental:</strong> muitas pessoas perderam parentes e sofreram com a
+            violência.</li>
+          <li><strong>Desigualdade:</strong> crianças, mulheres, idosos e pessoas com deficiência foram os mais
+            atingidos.</li>
+          <li><strong>Patrimônio cultural:</strong> monumentos, sítios arqueológicos e construções antigas foram
+            danificados.</li>
+        </ul>
+
+        <p><strong>Impactos ambientais:</strong></p>
+        <ul>
+          <li><strong>Solo e ar:</strong> explosões, escombros e incêndios liberam substâncias tóxicas e fumaça.</li>
+          <li><strong>Água:</strong> ataques a sistemas de saneamento deixaram milhões sem abastecimento adequado (Baker
+            Institute).</li>
+          <li><strong>Agricultura:</strong> abandono de terras, falta de irrigação e secas aumentam a insegurança
+            alimentar.</li>
+          <li><strong>Resíduos de guerra:</strong> minas e munições não detonadas continuam ameaçando pessoas e
+            plantações.</li>
+        </ul>
+
+        <p><strong>Conclusão:</strong> a guerra se tornou internacional porque vários países
+          intervieram para defender seus interesses. Quem mais pagou o preço foi a
+          população síria, e a recuperação depende de investimentos, estabilidade
+          política e ajuda internacional.</p>
+
+        <footer class="creditos-autor">
+          <p>© Pesquisas feitas por Enzo.</p>
+        </footer>
+      </div>
+    </div>
+
+    <!-- ===================== ABA DO QUIZ ===================== -->
+    <div class="conteudo" id="quiz">
+      <div class="cartao-conteudo">
+        <h2>📝 Quiz: Guerra Civil da Síria e Primavera Árabe</h2>
+
+        <div id="painel-nota" class="nota">
+          <div id="nota-numero" class="numero">0 / 10</div>
+          <p id="nota-texto" style="font-weight: bold; margin-top: 8px;"></p>
+        </div>
+
+        <form id="form-quiz" onsubmit="corrigirQuiz(event)">
+
+          <div class="cartao-quiz">
+            <h2>1. O que foi a Primavera Árabe?</h2>
+            <label><input type="radio" name="p1" value="a" required> A) Uma guerra entre países europeus.</label>
+            <label><input type="radio" name="p1" value="b"> B) Uma série de protestos populares em países árabes.</label>
+            <label><input type="radio" name="p1" value="c"> C) Um movimento para criar novas religiões.</label>
+            <label><input type="radio" name="p1" value="d"> D) Uma disputa econômica entre países.</label>
+            <p id="msg1" class="feedback"></p>
+          </div>
+
+          <div class="cartao-quiz">
+            <h2>2. Quem era Bashar al-Assad?</h2>
+            <label><input type="radio" name="p2" value="a" required> A) Presidente dos Estados Unidos.</label>
+            <label><input type="radio" name="p2" value="b"> B) Líder do Estado Islâmico.</label>
+            <label><input type="radio" name="p2" value="c"> C) Presidente da Rússia.</label>
+            <label><input type="radio" name="p2" value="d"> D) Presidente da Síria.</label>
+            <p id="msg2" class="feedback"></p>
+          </div>
+
+          <div class="cartao-quiz">
+            <h2>3. A Guerra Civil Síria começou em 2011, após protestos contra o governo de Bashar al-Assad.</h2>
+            <label><input type="radio" name="p3" value="a" required> Verdadeiro</label>
+            <label><input type="radio" name="p3" value="b"> Falso</label>
+            <p id="msg3" class="feedback"></p>
+          </div>
+
+          <div class="cartao-quiz">
+            <h2>4. Qual país foi um dos principais aliados militares de Bashar al-Assad?</h2>
+            <label><input type="radio" name="p4" value="a" required> A) Rússia.</label>
+            <label><input type="radio" name="p4" value="b"> B) Turquia.</label>
+            <label><input type="radio" name="p4" value="c"> C) Estados Unidos.</label>
+            <label><input type="radio" name="p4" value="d"> D) França.</label>
+            <p id="msg4" class="feedback"></p>
+          </div>
+
+          <div class="cartao-quiz">
+            <h2>5. Quais foram algumas formas de participação dos Estados Unidos na guerra?</h2>
+            <p style="font-size: 14px; color: var(--cor-suave); margin-bottom: 8px;">(Marque as duas respostas corretas)</p>
+            <label><input type="checkbox" name="p5b" value="b"> B) Apoio às Forças Democráticas Sírias.</label>
+            <label><input type="checkbox" name="p5c" value="c"> C) Operações militares contra o Estado Islâmico.</label>
+            <p id="msg5" class="feedback"></p>
+          </div>
+
+          <div class="cartao-quiz">
+            <h2>6. O Estado Islâmico foi um grupo armado que participou da Guerra Civil Síria.</h2>
+            <label><input type="radio" name="p6" value="a" required> Verdadeiro</label>
+            <label><input type="radio" name="p6" value="b"> Falso</label>
+            <p id="msg6" class="feedback"></p>
+          </div>
+
+          <div class="cartao-quiz">
+            <h2>7. Qual organização internacional é responsável por ajudar refugiados sírios?</h2>
+            <label><input type="radio" name="p7" value="a" required> A) OTAN.</label>
+            <label><input type="radio" name="p7" value="b"> B) OMC.</label>
+            <label><input type="radio" name="p7" value="c"> C) ACNUR.</label>
+            <label><input type="radio" name="p7" value="d"> D) OPEP.</label>
+            <p id="msg7" class="feedback"></p>
+          </div>
+
+          <div class="cartao-quiz">
+            <h2>8. Uma das principais consequências da Guerra Civil Síria foi:</h2>
+            <label><input type="radio" name="p8" value="a" required> A) O crescimento do turismo no país.</label>
+            <label><input type="radio" name="p8" value="b"> B) A diminuição da população refugiada.</label>
+            <label><input type="radio" name="p8" value="c"> C) O fim dos conflitos no Oriente Médio.</label>
+            <label><input type="radio" name="p8" value="d"> D) O deslocamento de milhões de pessoas.</label>
+            <p id="msg8" class="feedback"></p>
+          </div>
+
+          <div class="cartao-quiz">
+            <h2>9. O governo de Bashar al-Assad caiu em dezembro de 2024, após uma ofensiva de grupos rebeldes.</h2>
+            <label><input type="radio" name="p9" value="a" required> Verdadeiro</label>
+            <label><input type="radio" name="p9" value="b"> Falso</label>
+            <p id="msg9" class="feedback"></p>
+          </div>
+
+          <div class="cartao-quiz">
+            <h2>10. Por que a Guerra Civil Síria se tornou um conflito internacional?</h2>
+            <label><input type="radio" name="p10" value="a" required> A) Porque envolveu apenas países vizinhos.</label>
+            <label><input type="radio" name="p10" value="b"> B) Porque diferentes países e potências estrangeiras passaram a apoiar lados distintos da guerra.</label>
+            <label><input type="radio" name="p10" value="c"> C) Porque a ONU declarou guerra à Síria.</label>
+            <label><input type="radio" name="p10" value="d"> D) Porque todos os países apoiaram o mesmo grupo.</label>
+            <p id="msg10" class="feedback"></p>
+          </div>
+
+          <button type="submit" class="btn-submit-quiz">Ver resultado</button>
+        </form>
+
+        <footer class="creditos-autor">
+          <p>© Quiz formulado pelo Grupo 7.</p>
+        </footer>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- =========================================================
+       JAVASCRIPT DAS ABAS E CORREÇÃO DO QUIZ
+  ========================================================== -->
+  <script>
+    function abrir(id, botao) {
+      document.querySelectorAll('.conteudo').forEach(c => c.classList.remove('aberto'));
+      
+      const elementoAlvo = document.getElementById(id);
+      if (elementoAlvo) {
+        elementoAlvo.classList.add('aberto');
+      }
+
+      document.querySelectorAll('.botoes button').forEach(b => b.classList.remove('ativo'));
+      if (botao) {
+        botao.classList.add('ativo');
+      }
+    }
+
+    function semImagem(img) {
+      if (img.dataset.ok) return;
+      img.dataset.ok = '1';
+      img.src = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(
+        '<svg xmlns="http://www.w3.org/2000/svg" width="600" height="340">' +
+        '<rect width="600" height="340" fill="#dfe8ef"/>' +
+        '<text x="300" y="165" font-family="Arial" font-size="22" fill="#7d8da0" ' +
+        'text-anchor="middle">Coloque sua imagem aqui</text>' +
+        '<text x="300" y="195" font-family="Arial" font-size="15" fill="#9aa8b8" ' +
+        'text-anchor="middle">' + img.getAttribute('src').split('?')[0] + '</text>' +
+        '</svg>'
+      );
+    }
+
+    function corrigirQuiz(event) {
+      event.preventDefault();
+
+      const gabarito = {
+        p1: { certa: 'b', texto: 'Uma série de protestos populares em países árabes.' },
+        p2: { certa: 'd', texto: 'Presidente da Síria.' },
+        p3: { certa: 'a', texto: 'Verdadeiro' },
+        p4: { certa: 'a', texto: 'Rússia.' },
+        p6: { certa: 'a', texto: 'Verdadeiro' },
+        p7: { certa: 'c', texto: 'ACNUR.' },
+        p8: { certa: 'd', texto: 'O deslocamento de milhões de pessoas.' },
+        p9: { certa: 'a', texto: 'Verdadeiro' },
+        p10: { certa: 'b', texto: 'Diferentes países e potências estrangeiras passaram a apoiar lados distintos da guerra.' }
+      };
+
+      let pontos = 0;
+
+      // Questões de Escolha Única (1-4 e 6-10)
+      [1, 2, 3, 4, 6, 7, 8, 9, 10].forEach(i => {
+        const campo = 'p' + i;
+        const resposta = document.querySelector('input[name="' + campo + '"]:checked');
+        const msgEl = document.getElementById('msg' + i);
+
+        msgEl.style.display = 'block';
+
+        if (resposta && resposta.value === gabarito[campo].certa) {
+          pontos++;
+          msgEl.className = 'feedback feedback-acerto';
+          msgEl.textContent = '✔ Acertou!';
+        } else {
+          msgEl.className = 'feedback feedback-erro';
+          msgEl.textContent = '✘ Errou. A resposta certa era: ' + gabarito[campo].texto;
+        }
+      });
+
+      // Questão 5 (Múltipla Escolha / Checkbox)
+      const p5b = document.querySelector('input[name="p5b"]').checked;
+      const p5c = document.querySelector('input[name="p5c"]').checked;
+      const msg5 = document.getElementById('msg5');
+
+      msg5.style.display = 'block';
+
+      if (p5b && p5c) {
+        pontos++;
+        msg5.className = 'feedback feedback-acerto';
+        msg5.textContent = '✔ Acertou!';
+      } else {
+        msg5.className = 'feedback feedback-erro';
+        msg5.textContent = '✘ Errou. As respostas certas eram: B e C.';
+      }
+
+      // Exibição da Nota Final
+      const painel = document.getElementById('painel-nota');
+      const notaNum = document.getElementById('nota-numero');
+      const notaTexto = document.getElementById('nota-texto');
+
+      painel.style.display = 'block';
+      notaNum.textContent = pontos + ' / 10';
+
+      if (pontos === 10) {
+        notaTexto.textContent = 'Perfeito! Você acertou tudo! 🎉';
+      } else if (pontos >= 6) {
+        notaTexto.textContent = 'Muito bem! Você foi bem no quiz. 👏';
+      } else {
+        notaTexto.textContent = 'Vale reler o conteúdo e tentar de novo. 📚';
+      }
+
+      painel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  </script>
+</body>
+
+</html>
