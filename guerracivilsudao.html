@@ -7,7 +7,7 @@
   <title>Grupo 4: Guerra Civil no Sudão — Atlas Geopolítico</title>
 
   <!-- =========================================================
-       CSS DA PÁGINA (GRUPO 4 - TOTALMENTE RESPONSIVO)
+       CSS DA PÁGINA (GRUPO 4 - RESPONSIVO E CORRIGIDO)
   ========================================================== -->
   <style>
     :root {
@@ -118,7 +118,7 @@
       border-color: var(--cor-destaque);
     }
 
-    /* ---- CONTEÚDO ---- */
+    /* ---- CONTEÚDO DAS ABAS ---- */
     .conteudo { display: none; }
     .conteudo.aberto { display: block !important; }
 
@@ -127,6 +127,7 @@
       border: 1px solid var(--cor-borda);
       border-radius: 18px;
       padding: 26px;
+      margin-bottom: 20px;
       box-shadow: 0 8px 24px rgba(0,0,0,.06);
     }
 
@@ -138,8 +139,8 @@
     }
 
     .cartao-conteudo h2:first-child { margin-top: 0; }
-    .cartao-conteudo h3 { font-size: 18px; margin: 16px 0 8px; color: var(--cor-texto); }
-    .cartao-conteudo p  { margin: 0 0 14px; word-wrap: break-word; }
+    .cartao-conteudo h3 { font-size: 18px; margin: 18px 0 8px; color: var(--cor-texto); }
+    .cartao-conteudo p  { margin: 0 0 14px; text-align: justify; word-wrap: break-word; }
 
     /* ---- Imagens ---- */
     .foto { margin: 0 0 18px; }
@@ -158,16 +159,17 @@
       margin-top: 8px;
       text-align: center;
       font-style: italic;
+      font-weight: 600;
     }
 
     /* Rodapé dos autores */
-    footer.autor {
+    .creditos {
       margin-top: 20px;
       padding-top: 12px;
       border-top: 1px solid var(--cor-borda);
-      font-size: 13px;
-      color: var(--cor-suave);
-      font-weight: normal;
+      font-size: 14px;
+      color: var(--cor-texto);
+      font-weight: bold;
     }
 
     /* ---- ESTILOS DO QUIZ ---- */
@@ -293,7 +295,7 @@
 
     <header>
       <h1>Grupo 4: Guerra Civil no Sudão</h1>
-      <p class="intro">Clique em uma pergunta para ver o conteúdo.</p>
+      <p class="intro">Clique em um dos botões abaixo para explorar o conteúdo completo.</p>
       <div class="bandeira-header">
         <img src="bandeira-sudao.avif" alt="Bandeira do Sudão" onerror="semImagem(this)">
       </div>
@@ -321,11 +323,11 @@
           <img src="mapasudao.webp" alt="Mapa do Sudão" onerror="semImagem(this)">
           <figcaption>Mapa do Sudão</figcaption>
         </figure>
-        <p>A atual Guerra do Sudão, iniciada em 2023 entre as Forças Armadas Sudanesas (SAF) e as paramilitares Forças de Apoio Rápido (RSF), acontece de forma generalizada nas regiões do país. A guerra hoje contempla as áreas de Cartum, a região central, Darfur, Kordofã e fronteiras com outros países (como a Etiópia e Abyei).</p>
+        <p>A atual Guerra do Sudão iniciada em 2023 entre Forças Armadas Sudanesas (SAF) e as paramilitares Forças de Apoio Rápido (RSF), acontece de forma generalizada nas regiões do país. A guerra hoje contempla as áreas de Cartum, a região central, Darfur, Kordofã, fronteiras com outros países (como a Etiópia e Abyei).</p>
         
-        <footer class="autor">
+        <div class="creditos">
           Feito por: <br><b>Lorena M. Batista</b>
-        </footer>
+        </div>
       </div>
     </div>
 
@@ -347,11 +349,11 @@
         <p>Em 2019, protestos populares levaram o chefe do Exército, Abdel Fattah al-Burhan, e o líder das RSF, Hemedti, a se unirem para depor al-Bashir, mas ambos deram um golpe conjunto em 2021 para impedir uma transição democrática civil. A aliança ruiu no início de 2023 devido a um impasse sobre o prazo e o comando para integrar os combatentes paramilitares das RSF ao exército regular. Como nenhum dos generais aceitou ficar subordinado ao outro, as RSF mobilizaram tropas sem autorização, deflagrando os combates em Cartum em 15 de abril de 2023.</p>
         
         <h2>Andamento da guerra</h2>
-        <p>O confronto transformou-se em uma guerra de desgaste prolongada e fragmentou o país, com o Exército controlando o norte e o leste e as RSF dominando grande parte do oeste, incluindo Darfur. Alimentado pelo apoio de potências estrangeiras interessadas nos recursos naturais e na posição estratégica do Sudão, o conflito gerou a pior crise humanitária do mundo. Mais de 150 mil pessoas morreram, cerca de 14 milhões foram deslocadas e milhões enfrentam fome severa e graves violações de direitos humanos.</p>
+        <p>O confronto transformou-se em uma guerra de desgaste prolongada e fragmentou o país, com o Exército controlando o norte e o leste (tendo retomado Cartum em 2025) e as RSF dominando grande parte do oeste, incluindo Darfur. Alimentado pelo apoio de potências estrangeiras interessadas nos recursos naturais e na posição estratégica do Sudão, o conflito gerou a pior crise humanitária do mundo. Mais de 150 mil pessoas morreram, cerca de 14 milhões foram deslocadas e milhões enfrentam fome severa e graves violações de direitos humanos. A guerra se prolongou e ainda está em andamento, sendo considerada pela ONU uma das piores crises humanitárias e com os piores números de deslocamento interno.</p>
 
-        <footer class="autor">
+        <div class="creditos">
           Feito por: <br><b>Gustavo P. Bicudo</b>
-        </footer>
+        </div>
       </div>
     </div>
 
@@ -366,30 +368,32 @@
           <figcaption>Generais da Guerra do Sudão (Mohamed Hamdan Dagalo e Abdel Fattah al-Burhan).</figcaption>
         </figure>
 
-        <p>A Guerra Civil no Sudão, iniciada em 15 de abril de 2023, é travada principalmente entre duas forças militares internas: ela opõe o exército sudanês, liderado pelo general Abdel Fattah al-Burhan, contra as Forças de Apoio Rápido (RSF), um grupo paramilitar liderado pelo general Mohamed Hamdan Dagalo. Após o início dos combates, a guerra atraiu inúmeras milícias locais e a interferência de potências estrangeiras.</p>
+        <p>A Guerra Civil no Sudão, iniciada em 15 de abril de 2023, é travada principalmente entre duas forças militares internas: ela opõe o exército sudanês, liderado pelo general Abdel Fattah al-Burhan, contra as Forças de Apoio Rápido (RSF, na sigla em inglês), um grupo paramilitar liderado pelo general Mohamed Hamdan Dagalo. Depois que a guerra teve início em 15 de abril de 2023, rapidamente atraiu inúmeras milícias locais lutando de ambos os lados, além de potências estrangeiras.</p>
 
-        <p>Pesquisadores da ONU, legisladores dos EUA e o exército sudanês afirmam que os Emirados Árabes Unidos forneceram apoio crítico às RSF através de vizinhos do Sudão. Já o exército sudanês conta com o apoio de outras potências regionais, incluindo Egito, Turquia, Arábia Saudita e Catar.</p>
+        <p>De forma proeminente, pesquisadores da ONU, legisladores dos EUA e o exército sudanês afirmam que os Emirados Árabes Unidos forneceram apoio crítico às RSF através de vários vizinhos do Sudão, uma acusação que a potência do Golfo nega. O exército sudanês conta com o apoio de outras potências regionais, incluindo Egito, Turquia, Arábia Saudita e Catar, em diferentes intensidades.</p>
 
         <figure class="foto">
           <img src="participantes.avif" alt="Situação da população sudanesa" onerror="semImagem(this)">
+          <figcaption>Situação da população sudanesa</figcaption>
         </figure>
 
         <h2>Aliados</h2>
+        
         <h3>Exército Sudanês (SAF)</h3>
-        <p><strong>- Egito:</strong> Busca proteger suas fronteiras, conter refugiados e garantir apoio na disputa pelas águas do Rio Nilo.<br>
-        <strong>- Arábia Saudita:</strong> Quer manter a estabilidade nas rotas comerciais do Mar Vermelho.<br>
-        <strong>- Irã:</strong> Fornece armas para tentar instalar uma base naval no Mar Vermelho.<br>
-        <strong>- Turquia e Catar:</strong> Visam expandir sua influência diplomática, comercial e agrícola.<br>
-        <strong>- Ucrânia:</strong> Enviou forças especiais para combater mercenários russos na região.</p>
+        <p><strong>- Egito:</strong> Busca proteger suas fronteiras, conter refugiados e garantir apoio na disputa pelas águas do Rio Nilo.</p>
+        <p><strong>- Arábia Saudita:</strong> Quer manter a estabilidade nas rotas comerciais do Mar Vermelho e conter rivais regionais.</p>
+        <p><strong>- Irã:</strong> Fornece armas para tentar instalar uma base naval no Mar Vermelho e apoiar aliados no Iêmen.</p>
+        <p><strong>- Turquia e Catar:</strong> Visam expandir sua influência diplomática, comercial e investimentos agrícolas no país.</p>
+        <p><strong>- Ucrânia:</strong> Enviou forças especiais para combater mercenários russos e enfraquecer as operações de Moscou na África.</p>
 
         <h3>Forças de Apoio Rápido (RSF)</h3>
-        <p><strong>- Emirados Árabes:</strong> Apontados como financiadores, buscam controle de portos, terras agrícolas e minas de ouro.<br>
-        <strong>- Etiópia:</strong> Busca acesso a portos marítimos e atua como contrapeso à aliança entre Egito e o exército sudanês.<br>
-        <strong>- Chade e Líbia:</strong> Servem de rota para armas e mercenários devido ao contrabando na fronteira.</p>
+        <p><strong>- Emirados Árabes:</strong> Apontados como principais financiadores (algo que negam), buscam controle de portos, terras agrícolas, minas de ouro e o enfraquecimento de grupos islâmicos locais.</p>
+        <p><strong>- Etiópia:</strong> Busca acesso a portos marítimos e atua como contrapeso à aliança entre Egito e o exército sudanês.</p>
+        <p><strong>- Chade e Líbia:</strong> Servem de rota para armas e mercenários devido a pressões financeiras e lucros com o contrabando na fronteira.</p>
 
-        <footer class="autor">
+        <div class="creditos">
           Feito por: <br><b>Ana J. de Morais</b>
-        </footer>
+        </div>
       </div>
     </div>
 
@@ -403,13 +407,11 @@
           <img src="quemparticipa.avif" alt="Guerra no Sudão" onerror="semImagem(this)">
         </figure>
         
-        <p>Os principais interesses envolvidos no conflito são o controle do Estado e o poder político. A SAF e a RSF tentaram definir os termos e o prazo para integrar a milícia paramilitar ao exército regular, o que gerou um impasse sobre quem comandaria o novo regime.</p>
+        <p>Os principais interesses são o controle de Estado e poder político onde a SAF e a RSF tentaram definir os termos e o prazo para integrar a milícia paramilitar a um exército regular onde acabou gerando um impasse sobre quem comandaria o novo regime. A guerra também ocorreu por conta das disputas de minas de ouro, reservas de petróleo, refinarias, rotas comerciais, domínio de pontos estratégicos como Cartum (Capital) e as regiões ricas em recursos de Darfur.</p>
 
-        <p>A guerra também envolve disputas por minas de ouro, reservas de petróleo, refinarias, rotas comerciais, além do domínio de pontos estratégicos como Cartum (a capital) e as regiões ricas em recursos de Darfur.</p>
-
-        <footer class="autor">
+        <div class="creditos">
           Feito por: <br><b>Ana J. de Morais</b>
-        </footer>
+        </div>
       </div>
     </div>
 
@@ -421,24 +423,26 @@
         <h2>Impactos da Guerra</h2>
         <figure class="foto">
           <img src="impactos.jpg" alt="Impactos da Guerra" onerror="semImagem(this)">
-          <figcaption>Consequências e destruição provocadas pela guerra no Sudão.</figcaption>
+          <figcaption>Pessoas e soldados mortos da Guerra.</figcaption>
         </figure>
 
+        <p>Um dos maiores impactos da guerra é a falta de alimentos. Cerca de 20 milhões de pessoas enfrentam insegurança alimentar, ou seja, não possuem acesso garantido à alimentação suficiente. Além disso, muitas famílias não conseguem água potável, e os bloqueios e dificuldades de transporte impedem que a ajuda humanitária chegue a várias regiões.</p>
+
         <h2>Fome e falta de recursos básicos</h2>
-        <p>Um dos maiores impactos da guerra é a falta de alimentos. Cerca de 20 milhões de pessoas enfrentam insegurança alimentar severa. Além disso, muitas famílias não têm acesso a água potável, e os bloqueios de transporte impedem que a ajuda humanitária chegue a várias regiões.</p>
+        <p>O sistema de saúde do país foi bastante prejudicado pelos conflitos, com hospitais destruídos ou sem condições de funcionamento. A falta de atendimento médico, medicamentos, vacinação e água limpa contribuiu para a propagação de doenças como dengue, cólera e sarampo, colocando ainda mais vidas em risco.</p>
         
-        <h2>Propagação de doenças</h2>
-        <p>O sistema de saúde do país foi devastado, com hospitais destruídos ou sem condições de funcionamento. A falta de atendimento médico, medicamentos e água limpa contribuiu para a proliferação de surtos de dengue, cólera e sarampo.</p>
-        
-        <h2>Mortes e deslocamento populacional</h2>
-        <p>A guerra provocou milhares de mortes e graves violações de direitos humanos contra civis. Milhões de pessoas foram forçadas a abandonar suas casas, gerando uma das maiores crises de deslocamento interno do mundo.</p>
+        <h2>Mortes, violência e deslocamento da população</h2>
+        <p>A guerra provocou milhares de mortes e diversos casos de violência contra civis, incluindo assassinatos, violência sexual e ataques motivados por questões étnicas. Além disso, milhões de pessoas foram obrigadas a abandonar suas casas para fugir dos combates, muitas delas buscando abrigo em outras regiões do país ou em países vizinhos.</p>
 
-        <h2>Destruição e colapso econômico</h2>
-        <p>Plantações, comércios, estradas, redes de energia e sistemas de abastecimento de água foram destruídos, deixando a maioria da população sem empregos e sem fontes de renda.</p>
+        <h2>Destruição e dificuldades econômicas</h2>
+        <p>A guerra também prejudicou a economia do Sudão. Plantações, comércios, estradas, redes de energia e sistemas de abastecimento de água foram afetados. Com isso, muitas pessoas perderam seus empregos e suas fontes de renda, tornando ainda mais difícil conseguir alimentos e outros produtos essenciais.</p>
 
-        <footer class="autor">
+        <h2>Situação atual</h2>
+        <p>Mesmo com a necessidade de ajuda, milhões de sudaneses continuam sem receber assistência suficiente. Organizações humanitárias tentam ajudar a população com alimentos, água e atendimento básico, mas enfrentam falta de recursos e dificuldades para chegar às áreas afetadas.</p>
+
+        <div class="creditos">
           Feito por: <br><b>Mariana R. dos Santos</b>
-        </footer>
+        </div>
       </div>
     </div>
 
@@ -504,9 +508,9 @@
           <button type="submit" class="btn-submit-quiz">Ver resultado</button>
         </form>
 
-        <footer class="autor">
-          Quiz formulado pelo Grupo 4.
-        </footer>
+        <div class="creditos">
+          Formulado pelo Grupo 4.
+        </div>
       </div>
     </div>
 
