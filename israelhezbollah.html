@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Grupo 3 — Conflito Israel x Hezbollah</title>
+
+    <!-- =========================================================
+       CSS DA PÁGINA - PALETA HEZBOLLAH (Amarelo e Verde)
+  ========================================================== -->
+    <style>
+        :root {
+            /* Paleta suave inspirada no amarelo e verde da imagem */
+            --cor-fundo-amarelo: #E9D9A8;
+            --cor-amarelo-claro: #F4EBD2;
+            --cor-destaque-verde: #617A60;
+            --cor-verde-escuro: #405A45;
+
+            /* Superfícies, textos e estados */
+            --cor-texto: #30352F;
+            --cor-suave: #62675F;
+            --cor-cartao: rgba(252, 250, 244, 0.96);
+            --cor-borda: #C7CEB9;
+            --cor-correto: #66836A;
+            --cor-erro: #B97870;
+            --sombra-suave: 0 8px 24px rgba(54, 62, 47, 0.10);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: url('bandeira_fundo.png') no-repeat center center fixed;
+            background-size: cover;
+            color: var(--cor-texto);
+            line-height: 1.6;
+        }
+
+        .pagina {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 32px 20px 60px;
+        }
+
+        .voltar {
+            display: inline-block;
+            text-decoration: none;
+            color: var(--cor-verde-escuro);
+            background-color: rgba(244, 235, 210, 0.96);
+            padding: 7px 14px;
+            border-radius: 20px;
+            border: 1px solid #C8BD98;
+            font-weight: 650;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 7px rgba(54, 62, 47, 0.10);
+            transition: background-color .2s ease, color .2s ease, transform .2s ease;
+        }
+
+        .voltar:hover {
+            background-color: var(--cor-destaque-verde);
+            color: #fffdf7;
+            transform: translateY(-1px);
+        }
+
+        header {
+            background-color: var(--cor-cartao);
+            padding: 22px 24px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(199, 206, 185, .85);
+            border-bottom: 4px solid var(--cor-destaque-verde);
+            box-shadow: var(--sombra-suave);
+            backdrop-filter: blur(5px);
+        }
+
+        header h1 {
+            font-size: clamp(25px, 4vw, 32px);
+            line-height: 1.2;
+            margin: 0 0 8px;
+            color: var(--cor-verde-escuro);
+        }
+
+        header p.intro {
+            color: var(--cor-suave);
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .botoes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .botoes button {
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 650;
+            padding: 11px 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            background: rgba(244, 235, 210, 0.96);
+            color: var(--cor-verde-escuro);
+            border: 1px solid #C8BD98;
+            box-shadow: 0 2px 6px rgba(54, 62, 47, 0.09);
+            transition: background-color .2s ease, color .2s ease,
+                border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+        }
+
+        .botoes button:hover {
+            background: #E8DFC4;
+            border-color: #AEB99F;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(54, 62, 47, 0.12);
+        }
+
+        .botoes button.ativo {
+            background: var(--cor-destaque-verde);
+            color: #fffdf7;
+            border-color: var(--cor-destaque-verde);
+            box-shadow: 0 3px 9px rgba(64, 90, 69, 0.20);
+        }
+
+        .conteudo {
+            display: none;
+        }
+
+        .conteudo.aberto {
+            display: block;
+            animation: fadeIn 0.35s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cartao-conteudo {
+            background: var(--cor-cartao);
+            border: 1px solid var(--cor-borda);
+            border-top: 5px solid var(--cor-destaque-verde);
+            border-radius: 18px;
+            padding: 28px;
+            box-shadow: var(--sombra-suave);
+            backdrop-filter: blur(5px);
+        }
+
+        .cartao-conteudo h2 {
+            margin: 0 0 16px;
+            font-size: 26px;
+            color: var(--cor-verde-escuro);
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .cartao-conteudo p {
+            margin: 0 0 15px;
+            text-align: justify;
+            font-size: 16px;
+        }
+
+        .cartao-conteudo h3 {
+            margin: 25px 0 11px;
+            font-size: 20px;
+            color: var(--cor-verde-escuro);
+            border-bottom: 2px solid var(--cor-fundo-amarelo);
+            display: inline-block;
+            padding-bottom: 4px;
+        }
+
+        .foto {
+            margin: 0 0 18px;
+        }
+
+        .foto img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            display: block;
+            background: #EEECE3;
+            border: 1px solid #C9CEBF;
+        }
+
+        .foto figcaption {
+            font-size: 13px;
+            color: var(--cor-suave);
+            margin-top: 8px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .timeline {
+            border-left: 3px solid #AAB79F;
+            padding-left: 20px;
+            margin-left: 10px;
+            position: relative;
+        }
+
+        .evento-timeline {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .evento-timeline::before {
+            content: "";
+            position: absolute;
+            left: -29px;
+            top: 5px;
+            width: 14px;
+            height: 14px;
+            background-color: #E9D9A8;
+            border: 3px solid var(--cor-destaque-verde);
+            border-radius: 50%;
+        }
+
+        .evento-timeline h3 {
+            margin: 0 0 7px;
+            font-size: 18px;
+            color: var(--cor-verde-escuro);
+            background-color: rgba(233, 217, 168, 0.38);
+            display: inline-block;
+            padding: 3px 9px;
+            border-radius: 6px;
+        }
+
+        .evento-timeline p {
+            margin: 0;
+            color: var(--cor-texto);
+            font-size: 15px;
+        }
+
+        .pergunta-quiz {
+            margin-bottom: 25px;
+            padding-bottom: 16px;
+            border-bottom: 1px dashed #C7CEB9;
+        }
+
+        .pergunta-quiz:last-child {
+            border-bottom: none;
+        }
+
+        .pergunta-quiz p.enunciado {
+            font-weight: 700;
+            margin-bottom: 11px;
+            text-align: left;
+            font-size: 17px;
+            color: var(--cor-verde-escuro);
+        }
+
+        .opcoes {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .opcoes label {
+            cursor: pointer;
+            padding: 11px 13px;
+            border-radius: 8px;
+            background: rgba(244, 235, 210, 0.42);
+            border: 1px solid #D5D5C5;
+            transition: background-color .2s ease, border-color .2s ease;
+        }
+
+        .opcoes label:hover {
+            background: rgba(233, 217, 168, 0.42);
+            border-color: #AEB99F;
+        }
+
+        .opcoes input {
+            accent-color: var(--cor-destaque-verde);
+            margin-right: 5px;
+        }
+
+        .opcoes label.acerto {
+            background-color: #E4EDE1;
+            border-color: var(--cor-correto);
+            color: #3F6044;
+            font-weight: 650;
+        }
+
+        .opcoes label.erro {
+            background-color: #F3E3DF;
+            border-color: var(--cor-erro);
+            color: #85534D;
+        }
+
+        .btn-corrigir {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background-color: var(--cor-destaque-verde);
+            color: #fffdf7;
+            font-size: 17px;
+            font-weight: 700;
+            border: 1px solid var(--cor-verde-escuro);
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color .2s ease, transform .2s ease, box-shadow .2s ease;
+            text-transform: uppercase;
+        }
+
+        .btn-corrigir:hover {
+            background-color: var(--cor-verde-escuro);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(64, 90, 69, .18);
+        }
+
+        #resultado-quiz {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: 700;
+            text-align: center;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        /* =========================================================
+           QUIZ INTERATIVO - CARROSSEL
+        ========================================================== */
+        .quiz-container {
+            position: relative;
+            overflow: hidden;
+            min-height: 290px;
+        }
+
+        .pergunta-card {
+            display: none;
+            width: 100%;
+            animation: slideInDireita .35s ease both;
+        }
+
+        .pergunta-card.ativo {
+            display: block;
+        }
+
+        .pergunta-card.saindo-esquerda {
+            display: block;
+            position: absolute;
+            inset: 0 auto auto 0;
+            animation: slideOutEsquerda .35s ease both;
+            pointer-events: none;
+        }
+
+        @keyframes slideInDireita {
+            from {
+                transform: translateX(35px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOutEsquerda {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateX(-35px);
+                opacity: 0;
+            }
+        }
+
+        .progresso-quiz {
+            text-align: right;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--cor-suave);
+            margin-bottom: 14px;
+            border-bottom: 2px solid var(--cor-fundo-amarelo);
+            padding-bottom: 7px;
+        }
+
+        .pergunta-quiz p.enunciado {
+            font-weight: 700;
+            margin: 0 0 15px;
+            font-size: 18px;
+            text-align: left;
+            color: var(--cor-verde-escuro);
+        }
+
+        .opcoes {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .opcoes label {
+            cursor: pointer;
+            padding: 12px 15px;
+            border-radius: 9px;
+            background: rgba(244, 235, 210, .62);
+            border: 1px solid #D5D5C5;
+            transition: background-color .2s ease, border-color .2s ease;
+            font-size: 16px;
+        }
+
+        .opcoes label:hover {
+            background: rgba(233, 217, 168, .55);
+            border-color: #AEB99F;
+        }
+
+        .opcoes input[type="radio"],
+        .opcoes input[type="checkbox"] {
+            accent-color: var(--cor-destaque-verde);
+            margin: 0 8px 0 0;
+            width: 16px;
+            height: 16px;
+            vertical-align: -2px;
+        }
+
+        .opcoes label:has(input:checked) {
+            background: rgba(97, 122, 96, .14);
+            border-color: var(--cor-destaque-verde);
+            font-weight: 650;
+        }
+
+        .opcoes label.acerto {
+            background-color: #E4EDE1 !important;
+            border-color: var(--cor-correto) !important;
+            color: #3F6044;
+            font-weight: 650;
+        }
+
+        .opcoes label.erro {
+            background-color: #F3E3DF !important;
+            border-color: var(--cor-erro) !important;
+            color: #85534D;
+        }
+
+        .controles-quiz {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 22px;
+            gap: 10px;
+        }
+
+        .btn-quiz {
+            padding: 12px 22px;
+            background-color: var(--cor-destaque-verde);
+            color: #fffdf7;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 700;
+            border: 1px solid var(--cor-verde-escuro);
+            border-radius: 9px;
+            cursor: pointer;
+            transition: background-color .2s ease, transform .2s ease;
+        }
+
+        .btn-quiz:hover:not(:disabled) {
+            background-color: var(--cor-verde-escuro);
+            transform: translateY(-1px);
+        }
+
+        .btn-quiz:disabled {
+            background-color: #B9BEB4;
+            border-color: #B9BEB4;
+            color: #F8F7F2;
+            cursor: not-allowed;
+        }
+
+        #resultado-final {
+            display: none;
+            margin-top: 28px;
+            padding-top: 22px;
+            border-top: 1px solid var(--cor-borda);
+            animation: fadeIn .4s ease;
+        }
+
+        .nota-final {
+            font-size: 46px;
+            line-height: 1.2;
+            font-weight: 750;
+            color: var(--cor-verde-escuro);
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .mensagem-final {
+            font-size: 16px;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .btn-reiniciar {
+            background-color: var(--cor-amarelo-claro);
+            color: var(--cor-verde-escuro);
+            border-color: #C8BD98;
+        }
+
+        .btn-reiniciar:hover:not(:disabled) {
+            background-color: var(--cor-fundo-amarelo);
+            color: var(--cor-verde-escuro);
+        }
+
+        #resultado-final .pergunta-card {
+            display: block;
+            position: relative;
+            margin-bottom: 24px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--cor-borda);
+            animation: none;
+        }
+
+        #resultado-final .pergunta-card:last-of-type {
+            border-bottom: 0;
+        }
+
+        @media (max-width: 600px) {
+            .quiz-container {
+                min-height: 360px;
+            }
+
+            .controles-quiz {
+                justify-content: stretch;
+            }
+
+            .controles-quiz .btn-quiz {
+                flex: 1;
+            }
+
+            .opcoes label {
+                padding: 11px 12px;
+                font-size: 15px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .pergunta-card,
+            .pergunta-card.saindo-esquerda {
+                animation: none !important;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .pagina {
+                padding: 22px 14px 40px;
+            }
+
+            header {
+                padding: 19px;
+            }
+
+            .cartao-conteudo {
+                padding: 20px;
+            }
+
+            .botoes button {
+                flex: 1 1 auto;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        .creditos {
+            margin-top: 30px !important;
+            padding-top: 12px;
+            border-top: 1px solid #C7CEB9;
+            text-align: right !important;
+            font-size: 13px !important;
+            color: #73796E;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pagina">
+        <!-- Volta para o carrossel -->
+        <a class="voltar" href="index.html">← Voltar aos temas</a>
+        <header>
+            <h1>Grupo 3: ISRAEL X HEZBOLLAH</h1>
+            <p class="intro">Clique em um dos botões abaixo para ver o conteúdo.</p>
+        </header>
+
+        <!-- =========================================================
+         BOTÕES DE NAVEGAÇÃO
+    ========================================================== -->
+        <div class="botoes">
+            <button class="ativo" onclick="abrir('onde-acontece', this)">Onde acontece o conflito</button>
+            <button onclick="abrir('surgimento', this)">Como surgiu o conflito</button>
+            <button onclick="abrir('quem-participa', this)">Quem participa</button>
+            <button onclick="abrir('interesses', this)">Quais interesses?</button>
+            <button onclick="abrir('impactos', this)">Quais os impactos</button>
+            <button onclick="abrir('linha-tempo', this)">Linha do Tempo</button>
+            <button onclick="abrir('quiz', this)">Quiz Interativo</button>
+        </div>
+
+        <!-- =========================================================
+         CONTEÚDOS
+    ========================================================== -->
+        <!-- CONTEÚDO 1: Onde acontece -->
+        <div class="conteudo aberto" id="onde-acontece">
+            <div class="cartao-conteudo">
+                <h2>Onde acontece o conflito</h2>
+                <figure class="foto">
+                    <img alt="Visão da fronteira militarizada entre Israel e Líbano, com patrulhamento e vegetação"
+                        onerror="semImagem(this)"
+                        src="local.webp" />
+                    <figcaption>Fronteira militarizada entre o norte de Israel e o sul do Líbano, região central das tensões atuais.</figcaption>
+                </figure>
+                <p>O conflito concentra-se na região do Sul do Líbano, fronteiriça com Israel, e se estende a áreas adjacentes como o Vale do Bekaa (centro-leste do Líbano) e o sudoeste da Síria (corredor de abastecimento do Hezbollah). O Líbano faz fronteira ao sul com Israel e ao leste/norte com a Síria; suas principais cidades envolvidas são Beirute (capital do Líbano) e, no vizinho Israel, cidades do norte como Haifa, Nahariya e Kiryat Shmona, alvo de foguetes do Hezbollah. Recentemente, camadas de gás natural na costa do Mediterrâneo tornaram-se estratégica e economicamente relevantes – por exemplo, áreas de campos de gás em disputa entre Israel e Líbano. Essa região é estratégica: controla rotas terrestres entre Líbano, Síria e Israel, e tem importância geopolítica por ser a única frente de conflito imediato entre Israel e um inimigo apoiado pelo Irã. Além disso, o Líbano sedia acampamentos de refugiados sírios e palestinos, refletindo o papel geopolítico da área.</p>
+                <div style="text-align: center;">
+                    <figure class="foto">
+                        <img alt="Mapa ilustrativo mostrando as áreas de ataques aéreos no Líbano em setembro de 2024"
+                            onerror="semImagem(this)"
+                            src="https://s2-oglobo.glbimg.com/ld4fM88mWFf78wc4oLq_G1dUTo4=/0x0:1350x1830/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_da025474c0c44edd99332dddb09cabe8/internal_photos/bs/2024/S/n/umV2snTQ6ra4E6AA0GqQ/mun-20-09-ataques-israel-libano.png"
+                            width="400" />
+                        <figcaption>Mapa de ataques no mês de setembro de 2024 (Fonte: O Globo).</figcaption>
+                    </figure>
+                </div>
+                <p class="creditos">Produzido por Giovanna Bueno</p>
+            </div>
+        </div>
+
+        <!-- CONTEÚDO 2: Surgimento -->
+        <div class="conteudo" id="surgimento">
+            <div class="cartao-conteudo">
+                <h2>Surgimento do Conflito</h2>
+                <figure class="foto">
+                    <img alt="Prédios e estruturas completamente destruídos em Beirute, mostrando um cenário histórico de guerra"
+                        onerror="semImagem(this)"
+                        src="destruicao.jpg" />
+                    <figcaption>Cenário de destruição urbana no Líbano durante os conflitos históricos que antecederam a criação do Hezbollah.</figcaption>
+                </figure>
+                <p>O conflito entre Israel e o Líbano tem suas raízes no deslocamento da estrutura da Organização para a Libertação da Palestina (OLP) para o sul do Líbano a partir da década de 1970, transformando a região em base de operações para incursões e disparos de foguetes contra o norte israelense. Em resposta a esses ataques e em meio à Guerra Civil Libanesa, Israel promoveu uma grande invasão militar ao país em 1982 para expulsar a OLP, estabelecendo uma ocupação prolongada no sul libanês que catalisou a criação do Hezbollah, grupo político-militar xiita fundado com o apoio do Irã para combater a presença israelense. Desde então, o foco da hostilidade migrou da OLP para o confronto direto entre as forças de Israel e o Hezbollah, desencadeando recorrentes e graves crises militares ao longo das décadas, com destaques para a guerra de 2006 e as escaladas iniciadas em 2023.</p>
+                <p class="creditos">Produzido por Nicolas Campos</p>
+            </div>
+        </div>
+
+        <!-- CONTEÚDO 3: Quem Participa -->
+        <div class="conteudo" id="quem-participa">
+            <div class="cartao-conteudo">
+                <h2>Quem Participa</h2>
+                <figure class="foto">
+                    <img alt="Muro divisório de concreto na fronteira entre Israel e Líbano" onerror="semImagem(this)"
+                        src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcSUQSesnZoo8HpBkFBlCjzzouHlflbC5bsZ1Zy3_2wRbOt9w6tq4-K6HbpcI6SQca80-wmPMUGpFdyB-iI" />
+                    <figcaption>Fronteira entre o norte de Israel e o sul do Líbano, foco principal das tensões.</figcaption>
+                </figure>
+                <p>O conflito envolve diretamente o Estado de Israel e o grupo paramilitar libanês Hezbollah, mas também conta com a forte influência e participação indireta de outros atores regionais, como o Irã e o próprio governo do Líbano.</p>
+                
+                <h3>Israel</h3>
+                <figure class="foto">
+                    <img alt="Soldados das Forças de Defesa de Israel equipados em campo de combate"
+                        onerror="semImagem(this)"
+                        src="https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcRCkjUHqGBBfZ6E4XTJTrOdZjAHAuxrZxItBw0Y7dglZHZoHz1wJQpNyyfqS_HNe6R_KlTmOO_Tzq29bbo" />
+                    <figcaption>Forças de Defesa de Israel (FDI) em operações militares.</figcaption>
+                </figure>
+                <p>Representado pelo seu governo (liderado pelo primeiro-ministro Benjamin Netanyahu) e pelas Forças de Defesa de Israel (FDI). O país atua com o objetivo de proteger seu território contra ataques aéreos, destruir a infraestrutura militar inimiga na fronteira e garantir que os cidadãos israelenses evacuados do norte possam retornar com segurança para suas casas.</p>
+
+                <h3>Hezbollah</h3>
+                <figure class="foto">
+                    <img alt="Integrante do grupo Hezbollah segurando a bandeira amarela da organização armada"
+                        onerror="semImagem(this)"
+                        src="https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2026/05/integrante-hezbollah-libano-bandeira-1-e1778262409302.jpg?w=1024" />
+                    <figcaption>Combatentes do Hezbollah, grupo político e militar baseado no Líbano.</figcaption>
+                </figure>
+                <p>É uma organização política e militar xiita que controla grande parte do sul do Líbano. O Hezbollah iniciou uma série de ataques contra o norte de Israel como forma de demonstrar apoio e solidariedade ao Hamas, após o início da guerra na Faixa de Gaza. O grupo possui um arsenal altamente desenvolvido de foguetes, drones e mísseis.</p>
+
+                <h3>Atores Indiretos: Líbano e Irã</h3>
+                <figure class="foto">
+                    <img alt="Retrato de Ali Khamenei, Líder Supremo do Irã" onerror="semImagem(this)"
+                        src="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcTB81HA0SAIdmzGjKw6S5e_mxBCqGqM1xIU5GWb269_orwIstY7j_fCqQd3272xiXc2KqQDhPNEW-PFF2o" />
+                    <figcaption>O Irã atua como principal financiador e aliado estratégico do Hezbollah no Oriente Médio.</figcaption>
+                </figure>
+                <p>Embora as Forças Armadas oficiais do <strong>Líbano</strong> não estejam em guerra contra Israel, o país é o palco do conflito e sofre com a destruição de sua infraestrutura. Já o <strong>Irã</strong> é o principal financiador, fornecedor de armas e aliado estratégico do Hezbollah. O grupo libanês é a peça mais importante do chamado "Eixo da Resistência", uma aliança de grupos apoiados por Teerã que se opõem a Israel e aos Estados Unidos na região.</p>
+                <p class="creditos">Produzido por Guilherme Tintore</p>
+            </div>
+        </div>
+
+        <!-- CONTEÚDO 4: Interesses -->
+        <div class="conteudo" id="interesses">
+            <div class="cartao-conteudo">
+                <h2>Interesses</h2>
+                <figure class="foto">
+                    <img alt="Mapa geopolítico com a divisão dos países do Oriente Médio, mostrando a proximidade de Israel, Líbano e Síria"
+                        onerror="semImagem(this)"
+                        src="https://mapamundi.org.br/wp-content/uploads/2020/10/Oriente-Medio.jpg" />
+                    <figcaption>Mapa geopolítico do Oriente Médio destacando a localização dos países envolvidos.</figcaption>
+                </figure>
+                <p><strong>Interesses de Israel: Segurança e Proteção das Fronteiras (Norte):</strong> O objetivo primordial de Israel é desmantelar a infraestrutura militar do Hezbollah no sul do Líbano. Isso visa neutralizar a ameaça diária de mísseis, foguetes e incursões terrestres contra o norte de seu território. <strong>Retorno das Populações Deslocadas:</strong> Por conta dos constantes ataques de foguetes, dezenas de milhares de cidadãos israelenses foram obrigados a evacuar cidades no norte de Israel. Uma das prioridades do governo israelense é garantir segurança para restabelecer esses moradores. <strong>Dissuasão de Inimigos Regionais:</strong> Israel quer projetar uma imagem de força militar imbatível. Ao golpear severamente o Hezbollah, busca desencorajar o Irã e outros grupos de tentar novos ataques coordenados contra o território israelense. <strong>Afastamento Territorial do Grupo (Resolução 1701 da ONU):</strong> Israel exige que o Hezbollah recue suas forças para ao norte do rio Litani, criando uma zona de amortecimento (buffer zone) sem a presença do grupo armado junto à sua fronteira.</p>
+                <p><strong>Interesses do Hezbollah: Manutenção da Narrativa de "Resistência":</strong> A razão de existir do Hezbollah e sua principal fonte de legitimidade interna e no mundo árabe é a postura de "frente de resistência" contra a expansão e ocupação israelense. <strong>Solidariedade e Pressão pelo Eixo da Resistência:</strong> O Hezbollah atua como uma "frente de apoio" a causas aliadas (como o Hamas na Faixa de Gaza). Ao atacar Israel pelo norte, o grupo busca forçar as forças israelenses a dividirem seus recursos e tropas em múltiplos fronts. <strong>Troca de Prisioneiros e Disputas Territoriais:</strong> Historicamente, o grupo utiliza o conflito para negociar a libertação de prisioneiros libaneses / palestinos e reivindicar pequenas áreas fronteiriças ainda disputadas (como as Fazendas de Shebaa). <strong>Consolidação de Poder Político no Líbano:</strong> Ao se posicionar como o único protetor capaz de confrontar Israel, o grupo justifica manter seu arsenal militar próprio, mantendo sua influência dominante sobre o governo e a política libanesa.</p>
+                <p><strong>Interesses de países chave — Irã:</strong> Projeção de Poder Sem Confronto Direto (Guerra por Procuração). O Irã apoia e financia o Hezbollah para projetar sua influência geopolítica até a costa do Mediterrâneo, desafiando a hegemonia de Israel e dos EUA sem precisar entrar em uma guerra direta com o Ocidente. <strong>Apólice de Seguro e Dissuasão Estratégica:</strong> O vasto arsenal de mísseis do Hezbollah no Líbano serve como uma "apólice de seguro" iraniana: caso Israel ou os EUA tentem atacar as instalações nucleares do Irã, Teerã pode ordenar uma resposta devastadora do Hezbollah logo na fronteira israelense.</p>
+                <p><strong>Estados Unidos e Potências Ocidentais:</strong> Estabilidade Regional e Livre Comércio. Os EUA buscam conter o conflito para evitar uma escalada que feche rotas de navegação no Oriente Médio e encareça os preços de energia global. Defesa de Israel e Contenção do Irã: Apoiam a segurança de Israel enquanto tentam enfraquecer financeiramente a rede de aliados patrocinada por Teerã.</p>
+                <p class="creditos">Produzido por Nicolas Campos</p>
+            </div>
+        </div>
+
+        <!-- CONTEÚDO 5: Impactos -->
+        <div class="conteudo" id="impactos">
+            <div class="cartao-conteudo">
+                <h2>Impactos</h2>
+                <figure class="foto">
+                    <img alt="Grande explosão gerando fumaça cinza escura em um campo de terra no Líbano"
+                        onerror="semImagem(this)" src="1.webp" />
+                    <figcaption>Explosões decorrentes de bombardeios destroem tanto áreas rurais quanto agrícolas.</figcaption>
+                </figure>
+                <p>O conflito gera 4 principais impactos na região e na vida das pessoas: Humanitário e social, Econômico, Político/militar, além dos Impactos internacionais e Ambientais.</p>
+
+                <h3>Impacto Humanitário e Social</h3>
+                <figure class="foto">
+                    <img alt="Restos de um telhado de madeira e alvenaria totalmente destruído por bombardeios"
+                        onerror="semImagem(this)" src="2.webp" />
+                    <figcaption>Residências civis e infraestruturas vitais severamente danificadas pelos ataques contínuos.</figcaption>
+                </figure>
+                <p>Um dos principais impactos da guerra é a crise humanitária. Milhares de pessoas foram mortas ou feridas durante os confrontos, enquanto muitas famílias tiveram que abandonar suas casas para fugir dos bombardeios. Hospitais, escolas e residências foram danificados ou destruídos. Além disso, a população enfrenta dificuldades para conseguir alimentos, água potável, medicamentos e atendimento médico, aumentando o sofrimento de crianças, idosos e pessoas em situação de vulnerabilidade.</p>
+
+                <h3>Impactos Econômicos</h3>
+                <figure class="foto">
+                    <img alt="Fachada de uma casa destruída com escombros espalhados pelo chão"
+                        onerror="semImagem(this)" src="3.webp" />
+                    <figcaption>Destruição de propriedades civis obriga milhares de habitantes a abandonarem seus lares e negócios.</figcaption>
+                </figure>
+                <p>Na economia, a guerra provoca grandes prejuízos, principalmente no Líbano e em Israel. A destruição de empresas, plantações, estradas e construções prejudica as atividades econômicas e dificulta a recuperação das regiões atingidas. Também ocorre uma redução do turismo, dos investimentos e do comércio. Os governos precisam gastar mais dinheiro com armamentos, segurança, assistência à população e reconstrução das áreas destruídas.</p>
+
+                <h3>Impactos Políticos / Militares</h3>
+                <figure class="foto">
+                    <img alt="Montagem contendo de um lado Naim Qassem, líder do Hezbollah, e de outro Benjamin Netanyahu, primeiro-ministro de Israel"
+                        onerror="semImagem(this)" src="6.webp" />
+                    <figcaption>Naim Qassem (líder do Hezbollah) e Benjamin Netanyahu (primeiro-ministro de Israel), principais rostos da tensão atual.</figcaption>
+                </figure>
+                <p>No campo político e militar, o conflito aumenta as tensões entre Israel, Líbano e Irã, além de envolver o interesse de outras potências internacionais, como os Estados Unidos. Existe também o risco de que a guerra se amplie e envolva outros países e grupos armados da região. Essa situação dificulta as negociações diplomáticas e a construção de acordos de paz duradouros.</p>
+
+                <h3>Impactos Internacionais e Ambientais</h3>
+                <figure class="foto">
+                    <img alt="Cenário de completa devastação de construções urbanas com pedras e fumaça ao fundo"
+                        onerror="semImagem(this)" src="7.webp" />
+                    <figcaption>As montanhas de escombros e produtos químicos dos mísseis causam contaminação prolongada no solo e ar.</figcaption>
+                </figure>
+                <p>A guerra também pode provocar consequências na economia mundial, especialmente no setor energético. Como o Oriente Médio é uma região importante para a produção e o transporte de petróleo, os conflitos podem gerar instabilidade nos preços internacionais dos combustíveis. Consequentemente, podem aumentar os custos de transporte, produção e comercialização de mercadorias, contribuindo para a inflação em diferentes países, inclusive no Brasil.</p>
+                <p>Outro impacto importante é o ambiental. Os bombardeios e as explosões provocam poluição do ar, contaminação do solo e da água, destruição de áreas agrícolas e prejuízos à vegetação e à biodiversidade. Esses danos podem permanecer por muitos anos, dificultando a recuperação ambiental e a sobrevivência das comunidades locais.</p>
+                <p class="creditos">Produzido por Guilherme Tintore</p>
+            </div>
+        </div>
+
+        <!-- CONTEÚDO 6: LINHA DO TEMPO -->
+        <div class="conteudo" id="linha-tempo">
+            <div class="cartao-conteudo">
+                <h2>Linha do Tempo do Conflito</h2>
+                <p>Acompanhe os principais eventos históricos que marcaram as tensões entre Israel e Hezbollah desde o surgimento do grupo.</p>
+                <div class="timeline">
+                    <div class="evento-timeline">
+                        <h3>1982 – Início do conflito</h3>
+                        <p>Israel invade o Líbano durante a Guerra Civil Libanesa, com o objetivo de combater a Organização para a Libertação da Palestina (OLP). Nesse contexto, surge o Hezbollah, com apoio do Irã, inicialmente organizado para combater a presença militar israelense no território libanês.</p>
+                    </div>
+                    <div class="evento-timeline">
+                        <h3>1996 – Intensificação dos confrontos</h3>
+                        <p>Israel realiza uma ofensiva militar contra posições do Hezbollah no Líbano. Os ataques provocam mortes de civis, destruição de comunidades e aumento das tensões entre os dois lados.</p>
+                    </div>
+                    <div class="evento-timeline">
+                        <h3>2000 – Retirada das tropas israelenses</h3>
+                        <p>Israel retira suas forças militares do sul do Líbano, após quase duas décadas de ocupação. O Hezbollah considera a retirada uma vitória e continua mantendo sua estrutura política e militar no país.</p>
+                    </div>
+                    <div class="evento-timeline">
+                        <h3>2006 – Guerra entre Israel e Hezbollah</h3>
+                        <p>Em julho de 2006, o Hezbollah ataca uma patrulha israelense, mata soldados e captura dois militares. Israel responde com intensos bombardeios e operações terrestres no Líbano. O conflito dura aproximadamente 34 dias e provoca milhares de mortes e feridos, além de grandes destruições. Em agosto, um cessar-fogo é estabelecido com a participação das Nações Unidas.</p>
+                    </div>
+                    <div class="evento-timeline">
+                        <h3>2011 a 2022 – Participação na Guerra da Síria</h3>
+                        <p>Durante a Guerra Civil da Síria, o Hezbollah participa dos combates ao lado do governo de Bashar al-Assad, recebendo apoio do Irã. Nesse período, Israel realiza ataques contra alvos relacionados ao Hezbollah e ao Irã em território sírio, mantendo as tensões na região.</p>
+                    </div>
+                    <div class="evento-timeline">
+                        <h3>8 de outubro de 2023 – Retomada dos ataques</h3>
+                        <p>Um dia depois do ataque do Hamas contra Israel, em 7 de outubro, o Hezbollah começa a lançar foguetes contra posições israelenses, em apoio aos palestinos e ao Hamas. Israel responde com ataques aéreos e bombardeios no território libanês. Começa uma nova fase de confrontos na fronteira entre os dois países.</p>
+                    </div>
+                    <div class="evento-timeline">
+                        <h3>Setembro de 2024 – Escalada da guerra</h3>
+                        <p>Os confrontos se intensificam. Em 17 e 18 de setembro, explosões envolvendo aparelhos de comunicação utilizados por integrantes do Hezbollah atingem o Líbano. Em 27 de setembro, ataques israelenses matam Hassan Nasrallah, líder do Hezbollah, em Beirute.</p>
+                    </div>
+                    <div class="evento-timeline">
+                        <h3>Outubro de 2024 – Invasão terrestre do Líbano</h3>
+                        <p>Israel inicia operações terrestres no sul do Líbano, além de ampliar os bombardeios contra posições do Hezbollah. Milhares de famílias deixam suas casas para escapar da violência, enquanto a destruição de cidades e da infraestrutura aumenta.</p>
+                    </div>
+                    <div class="evento-timeline">
+                        <h3>27 de novembro de 2024 – Acordo de cessar-fogo</h3>
+                        <p>Israel e Hezbollah chegam a um acordo de cessar-fogo, negociado com participação dos Estados Unidos e da França. O acordo prevê a redução dos confrontos, a retirada das forças israelenses e o fortalecimento da presença do Exército libanês no sul do país. Entretanto, ataques e acusações de violações continuam nos meses seguintes.</p>
+                    </div>
+                    <div class="evento-timeline">
+                        <h3>2025 – Continuação das tensões</h3>
+                        <p>Mesmo após o acordo de cessar-fogo, Israel continua realizando ataques contra alvos que afirma estarem ligados ao Hezbollah. Também permanecem as divergências sobre a retirada das tropas israelenses e o desarmamento do grupo, dificultando a estabilização da região.</p>
+                    </div>
+                    <div class="evento-timeline">
+                        <h3>Março de 2026 – Nova escalada do conflito</h3>
+                        <p>Após ataques dos Estados Unidos e de Israel contra o Irã, em 28 de fevereiro de 2026, o Hezbollah volta a lançar mísseis contra Israel em 1º de março. Israel responde com bombardeios e operações terrestres no Líbano, provocando uma nova onda de deslocamentos populacionais e destruição.</p>
+                    </div>
+                    <div class="evento-timeline">
+                        <h3>Junho de 2026 – Tentativa de acordo</h3>
+                        <p>Os governos do Líbano, de Israel e dos Estados Unidos estabelecem uma estrutura de negociação para tentar encerrar o conflito. Entre as propostas estão o desarmamento do Hezbollah, o fortalecimento do Exército libanês e a retirada das forças israelenses do sul do Líbano. Entretanto, os confrontos continuam.</p>
+                    </div>
+                    <div class="evento-timeline">
+                        <h3>Outubro de 2026 – Persistência das tensões</h3>
+                        <p>Relatórios internacionais publicados em outubro indicam que ainda existem dificuldades para implementar os acordos e encerrar completamente os confrontos. A situação permanece delicada, principalmente devido às divergências sobre a presença militar israelense no Líbano e o desarmamento do Hezbollah.</p>
+                    </div>
+                </div>
+                <p class="creditos">Produzido por Guilherme Tintore</p>
+            </div>
+        </div>
+
+        <!-- CONTEÚDO 7: QUIZ INTERATIVO (CARROSSEL) -->
+        <div class="conteudo" id="quiz">
+            <div class="cartao-conteudo">
+                <h2>Quiz Interativo</h2>
+                <p>Teste seus conhecimentos sobre o conflito Israel x Hezbollah. Selecione uma resposta para avançar. Na questão 6, marque todas as alternativas corretas.</p>
+                <form id="form-quiz">
+                    <div class="quiz-container" id="quiz-slides">
+                        <div class="pergunta-card ativo" id="card-1">
+                            <div class="progresso-quiz">Pergunta 1 de 10</div>
+                            <div class="pergunta-quiz">
+                                <p class="enunciado">Em que contexto histórico surgiu o Hezbollah?</p>
+                                <div class="opcoes">
+                                    <label><input name="q1" type="radio" value="a" /> a) Durante a invasão israelense do Líbano em 1982.</label>
+                                    <label><input name="q1" type="radio" value="b" /> b) Durante a Guerra do Golfo em 1991.</label>
+                                    <label><input name="q1" type="radio" value="c" /> c) Durante a Guerra do Iraque em 2003.</label>
+                                    <label><input name="q1" type="radio" value="d" /> d) Durante a Primavera Árabe em 2011.</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pergunta-card" id="card-2">
+                            <div class="progresso-quiz">Pergunta 2 de 10</div>
+                            <div class="pergunta-quiz">
+                                <p class="enunciado">Qual país oferece apoio político, financeiro e militar ao Hezbollah?</p>
+                                <div class="opcoes">
+                                    <label><input name="q2" type="radio" value="a" /> a) Arábia Saudita.</label>
+                                    <label><input name="q2" type="radio" value="b" /> b) Irã.</label>
+                                    <label><input name="q2" type="radio" value="c" /> c) Egito.</label>
+                                    <label><input name="q2" type="radio" value="d" /> d) Turquia.</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pergunta-card" id="card-3">
+                            <div class="progresso-quiz">Pergunta 3 de 10</div>
+                            <div class="pergunta-quiz">
+                                <p class="enunciado">Em que ano aconteceu a guerra entre Israel e Hezbollah conhecida como Guerra do Líbano de 2006?</p>
+                                <div class="opcoes">
+                                    <label><input name="q3" type="radio" value="a" /> a) 1996.</label>
+                                    <label><input name="q3" type="radio" value="b" /> b) 2000.</label>
+                                    <label><input name="q3" type="radio" value="c" /> c) 2006.</label>
+                                    <label><input name="q3" type="radio" value="d" /> d) 2011.</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pergunta-card" id="card-4">
+                            <div class="progresso-quiz">Pergunta 4 de 10</div>
+                            <div class="pergunta-quiz">
+                                <p class="enunciado">Qual foi uma das principais consequências humanitárias da guerra de 2006?</p>
+                                <div class="opcoes">
+                                    <label><input name="q4" type="radio" value="a" /> a) Aumento do turismo no Líbano.</label>
+                                    <label><input name="q4" type="radio" value="b" /> b) Redução dos deslocamentos populacionais.</label>
+                                    <label><input name="q4" type="radio" value="c" /> c) Crescimento da produção agrícola.</label>
+                                    <label><input name="q4" type="radio" value="d" /> d) Mortes, feridos e destruição de moradias.</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pergunta-card" id="card-5">
+                            <div class="progresso-quiz">Pergunta 5 de 10</div>
+                            <div class="pergunta-quiz">
+                                <p class="enunciado">Qual organização internacional estabeleceu a missão de paz UNIFIL no Líbano?</p>
+                                <div class="opcoes">
+                                    <label><input name="q5" type="radio" value="a" /> a) Organização das Nações Unidas (ONU).</label>
+                                    <label><input name="q5" type="radio" value="b" /> b) Organização Mundial do Comércio (OMC).</label>
+                                    <label><input name="q5" type="radio" value="c" /> c) Organização do Tratado do Atlântico Norte (OTAN).</label>
+                                    <label><input name="q5" type="radio" value="d" /> d) União Europeia (UE).</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pergunta-card" id="card-6">
+                            <div class="progresso-quiz">Pergunta 6 de 10</div>
+                            <div class="pergunta-quiz">
+                                <p class="enunciado">Quais são consequências que podem ocorrer durante uma guerra como a de Israel e Hezbollah? (Marque todas as corretas)</p>
+                                <div class="opcoes">
+                                    <label><input name="q6" type="checkbox" value="a" /> a) Deslocamento de famílias que precisam fugir dos ataques.</label>
+                                    <label><input name="q6" type="checkbox" value="b" /> b) Destruição de hospitais, escolas e residências.</label>
+                                    <label><input name="q6" type="checkbox" value="c" /> c) Eliminação imediata de todos os problemas econômicos.</label>
+                                    <label><input name="q6" type="checkbox" value="d" /> d) Prejuízos ao comércio e ao turismo.</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pergunta-card" id="card-7">
+                            <div class="progresso-quiz">Pergunta 7 de 10</div>
+                            <div class="pergunta-quiz">
+                                <p class="enunciado">O que aconteceu em 8 de outubro de 2023 na fronteira entre Israel e Líbano?</p>
+                                <div class="opcoes">
+                                    <label><input name="q7" type="radio" value="a" /> a) Foi assinado um tratado definitivo de paz.</label>
+                                    <label><input name="q7" type="radio" value="b" /> b) O Hezbollah iniciou ataques contra Israel em meio à guerra em Gaza.</label>
+                                    <label><input name="q7" type="radio" value="c" /> c) Israel retirou todas as suas tropas do Oriente Médio.</label>
+                                    <label><input name="q7" type="radio" value="d" /> d) A ONU encerrou a missão UNIFIL.</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pergunta-card" id="card-8">
+                            <div class="progresso-quiz">Pergunta 8 de 10</div>
+                            <div class="pergunta-quiz">
+                                <p class="enunciado">Verdadeiro ou falso: Em 2000, Israel retirou suas tropas do sul do Líbano após anos de presença militar na região.</p>
+                                <div class="opcoes">
+                                    <label><input name="q8" type="radio" value="v" /> Verdadeiro</label>
+                                    <label><input name="q8" type="radio" value="f" /> Falso</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pergunta-card" id="card-9">
+                            <div class="progresso-quiz">Pergunta 9 de 10</div>
+                            <div class="pergunta-quiz">
+                                <p class="enunciado">Verdadeiro ou falso: O cessar-fogo entre Israel e Hezbollah anunciado em novembro de 2024 encerrou definitivamente todas as tensões e os ataques na região.</p>
+                                <div class="opcoes">
+                                    <label><input name="q9" type="radio" value="v" /> Verdadeiro</label>
+                                    <label><input name="q9" type="radio" value="f" /> Falso</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pergunta-card" id="card-10">
+                            <div class="progresso-quiz">Pergunta 10 de 10</div>
+                            <div class="pergunta-quiz">
+                                <p class="enunciado">Qual é uma possível consequência internacional de conflitos no Oriente Médio para países como o Brasil?</p>
+                                <div class="opcoes">
+                                    <label><input name="q10" type="radio" value="a" /> a) Fim das relações comerciais com todos os países.</label>
+                                    <label><input name="q10" type="radio" value="b" /> b) Eliminação da dependência mundial de petróleo.</label>
+                                    <label><input name="q10" type="radio" value="c" /> c) Oscilações nos preços do petróleo e dos combustíveis.</label>
+                                    <label><input name="q10" type="radio" value="d" /> d) Ausência de efeitos sobre a economia mundial.</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="controles-quiz" id="controles-quiz">
+                        <button class="btn-quiz" disabled="" id="btn-proximo" type="button">Próxima Pergunta →</button>
+                        <button class="btn-quiz" disabled="" id="btn-finalizar" style="display:none" type="button">Ver Resultado Final</button>
+                    </div>
+                    <div id="resultado-final">
+                        <h2>Seu Resultado</h2>
+                        <div class="nota-final" id="nota-texto">0 / 10</div>
+                        <div class="mensagem-final" id="mensagem-texto"></div>
+                        <h3>Respostas da correção</h3>
+                        <p style="font-size:14px;color:var(--cor-suave);margin-bottom:20px;">Confira abaixo as respostas que você marcou e o gabarito de cada questão.</p>
+                        <div class="controles-quiz" style="justify-content:center;">
+                            <button class="btn-quiz btn-reiniciar" id="btn-reiniciar" type="button">↻ Tentar novamente</button>
+                        </div>
+                    </div>
+                </form>
+                <p class="creditos">Produzido por Guilherme Tintore</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================
+       JAVASCRIPT
+  ========================================================== -->
+    <script>
+        // Navegação das abas principais
+        function abrir(id, botao) {
+            document.querySelectorAll('.conteudo').forEach(c => c.classList.remove('aberto'));
+            document.getElementById(id).classList.add('aberto');
+            document.querySelectorAll('.botoes button').forEach(b => b.classList.remove('ativo'));
+            botao.classList.add('ativo');
+        }
+
+        // Placeholder discreto quando uma imagem local não é encontrada.
+        function semImagem(img) {
+            if (img.dataset.ok) return;
+            img.dataset.ok = '1';
+            img.src = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(
+                '<svg xmlns="http://www.w3.org/2000/svg" width="600" height="340">' +
+                '<rect width="600" height="340" fill="#EEECE3"/>' +
+                '<text x="300" y="165" font-family="Arial" font-size="22" fill="#73796E" text-anchor="middle">Imagem não encontrada</text>' +
+                '<text x="300" y="195" font-family="Arial" font-size="15" fill="#92988C" text-anchor="middle">' + img.getAttribute('src').split('?')[0] + '</text>' +
+                '</svg>'
+            );
+        }
+
+        // Quiz em formato de carrossel
+        let perguntaAtual = 1;
+        const totalPerguntas = 10;
+        let transicaoEmAndamento = false;
+        const gabarito = {
+            q1: 'a', q2: 'b', q3: 'c', q4: 'd', q5: 'a',
+            q7: 'b', q8: 'v', q9: 'f', q10: 'c'
+        };
+
+        const btnProximo = document.getElementById('btn-proximo');
+        const btnFinalizar = document.getElementById('btn-finalizar');
+
+        function perguntaRespondida(numero) {
+            return document.querySelectorAll(`input[name="q${numero}"]:checked`).length > 0;
+        }
+
+        function atualizarControles() {
+            const respondida = perguntaRespondida(perguntaAtual);
+            if (perguntaAtual === totalPerguntas) {
+                btnFinalizar.disabled = !respondida;
+            } else {
+                btnProximo.disabled = !respondida;
+            }
+        }
+
+        document.querySelectorAll('#quiz-slides input').forEach(input => {
+            input.addEventListener('change', atualizarControles);
+        });
+
+        btnProximo.addEventListener('click', avancarPergunta);
+        btnFinalizar.addEventListener('click', finalizarQuiz);
+        document.getElementById('btn-reiniciar').addEventListener('click', reiniciarQuiz);
+
+        function avancarPergunta() {
+            if (transicaoEmAndamento || !perguntaRespondida(perguntaAtual)) return;
+            transicaoEmAndamento = true;
+            const cardAtual = document.getElementById(`card-${perguntaAtual}`);
+            cardAtual.classList.add('saindo-esquerda');
+
+            window.setTimeout(() => {
+                cardAtual.classList.remove('ativo', 'saindo-esquerda');
+                perguntaAtual++;
+                const proximoCard = document.getElementById(`card-${perguntaAtual}`);
+                proximoCard.classList.add('ativo');
+
+                if (perguntaAtual === totalPerguntas) {
+                    btnProximo.style.display = 'none';
+                    btnFinalizar.style.display = 'inline-block';
+                }
+                atualizarControles();
+                transicaoEmAndamento = false;
+                document.getElementById('quiz-slides').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 350);
+        }
+
+        function finalizarQuiz() {
+            if (!perguntaRespondida(totalPerguntas)) return;
+
+            let pontos = 0;
+            // Corrige as questões de resposta única.
+            Object.entries(gabarito).forEach(([pergunta, respostaCorreta]) => {
+                document.querySelectorAll(`input[name="${pergunta}"]`).forEach(input => {
+                    const label = input.parentElement;
+                    input.disabled = true;
+                    if (input.checked && input.value === respostaCorreta) pontos++;
+                    if (input.value === respostaCorreta) label.classList.add('acerto');
+                    else if (input.checked) label.classList.add('erro');
+                });
+            });
+
+            // A questão 6 exige as três opções corretas (a, b e d), sem marcar c.
+            const selecionadasQ6 = [...document.querySelectorAll('input[name="q6"]:checked')].map(i => i.value).sort();
+            const corretasQ6 = ['a', 'b', 'd'];
+            const acertouQ6 = selecionadasQ6.length === corretasQ6.length &&
+                selecionadasQ6.every((valor, indice) => valor === corretasQ6[indice]);
+            if (acertouQ6) pontos++;
+
+            document.querySelectorAll('input[name="q6"]').forEach(input => {
+                input.disabled = true;
+                if (corretasQ6.includes(input.value)) input.parentElement.classList.add('acerto');
+                else if (input.checked) input.parentElement.classList.add('erro');
+            });
+
+            // Mostra todas as perguntas para revisão do gabarito.
+            document.querySelectorAll('.pergunta-card').forEach(card => {
+                card.classList.remove('saindo-esquerda');
+                card.classList.add('ativo');
+                card.style.animation = 'none';
+            });
+
+            document.getElementById('controles-quiz').style.display = 'none';
+            document.getElementById('nota-texto').textContent = `${pontos} / ${totalPerguntas}`;
+
+            const mensagem = document.getElementById('mensagem-texto');
+            if (pontos === totalPerguntas) {
+                mensagem.style.backgroundColor = '#E4EDE1';
+                mensagem.style.color = '#3F6044';
+                mensagem.style.border = '1px solid #B9CCB4';
+                mensagem.textContent = 'Excelente! Você demonstrou ter compreendido muito bem o conteúdo.';
+            } else if (pontos >= 6) {
+                mensagem.style.backgroundColor = '#F4EBD2';
+                mensagem.style.color = '#75643E';
+                mensagem.style.border = '1px solid #DCCB9F';
+                mensagem.textContent = 'Muito bom! Revise as questões que errou para fixar os detalhes.';
+            } else {
+                mensagem.style.backgroundColor = '#F3E3DF';
+                mensagem.style.color = '#85534D';
+                mensagem.style.border = '1px solid #DFC0B9';
+                mensagem.textContent = 'Vale a pena revisar os conteúdos das abas e tentar novamente.';
+            }
+
+            document.getElementById('resultado-final').style.display = 'block';
+            document.getElementById('resultado-final').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function reiniciarQuiz() {
+            perguntaAtual = 1;
+            transicaoEmAndamento = false;
+
+            document.getElementById('controles-quiz').style.display = 'flex';
+            btnProximo.style.display = 'inline-block';
+            btnFinalizar.style.display = 'none';
+            btnProximo.disabled = true;
+            btnFinalizar.disabled = true;
+            document.getElementById('resultado-final').style.display = 'none';
+
+            document.querySelectorAll('.pergunta-card').forEach((card, indice) => {
+                card.classList.remove('ativo', 'saindo-esquerda');
+                card.style.animation = '';
+                card.querySelectorAll('input').forEach(input => {
+                    input.checked = false;
+                    input.disabled = false;
+                    input.parentElement.classList.remove('acerto', 'erro');
+                });
+                if (indice === 0) card.classList.add('ativo');
+            });
+
+            document.getElementById('quiz-slides').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    </script>
+</body>
+
+</html>

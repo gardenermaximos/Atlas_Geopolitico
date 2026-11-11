@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Grupo 4: Guerra Civil no Sudão — Atlas Geopolítico</title>
+
+  <!-- =========================================================
+       CSS DA PÁGINA (GRUPO 4 - TOTALMENTE RESPONSIVO)
+  ========================================================== -->
+  <style>
+    :root {
+      --cor-fundo:    #e3eef7;
+      --cor-texto:    #16202b;
+      --cor-suave:    #5b6b7a;
+      --cor-cartao:   #ffffff;
+      --cor-destaque: #1f7a8c;
+      --cor-hover:    #145966;
+      --cor-borda:    #d6e0e8;
+      --cor-acerto:   #1e7e34;
+      --cor-erro:     #bd2130;
+    }
+
+    * { box-sizing: border-box; }
+    
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: var(--cor-fundo);
+      color: var(--cor-texto);
+      line-height: 1.6;
+    }
+
+    .pagina {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    /* ---- Topo com o botão de voltar ---- */
+    .voltar {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: var(--cor-suave);
+      font-weight: bold;
+      margin-bottom: 20px;
+      font-size: 15px;
+      transition: color 0.2s ease;
+    }
+    .voltar:hover { color: var(--cor-destaque); }
+
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    header h1 {
+      font-size: 32px;
+      margin: 0 0 6px;
+      color: var(--cor-texto);
+      line-height: 1.2;
+    }
+
+    header p.intro {
+      color: var(--cor-suave);
+      margin: 0 0 16px;
+      font-size: 16px;
+    }
+
+    .bandeira-header {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    .bandeira-header img {
+      width: 180px;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    /* ---- BARRA DE BOTÕES RESPONSIVA ---- */
+    .botoes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .botoes button {
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: bold;
+      padding: 11px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      background: var(--cor-cartao);
+      color: var(--cor-texto);
+      border: 2px solid var(--cor-borda);
+      transition: all 0.2s ease;
+      touch-action: manipulation;
+    }
+
+    .botoes button:hover {
+      border-color: var(--cor-destaque);
+      color: var(--cor-destaque);
+    }
+
+    .botoes button.ativo {
+      background: var(--cor-destaque);
+      color: #ffffff;
+      border-color: var(--cor-destaque);
+    }
+
+    /* ---- CONTEÚDO ---- */
+    .conteudo { display: none; }
+    .conteudo.aberto { display: block !important; }
+
+    .cartao-conteudo {
+      background: var(--cor-cartao);
+      border: 1px solid var(--cor-borda);
+      border-radius: 18px;
+      padding: 26px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.06);
+    }
+
+    .cartao-conteudo h2 {
+      margin: 22px 0 12px;
+      font-size: 22px;
+      color: var(--cor-destaque);
+      line-height: 1.3;
+    }
+
+    .cartao-conteudo h2:first-child { margin-top: 0; }
+    .cartao-conteudo h3 { font-size: 18px; margin: 16px 0 8px; color: var(--cor-texto); }
+    .cartao-conteudo p  { margin: 0 0 14px; word-wrap: break-word; }
+
+    /* ---- Imagens ---- */
+    .foto { margin: 0 0 18px; }
+    .foto img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+      background: #dfe8ef;
+      object-fit: cover;
+    }
+    .foto figcaption {
+      font-size: 13px;
+      color: var(--cor-suave);
+      margin-top: 8px;
+      text-align: center;
+      font-style: italic;
+    }
+
+    /* Rodapé dos autores */
+    footer.autor {
+      margin-top: 20px;
+      padding-top: 12px;
+      border-top: 1px solid var(--cor-borda);
+      font-size: 13px;
+      color: var(--cor-suave);
+      font-weight: normal;
+    }
+
+    /* ---- ESTILOS DO QUIZ ---- */
+    .cartao-quiz {
+      background: var(--cor-cartao);
+      border: 1px solid var(--cor-borda);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 18px;
+    }
+
+    .cartao-quiz h2 {
+      font-size: 17px;
+      color: var(--cor-destaque);
+      margin: 0 0 10px;
+      line-height: 1.4;
+    }
+
+    .cartao-quiz label {
+      display: block;
+      padding: 8px 12px;
+      margin-bottom: 6px;
+      background: #f8fafc;
+      border-radius: 8px;
+      border: 1px solid var(--cor-borda);
+      cursor: pointer;
+      font-size: 15px;
+      transition: background 0.2s;
+    }
+
+    .cartao-quiz label:hover {
+      background: #eef3f7;
+    }
+
+    .cartao-quiz input[type="radio"] {
+      margin-right: 8px;
+      accent-color: var(--cor-destaque);
+    }
+
+    .nota {
+      text-align: center;
+      background: #ffffff;
+      border: 2px solid var(--cor-destaque);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    .nota .numero {
+      font-size: 42px;
+      font-weight: bold;
+      color: var(--cor-destaque);
+    }
+
+    .feedback {
+      font-weight: bold;
+      margin: 10px 0 0;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      display: none;
+    }
+
+    .feedback-acerto {
+      color: var(--cor-acerto);
+      background: #e8f5e9;
+      border: 1px solid #c8e6c9;
+    }
+
+    .feedback-erro {
+      color: var(--cor-erro);
+      background: #ffebee;
+      border: 1px solid #ffcdd2;
+    }
+
+    .btn-submit-quiz {
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 12px 28px;
+      border-radius: 30px;
+      cursor: pointer;
+      background: var(--cor-destaque);
+      color: #fff;
+      border: none;
+      transition: background 0.2s;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .btn-submit-quiz:hover {
+      background: var(--cor-hover);
+    }
+
+    /* ---- ADAPTAÇÕES MOBILE ---- */
+    @media (max-width: 768px) {
+      .pagina { padding: 20px 15px 40px; }
+      header h1 { font-size: 26px; }
+      header p.intro { font-size: 14px; margin-bottom: 14px; }
+      .botoes { gap: 8px; }
+      .botoes button {
+        flex: 1 1 calc(50% - 8px);
+        text-align: center;
+        padding: 10px 14px;
+        font-size: 14px;
+      }
+      .cartao-conteudo { padding: 20px 16px; border-radius: 14px; }
+      .cartao-conteudo h2 { font-size: 19px; }
+    }
+
+    @media (max-width: 480px) {
+      .botoes button { flex: 1 1 100%; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="pagina">
+
+    <!-- Volta para o carrossel -->
+    <a class="voltar" href="index.html">← Voltar aos temas</a>
+
+    <header>
+      <h1>Grupo 4: Guerra Civil no Sudão</h1>
+      <p class="intro">Clique em uma pergunta para ver o conteúdo.</p>
+      <div class="bandeira-header">
+        <img src="bandeira-sudao.avif" alt="Bandeira do Sudão" onerror="semImagem(this)">
+      </div>
+    </header>
+
+    <!-- =========================================================
+         BOTÕES DE NAVEGAÇÃO
+    ========================================================== -->
+    <div class="botoes">
+      <button class="ativo" onclick="abrir('norte', this)">Onde acontece o conflito</button>
+      <button onclick="abrir('como-iniciou', this)">Como surgiu o conflito</button>
+      <button onclick="abrir('quemparticipa', this)">Quem participa</button>
+      <button onclick="abrir('interesses', this)">Quais interesses?</button>
+      <button onclick="abrir('impactos', this)">Quais os impactos</button>
+      <button onclick="abrir('quiz', this)">Quiz</button>
+    </div>
+
+    <!-- =========================================================
+         1. ONDE ACONTECE O CONFLITO
+    ========================================================== -->
+    <div class="conteudo aberto" id="norte">
+      <div class="cartao-conteudo">
+        <h2>Onde acontece o conflito</h2>
+        <figure class="foto">
+          <img src="mapasudao.webp" alt="Mapa do Sudão" onerror="semImagem(this)">
+          <figcaption>Mapa do Sudão</figcaption>
+        </figure>
+        <p>A atual Guerra do Sudão, iniciada em 2023 entre as Forças Armadas Sudanesas (SAF) e as paramilitares Forças de Apoio Rápido (RSF), acontece de forma generalizada nas regiões do país. A guerra hoje contempla as áreas de Cartum, a região central, Darfur, Kordofã e fronteiras com outros países (como a Etiópia e Abyei).</p>
+        
+        <footer class="autor">
+          Feito por: <br><b>Lorena M. Batista</b>
+        </footer>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         2. COMO SURGIU O CONFLITO
+    ========================================================== -->
+    <div class="conteudo" id="como-iniciou">
+      <div class="cartao-conteudo">
+        <h2>Como surgiu o conflito?</h2>
+        <figure class="foto">
+          <img src="mapa.webp" alt="Mapa da guerra" onerror="semImagem(this)">
+          <figcaption>Mapa da guerra.</figcaption>
+        </figure>
+
+        <h2>Raízes históricas</h2>
+        <p>Desde 1956, o Sudão enfrenta sucessivos golpes militares, divisões étnicas e guerras civis que culminaram na separação do Sudão do Sul em 2011. Durante os 30 anos da ditadura de Omar al-Bashir, o governo armou milícias árabes chamadas Janjaweed para esmagar rebeliões em Darfur nos anos 2000. Com o tempo, essas milícias foram institucionalizadas nas atuais Forças de Apoio Rápido (RSF), acumulando imenso poder militar e econômico por meio do controle de minas de ouro.</p>
+        
+        <h2>Estopim</h2>
+        <p>Em 2019, protestos populares levaram o chefe do Exército, Abdel Fattah al-Burhan, e o líder das RSF, Hemedti, a se unirem para depor al-Bashir, mas ambos deram um golpe conjunto em 2021 para impedir uma transição democrática civil. A aliança ruiu no início de 2023 devido a um impasse sobre o prazo e o comando para integrar os combatentes paramilitares das RSF ao exército regular. Como nenhum dos generais aceitou ficar subordinado ao outro, as RSF mobilizaram tropas sem autorização, deflagrando os combates em Cartum em 15 de abril de 2023.</p>
+        
+        <h2>Andamento da guerra</h2>
+        <p>O confronto transformou-se em uma guerra de desgaste prolongada e fragmentou o país, com o Exército controlando o norte e o leste e as RSF dominando grande parte do oeste, incluindo Darfur. Alimentado pelo apoio de potências estrangeiras interessadas nos recursos naturais e na posição estratégica do Sudão, o conflito gerou a pior crise humanitária do mundo. Mais de 150 mil pessoas morreram, cerca de 14 milhões foram deslocadas e milhões enfrentam fome severa e graves violações de direitos humanos.</p>
+
+        <footer class="autor">
+          Feito por: <br><b>Gustavo P. Bicudo</b>
+        </footer>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         3. QUEM PARTICIPA
+    ========================================================== -->
+    <div class="conteudo" id="quemparticipa">
+      <div class="cartao-conteudo">
+        <h2>Quem participa da Guerra no Sudão?</h2>
+        <figure class="foto">
+          <img src="quem.webp" alt="Generais da guerra do Sudão" onerror="semImagem(this)">
+          <figcaption>Generais da Guerra do Sudão (Mohamed Hamdan Dagalo e Abdel Fattah al-Burhan).</figcaption>
+        </figure>
+
+        <p>A Guerra Civil no Sudão, iniciada em 15 de abril de 2023, é travada principalmente entre duas forças militares internas: ela opõe o exército sudanês, liderado pelo general Abdel Fattah al-Burhan, contra as Forças de Apoio Rápido (RSF), um grupo paramilitar liderado pelo general Mohamed Hamdan Dagalo. Após o início dos combates, a guerra atraiu inúmeras milícias locais e a interferência de potências estrangeiras.</p>
+
+        <p>Pesquisadores da ONU, legisladores dos EUA e o exército sudanês afirmam que os Emirados Árabes Unidos forneceram apoio crítico às RSF através de vizinhos do Sudão. Já o exército sudanês conta com o apoio de outras potências regionais, incluindo Egito, Turquia, Arábia Saudita e Catar.</p>
+
+        <figure class="foto">
+          <img src="participantes.avif" alt="Situação da população sudanesa" onerror="semImagem(this)">
+        </figure>
+
+        <h2>Aliados</h2>
+        <h3>Exército Sudanês (SAF)</h3>
+        <p><strong>- Egito:</strong> Busca proteger suas fronteiras, conter refugiados e garantir apoio na disputa pelas águas do Rio Nilo.<br>
+        <strong>- Arábia Saudita:</strong> Quer manter a estabilidade nas rotas comerciais do Mar Vermelho.<br>
+        <strong>- Irã:</strong> Fornece armas para tentar instalar uma base naval no Mar Vermelho.<br>
+        <strong>- Turquia e Catar:</strong> Visam expandir sua influência diplomática, comercial e agrícola.<br>
+        <strong>- Ucrânia:</strong> Enviou forças especiais para combater mercenários russos na região.</p>
+
+        <h3>Forças de Apoio Rápido (RSF)</h3>
+        <p><strong>- Emirados Árabes:</strong> Apontados como financiadores, buscam controle de portos, terras agrícolas e minas de ouro.<br>
+        <strong>- Etiópia:</strong> Busca acesso a portos marítimos e atua como contrapeso à aliança entre Egito e o exército sudanês.<br>
+        <strong>- Chade e Líbia:</strong> Servem de rota para armas e mercenários devido ao contrabando na fronteira.</p>
+
+        <footer class="autor">
+          Feito por: <br><b>Ana J. de Morais</b>
+        </footer>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         4. QUAIS INTERESSES
+    ========================================================== -->
+    <div class="conteudo" id="interesses">
+      <div class="cartao-conteudo">
+        <h2>Quais são os interesses?</h2>
+        <figure class="foto">
+          <img src="quemparticipa.avif" alt="Guerra no Sudão" onerror="semImagem(this)">
+        </figure>
+        
+        <p>Os principais interesses envolvidos no conflito são o controle do Estado e o poder político. A SAF e a RSF tentaram definir os termos e o prazo para integrar a milícia paramilitar ao exército regular, o que gerou um impasse sobre quem comandaria o novo regime.</p>
+
+        <p>A guerra também envolve disputas por minas de ouro, reservas de petróleo, refinarias, rotas comerciais, além do domínio de pontos estratégicos como Cartum (a capital) e as regiões ricas em recursos de Darfur.</p>
+
+        <footer class="autor">
+          Feito por: <br><b>Ana J. de Morais</b>
+        </footer>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         5. QUAIS OS IMPACTOS
+    ========================================================== -->
+    <div class="conteudo" id="impactos">
+      <div class="cartao-conteudo">
+        <h2>Impactos da Guerra</h2>
+        <figure class="foto">
+          <img src="impactos.jpg" alt="Impactos da Guerra" onerror="semImagem(this)">
+          <figcaption>Consequências e destruição provocadas pela guerra no Sudão.</figcaption>
+        </figure>
+
+        <h2>Fome e falta de recursos básicos</h2>
+        <p>Um dos maiores impactos da guerra é a falta de alimentos. Cerca de 20 milhões de pessoas enfrentam insegurança alimentar severa. Além disso, muitas famílias não têm acesso a água potável, e os bloqueios de transporte impedem que a ajuda humanitária chegue a várias regiões.</p>
+        
+        <h2>Propagação de doenças</h2>
+        <p>O sistema de saúde do país foi devastado, com hospitais destruídos ou sem condições de funcionamento. A falta de atendimento médico, medicamentos e água limpa contribuiu para a proliferação de surtos de dengue, cólera e sarampo.</p>
+        
+        <h2>Mortes e deslocamento populacional</h2>
+        <p>A guerra provocou milhares de mortes e graves violações de direitos humanos contra civis. Milhões de pessoas foram forçadas a abandonar suas casas, gerando uma das maiores crises de deslocamento interno do mundo.</p>
+
+        <h2>Destruição e colapso econômico</h2>
+        <p>Plantações, comércios, estradas, redes de energia e sistemas de abastecimento de água foram destruídos, deixando a maioria da população sem empregos e sem fontes de renda.</p>
+
+        <footer class="autor">
+          Feito por: <br><b>Mariana R. dos Santos</b>
+        </footer>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         6. QUIZ (HTML + JS)
+    ========================================================== -->
+    <div class="conteudo" id="quiz">
+      <div class="cartao-conteudo">
+        <h2>📝 Quiz: Guerra Civil no Sudão</h2>
+
+        <div id="painel-nota" class="nota">
+          <div id="nota-numero" class="numero">0 / 5</div>
+          <p id="nota-texto" style="font-weight: bold; margin-top: 8px;"></p>
+        </div>
+
+        <form id="form-quiz" onsubmit="corrigirQuiz(event)">
+          
+          <div class="cartao-quiz">
+            <h2>1. Qual foi o principal motivo que deu início aos combates em abril de 2023?</h2>
+            <label><input type="radio" name="p1" value="a" required> Uma disputa pelas fronteiras com o Egito.</label>
+            <label><input type="radio" name="p1" value="b"> Um conflito religioso entre grupos da população.</label>
+            <label><input type="radio" name="p1" value="c"> Um desacordo sobre a integração das RSF ao exército regular.</label>
+            <label><input type="radio" name="p1" value="d"> Uma invasão de tropas estrangeiras.</label>
+            <p id="msg1" class="feedback"></p>
+          </div>
+
+          <div class="cartao-quiz">
+            <h2>2. Quais são os dois principais grupos que estão em guerra no Sudão?</h2>
+            <label><input type="radio" name="p2" value="a" required> Exército Sudanês (SAF) e Forças de Apoio Rápido (RSF).</label>
+            <label><input type="radio" name="p2" value="b"> Forças de Apoio Rápido (RSF) e milícias Janjaweed.</label>
+            <label><input type="radio" name="p2" value="c"> Exército Sudanês (SAF) e forças militares da Etiópia.</label>
+            <label><input type="radio" name="p2" value="d"> Milícias Janjaweed e forças militares do Egito.</label>
+            <p id="msg2" class="feedback"></p>
+          </div>
+
+          <div class="cartao-quiz">
+            <h2>3. Quais são os principais interesses envolvidos na disputa entre o Exército Sudanês e as Forças de Apoio Rápido?</h2>
+            <label><input type="radio" name="p3" value="a" required> O controle das fronteiras, a expansão agrícola e a criação de novas alianças comerciais.</label>
+            <label><input type="radio" name="p3" value="b"> O controle do poder político, das minas de ouro, das reservas de petróleo e de regiões estratégicas.</label>
+            <label><input type="radio" name="p3" value="c"> A disputa por territórios religiosos, o controle das rotas de imigração e a expansão do turismo.</label>
+            <label><input type="radio" name="p3" value="d"> O domínio das áreas agrícolas, a exploração de recursos marítimos e o controle de organizações internacionais.</label>
+            <p id="msg3" class="feedback"></p>
+          </div>
+
+          <div class="cartao-quiz">
+            <h2>4. Qual país é apontado como um dos principais apoiadores das Forças de Apoio Rápido (RSF)?</h2>
+            <label><input type="radio" name="p4" value="a" required> Egito.</label>
+            <label><input type="radio" name="p4" value="b"> Turquia.</label>
+            <label><input type="radio" name="p4" value="c"> Catar.</label>
+            <label><input type="radio" name="p4" value="d"> Emirados Árabes Unidos.</label>
+            <p id="msg4" class="feedback"></p>
+          </div>
+
+          <div class="cartao-quiz">
+            <h2>5. Qual é uma das principais consequências da guerra para a população sudanesa?</h2>
+            <label><input type="radio" name="p5" value="a" required> Aumento da produção agrícola, mas com dificuldades no comércio internacional.</label>
+            <label><input type="radio" name="p5" value="b"> Crescimento do número de refugiados, acompanhado pela melhoria dos serviços de saúde.</label>
+            <label><input type="radio" name="p5" value="c"> Insegurança alimentar, propagação de doenças e deslocamento de milhões de pessoas.</label>
+            <label><input type="radio" name="p5" value="d"> Redução do acesso à educação, mas com manutenção dos serviços básicos de saúde.</label>
+            <p id="msg5" class="feedback"></p>
+          </div>
+
+          <button type="submit" class="btn-submit-quiz">Ver resultado</button>
+        </form>
+
+        <footer class="autor">
+          Quiz formulado pelo Grupo 4.
+        </footer>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- =========================================================
+       JAVASCRIPT DAS ABAS E CORREÇÃO DO QUIZ
+  ========================================================== -->
+  <script>
+    function abrir(id, botao) {
+      document.querySelectorAll('.conteudo').forEach(c => c.classList.remove('aberto'));
+      
+      const elementoAlvo = document.getElementById(id);
+      if (elementoAlvo) {
+        elementoAlvo.classList.add('aberto');
+      }
+
+      document.querySelectorAll('.botoes button').forEach(b => b.classList.remove('ativo'));
+      if (botao) {
+        botao.classList.add('ativo');
+      }
+    }
+
+    function semImagem(img) {
+      if (img.dataset.ok) return;
+      img.dataset.ok = '1';
+      img.src = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(
+        '<svg xmlns="http://www.w3.org/2000/svg" width="600" height="340">' +
+        '<rect width="600" height="340" fill="#dfe8ef"/>' +
+        '<text x="300" y="165" font-family="Arial" font-size="22" fill="#7d8da0" ' +
+        'text-anchor="middle">Coloque sua imagem aqui</text>' +
+        '<text x="300" y="195" font-family="Arial" font-size="15" fill="#9aa8b8" ' +
+        'text-anchor="middle">' + img.getAttribute('src').split('?')[0] + '</text>' +
+        '</svg>'
+      );
+    }
+
+    function corrigirQuiz(event) {
+      event.preventDefault();
+
+      const gabarito = {
+        p1: { certa: 'c', texto: 'Um desacordo sobre a integração das RSF ao exército regular.' },
+        p2: { certa: 'a', texto: 'Exército Sudanês (SAF) e Forças de Apoio Rápido (RSF).' },
+        p3: { certa: 'b', texto: 'O controle do poder político, das minas de ouro, das reservas de petróleo e de regiões estratégicas.' },
+        p4: { certa: 'd', texto: 'Emirados Árabes Unidos.' },
+        p5: { certa: 'c', texto: 'Insegurança alimentar, propagação de doenças e deslocamento de milhões de pessoas.' }
+      };
+
+      let pontos = 0;
+
+      for (let i = 1; i <= 5; i++) {
+        const campo = 'p' + i;
+        const resposta = document.querySelector('input[name="' + campo + '"]:checked');
+        const msgEl = document.getElementById('msg' + i);
+
+        msgEl.style.display = 'block';
+
+        if (resposta && resposta.value === gabarito[campo].certa) {
+          pontos++;
+          msgEl.className = 'feedback feedback-acerto';
+          msgEl.textContent = '✔ Acertou!';
+        } else {
+          msgEl.className = 'feedback feedback-erro';
+          msgEl.textContent = '✘ Errou. A resposta certa era: ' + gabarito[campo].texto;
+        }
+      }
+
+      const painel = document.getElementById('painel-nota');
+      const notaNum = document.getElementById('nota-numero');
+      const notaTexto = document.getElementById('nota-texto');
+
+      painel.style.display = 'block';
+      notaNum.textContent = pontos + ' / 5';
+
+      if (pontos === 5) {
+        notaTexto.textContent = 'Perfeito! Você acertou tudo! 🎉';
+      } else if (pontos >= 3) {
+        notaTexto.textContent = 'Muito bem! Você foi bem no quiz. 👏';
+      } else {
+        notaTexto.textContent = 'Vale reler o conteúdo e tentar de novo. 📚';
+      }
+
+      painel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Grupo 8: EUA x Afeganistão — Atlas Geopolítico</title>
+
+  <!-- =========================================================
+       CSS DA PÁGINA (GRUPO 8 - TOTALMENTE RESPONSIVO)
+  ========================================================== -->
+  <style>
+    :root {
+      --cor-fundo:    #e6c7c2;
+      --cor-texto:    #16202b;
+      --cor-suave:    #5b6b7a;
+      --cor-cartao:   #ffffff;
+      --cor-destaque: #c94c4c;
+      --cor-hover:    #a33434;
+      --cor-borda:    #d6e0e8;
+      --cor-acerto:   #1e7e34;
+      --cor-erro:     #bd2130;
+    }
+
+    * { box-sizing: border-box; }
+    
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: var(--cor-fundo);
+      color: var(--cor-texto);
+      line-height: 1.6;
+    }
+
+    .pagina {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    /* ---- Topo com o botão de voltar ---- */
+    .voltar {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: var(--cor-suave);
+      font-weight: bold;
+      margin-bottom: 20px;
+      font-size: 15px;
+      transition: color 0.2s ease;
+    }
+    .voltar:hover { color: var(--cor-destaque); }
+
+    header {
+      margin-bottom: 24px;
+    }
+
+    header h1 {
+      font-size: 32px;
+      margin: 0 0 6px;
+      color: var(--cor-texto);
+      line-height: 1.2;
+    }
+
+    header p.intro {
+      color: var(--cor-suave);
+      margin: 0 0 16px;
+      font-size: 16px;
+    }
+
+    /* ---- BARRA DE BOTÕES RESPONSIVA ---- */
+    .botoes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .botoes button {
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: bold;
+      padding: 10px 18px;
+      border-radius: 30px;
+      cursor: pointer;
+      background: var(--cor-cartao);
+      color: var(--cor-texto);
+      border: 2px solid var(--cor-borda);
+      transition: all 0.2s ease;
+      touch-action: manipulation;
+    }
+
+    .botoes button:hover {
+      border-color: var(--cor-destaque);
+      color: var(--cor-destaque);
+    }
+
+    .botoes button.ativo {
+      background: var(--cor-destaque);
+      color: #ffffff;
+      border-color: var(--cor-destaque);
+    }
+
+    /* ---- CONTEÚDO ---- */
+    .conteudo { display: none; }
+    .conteudo.aberto { display: block !important; }
+
+    .cartao-conteudo {
+      background: var(--cor-cartao);
+      border: 1px solid var(--cor-borda);
+      border-radius: 18px;
+      padding: 26px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.06);
+    }
+
+    .cartao-conteudo h2 {
+      margin: 22px 0 12px;
+      font-size: 22px;
+      color: var(--cor-destaque);
+      line-height: 1.3;
+    }
+
+    .cartao-conteudo h2:first-child { margin-top: 0; }
+    .cartao-conteudo h3 { font-size: 18px; margin: 18px 0 8px; color: var(--cor-texto); }
+    .cartao-conteudo p  { margin: 0 0 14px; word-wrap: break-word; }
+
+    /* ---- Imagens ---- */
+    .foto { margin: 0 0 18px; }
+    .foto img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+      background: #dfe8ef;
+      object-fit: cover;
+    }
+    .foto figcaption {
+      font-size: 13px;
+      color: var(--cor-suave);
+      margin-top: 8px;
+      text-align: center;
+      font-style: italic;
+    }
+
+    /* ---- ESTILOS DOS CRÉDITOS DA PÁGINA ---- */
+    .creditos {
+      margin-top: 24px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--cor-borda);
+      font-size: 14px;
+      color: var(--cor-suave);
+      font-weight: 600;
+      text-align: right;
+    }
+
+    /* ---- ESTILOS DO QUIZ ---- */
+    .cartao-quiz {
+      background: var(--cor-cartao);
+      border: 1px solid var(--cor-borda);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 18px;
+    }
+
+    .cartao-quiz h2 {
+      font-size: 17px;
+      color: var(--cor-destaque);
+      margin: 0 0 10px;
+      line-height: 1.4;
+    }
+
+    .cartao-quiz label {
+      display: block;
+      padding: 8px 12px;
+      margin-bottom: 6px;
+      background: #f8fafc;
+      border-radius: 8px;
+      border: 1px solid var(--cor-borda);
+      cursor: pointer;
+      font-size: 15px;
+      transition: background 0.2s;
+    }
+
+    .cartao-quiz label:hover {
+      background: #eef3f7;
+    }
+
+    .cartao-quiz input[type="radio"] {
+      margin-right: 8px;
+      accent-color: var(--cor-destaque);
+    }
+
+    .nota {
+      text-align: center;
+      background: #ffffff;
+      border: 2px solid var(--cor-destaque);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    .nota .numero {
+      font-size: 42px;
+      font-weight: bold;
+      color: var(--cor-destaque);
+    }
+
+    .feedback {
+      font-weight: bold;
+      margin: 10px 0 0;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      display: none;
+    }
+
+    .feedback-acerto {
+      color: var(--cor-acerto);
+      background: #e8f5e9;
+      border: 1px solid #c8e6c9;
+    }
+
+    .feedback-erro {
+      color: var(--cor-erro);
+      background: #ffebee;
+      border: 1px solid #ffcdd2;
+    }
+
+    .btn-submit-quiz {
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 12px 28px;
+      border-radius: 30px;
+      cursor: pointer;
+      background: var(--cor-destaque);
+      color: #fff;
+      border: none;
+      transition: background 0.2s;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .btn-submit-quiz:hover {
+      background: var(--cor-hover);
+    }
+
+    /* ---- ADAPTAÇÕES MOBILE ---- */
+    @media (max-width: 768px) {
+      .pagina { padding: 20px 15px 40px; }
+      header h1 { font-size: 26px; }
+      header p.intro { font-size: 14px; margin-bottom: 14px; }
+      .botoes { gap: 8px; }
+      .botoes button {
+        flex: 1 1 calc(50% - 8px);
+        text-align: center;
+        padding: 10px 12px;
+        font-size: 13px;
+      }
+      .cartao-conteudo { padding: 20px 16px; border-radius: 14px; }
+      .cartao-conteudo h2 { font-size: 19px; }
+    }
+
+    @media (max-width: 480px) {
+      .botoes button { flex: 1 1 100%; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="pagina">
+
+    <!-- Volta para o carrossel -->
+    <a class="voltar" href="index.html">← Voltar aos temas</a>
+
+    <header>
+      <h1>★ Grupo 8: EUA x Afeganistão</h1>
+      <p class="intro">Clique em um tópico para navegar pelo conteúdo.</p>
+    </header>
+
+    <!-- =========================================================
+         BOTÕES DE NAVEGAÇÃO
+    ========================================================== -->
+    <div class="botoes">
+      <button class="ativo" onclick="abrir('onde', this)">Onde acontece</button>
+      <button onclick="abrir('como', this)">Como surgiu</button>
+      <button onclick="abrir('quem', this)">Quem participa</button>
+      <button onclick="abrir('quais', this)">Quais interesses?</button>
+      <button onclick="abrir('quais2', this)">Impactos</button>
+      <button onclick="abrir('atentados', this)">11 de Setembro</button>
+      <button onclick="abrir('guerra', this)">Guerra ao Terror</button>
+      <button onclick="abrir('taliba', this)">Talibã</button>
+      <button onclick="abrir('otan', this)">OTAN</button>
+      <button onclick="abrir('retirada', this)">Retirada (2021)</button>
+      <button onclick="abrir('situacao', this)">Situação Atual</button>
+      <button onclick="abrir('quiz', this)">Quiz</button>
+    </div>
+
+    <!-- =========================================================
+         1. ONDE ACONTECE O CONFLITO (Miguel L)
+    ========================================================== -->
+    <div class="conteudo aberto" id="onde">
+      <div class="cartao-conteudo">
+        <h2>Onde acontece o conflito?</h2>
+        <figure class="foto">
+          <img src="afe.jpg" alt="EUA x Afeganistão" onerror="semImagem(this)">
+        </figure>
+        <p><strong>O conflito entre os Estados Unidos e o Afeganistão (envolvendo o grupo extremista Talibã e a rede Al-Qaeda) ocorreu no território do próprio Afeganistão.</strong></p>
+        <p>• <strong>Localização geográfica:</strong> O país fica localizado na Ásia Central, fazendo fronteira com Paquistão, Irã, Turquemenistão, Uzbequistão, Tajiquistão e China.<br>
+        • <strong>Principais pontos de combate e sedes:</strong> As operações militares e os confrontos espalharam-se por todo o território afegão — incluindo as montanhas e áreas rurais onde o Talibã se escondia, bases militares estratégicas como a Base Aérea de Bagram, e a capital, Cabul, que foi o centro do poder derrubado em 2001 e retomado pelo Talibã em agosto de 2021.<br>
+        • <strong>Duração:</strong> O conflito estendeu-se de outubro de 2001 até agosto de 2021, quando as tropas americanas concluíram sua retirada do país.</p>
+
+        <p><strong>O conflito concentrou-se principalmente em três regiões estratégicas dentro do Afeganistão (e na fronteira vizinha):</strong></p>
+        <p>• <strong>Sul e Leste (Províncias de Helmand e Kandahar):</strong> Foi a região com os combates mais intensos. Kandahar é o berço histórico do Talibã, e o vale do rio Helmand era um forte reduto do grupo, exigindo grandes ofensivas dos EUA e aliados.<br>
+        • <strong>Leste e Fronteira com o Paquistão (Montanhas de Tora Bora):</strong> Área montanhosa de difícil acesso onde líderes da Al-Qaeda, incluindo Osama bin Laden, esconderam-se após a invasão de 2001. O conflito também transbordou para a região tribal do noroeste do Paquistão (como o Waziristão), usada como refúgio pelos insurgentes.<br>
+        • <strong>Centro-Leste (Cabul e Vale de Panjshir):</strong> A capital Cabul foi o principal centro político e alvo inicial da invasão, enquanto a região ao norte da capital (como Bagram) serviu como a principal base militar e logística dos Estados Unidos durante os 20 anos de guerra.</p>
+
+        <p class="creditos">Feito por Miguel L</p>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         2. COMO SURGIU (Emily)
+    ========================================================== -->
+    <div class="conteudo" id="como">
+      <div class="cartao-conteudo">
+        <h2>Como surgiu o conflito?</h2>
+        <figure class="foto">
+          <img src="afe2.jpg" alt="Origem do conflito" onerror="semImagem(this)">
+        </figure>
+        <p><strong>O conflito entre os Estados Unidos e o Afeganistão surgiu em outubro de 2001, como uma resposta militar direta dos EUA aos ataques terroristas de 11 de setembro de 2001. A invasão teve como objetivo capturar Osama bin Laden e desmantelar a rede Al-Qaeda, que recebia abrigo do regime do Talibã no território afegão.</strong></p>
+
+        <h2>Antecedentes e Causas Diretas</h2>
+        <p>• <strong>Os ataques de 11 de setembro:</strong> Em 11 de setembro de 2001, militantes do grupo extremista Al-Qaeda sequestraram quatro aviões comerciais nos EUA, deixando quase três mil mortos.<br>
+        • <strong>O abrigo da Al-Qaeda no Afeganistão:</strong> O líder da Al-Qaeda, Osama bin Laden, operava a partir do Afeganistão, governado desde 1996 pelo Talibã.<br>
+        • <strong>A recusa do Talibã:</strong> Logo após os atentados, o presidente americano George W. Bush exigiu que o Talibã entregasse Osama bin Laden. O Talibã recusou o ultimato.</p>
+
+        <h2>O Início da Guerra</h2>
+        <p>• <strong>A invasão liderada pelos EUA:</strong> Diante da recusa, os Estados Unidos e aliados lançaram a Operação Liberdade Duradoura em 7 de outubro de 2001.<br>
+        • <strong>Queda rápida e guerrilha longa:</strong> A ofensiva derrubou o regime do Talibã em poucas semanas, tomando a capital Cabul em novembro de 2001. No entanto, os líderes insurgentes fugiram para as montanhas e para o Paquistão, dando início a uma guerra de guerrilha de 20 anos.</p>
+
+        <p class="creditos">Feito por Emily</p>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         3. QUEM PARTICIPOU (Emily)
+    ========================================================== -->
+    <div class="conteudo" id="quem">
+      <div class="cartao-conteudo">
+        <h2>Quem participou?</h2>
+        <figure class="foto">
+          <img src="afe3.jpg" alt="Participantes da Guerra" onerror="semImagem(this)">
+        </figure>
+        <p><strong>O conflito envolveu principalmente dois grandes blocos: de um lado, uma coalizão internacional liderada pelos Estados Unidos e o governo afegão apoiado pelo Ocidente; do outro, o Talibã e redes extremistas aliadas.</strong></p>
+
+        <h3>1. A Coalizão Liderada pelos Estados Unidos</h3>
+        <p>• <strong>Estados Unidos:</strong> Principal ator militar e financeiro.<br>
+        • <strong>OTAN e Aliados Internacionais:</strong> Países como Reino Unido, Canadá, Alemanha, França e Itália enviaram milhares de soldados.<br>
+        • <strong>Aliança do Norte:</strong> Frente unida de facções armadas afegãs contrárias ao Talibã.<br>
+        • <strong>Governo da República Islâmica do Afeganistão:</strong> Criado após a queda do Talibã em 2001.</p>
+
+        <h3>2. Os Grupos Insurgentes e Extremistas</h3>
+        <p>• <strong>Talibã:</strong> Movimento fundamentalista islâmico que governava o país até 2001.<br>
+        • <strong>Al-Qaeda:</strong> Rede terrorista liderada por Osama bin Laden.<br>
+        • <strong>Rede Haqqani:</strong> Facção insurgente fortemente ligada ao Talibã.<br>
+        • <strong>Estado Islâmico (ISIS-K):</strong> Surgiu por volta de 2015 como rival do governo afegão e do próprio Talibã.</p>
+
+        <p class="creditos">Feito por Emily</p>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         4. QUAIS INTERESSES? (Anna Zurdo)
+    ========================================================== -->
+    <div class="conteudo" id="quais">
+      <div class="cartao-conteudo">
+        <h2>Quais eram os interesses?</h2>
+        <figure class="foto">
+          <img src="afe4.jpg" alt="Interesses envolvidos" onerror="semImagem(this)">
+        </figure>
+
+        <h3>1. Interesses dos Estados Unidos e Aliados</h3>
+        <p>• <strong>Segurança e Contraterrorismo:</strong> Destruir as bases da Al-Qaeda e impedir novos atentados.<br>
+        • <strong>Posição Geopolítica Estratégica:</strong> Presença militar na Ásia Central, próxima à China, Irã e Rússia.<br>
+        • <strong>Estabilização e Construção de Estado:</strong> Promover um governo democrático aliado em Cabul.<br>
+        • <strong>Recursos Naturais:</strong> Reservas minerais (lítio, cobre) e rotas de gasodutos.</p>
+
+        <h3>2. Interesses do Talibã e Grupos Insurgentes</h3>
+        <p>• <strong>Soberania e Retomada do Poder:</strong> Expulsar tropas estrangeiras e reassumir o controle do país.<br>
+        • <strong>Imposição Ideológica:</strong> Restabelecer o Emirado Islâmico sob a Sharia.</p>
+
+        <h3>3. Interesses de Potências Regionais</h3>
+        <p>• <strong>Paquistão:</strong> Garantir influência na região.<br>
+        • <strong>Rússia, China e Irã:</strong> Manter vigilância na fronteira e conter o avanço militar ocidental.</p>
+
+        <p class="creditos">Feito por Anna Zurdo</p>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         5. QUAIS OS IMPACTOS (Anna Zurdo)
+    ========================================================== -->
+    <div class="conteudo" id="quais2">
+      <div class="cartao-conteudo">
+        <h2>Quais foram os impactos que isso trouxe?</h2>
+        <figure class="foto">
+          <img src="afe5.jpg" alt="Impactos da Guerra" onerror="semImagem(this)">
+        </figure>
+        
+        <h3>1. Impactos Humanos e Sociais</h3>
+        <p>• Mais de 240 mil mortos diretamente na guerra (incluindo 70 mil civis).<br>
+        • Milhões de refugiados e deslocados internos.<br>
+        • Severo retrocesso nos direitos das mulheres com o retorno do Talibã.</p>
+
+        <h3>2. Impactos Econômicos e Humanitários</h3>
+        <p>• Colapso econômico e suspensão da ajuda financeira internacional ao Afeganistão.<br>
+        • Gasto superior a 2,3 trilhões de dólares pelos Estados Unidos.<br>
+        • Afeganistão como epicentro da produção mundial de ópio durante o conflito.</p>
+
+        <h3>3. Impactos Políticos e Geopolíticos</h3>
+        <p>• Retorno do Talibã ao poder em 2021.<br>
+        • Desgaste da imagem diplomática dos EUA perante aliados.<br>
+        • Reconfiguração da segurança regional na Ásia Central.</p>
+
+        <p class="creditos">Feito por Anna Zurdo</p>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         6. ATENTADOS DE 11 DE SETEMBRO (Miguel L)
+    ========================================================== -->
+    <div class="conteudo" id="atentados">
+      <div class="cartao-conteudo">
+        <h2>Quais foram os atentados de 11 de setembro?</h2>
+        <figure class="foto">
+          <img src="afe6.jpg" alt="11 de Setembro" onerror="semImagem(this)">
+        </figure>
+        <p><strong>Os atentados de 11 de setembro de 2001 foram uma série de quatro ataques terroristas suicidas coordenados pela Al-Qaeda contra os EUA, deixando 2.977 vítimas fatais.</strong></p>
+
+        <h3>Como Aconteceram os Ataques</h3>
+        <p>• <strong>Torres Gêmeas (Nova York):</strong> Dois aviões colidiram contra as torres do World Trade Center.<br>
+        • <strong>Pentágono (Virgínia):</strong> Um avião atingiu a sede do Departamento de Defesa dos EUA.<br>
+        • <strong>Shanksville (Pensilvânia):</strong> O quarto avião caiu em um campo após reação dos passageiros.</p>
+
+        <h3>Consequências Imediatas</h3>
+        <p>• Início da campanha global "Guerra ao Terror".<br>
+        • Reformas drásticas na segurança da aviação civil no mundo inteiro.<br>
+        • Criação de leis rígidas de vigilância (como o Patriot Act nos EUA).</p>
+
+        <p class="creditos">Feito por Miguel L</p>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         7. GUERRA AO TERROR (Emily)
+    ========================================================== -->
+    <div class="conteudo" id="guerra">
+      <div class="cartao-conteudo">
+        <h2>Guerra ao Terror</h2>
+        <figure class="foto">
+          <img src="afe7.jpg" alt="Guerra ao Terror" onerror="semImagem(this)">
+        </figure>
+        <p>Campanha militar e diplomática iniciada pelo governo George W. Bush para combater grupos terroristas internacionais.</p>
+        <p>• <strong>Principais frentes:</strong> Guerra do Afeganistão (2001–2021) e Guerra do Iraque (2003–2011).<br>
+        • <strong>Controvérsias:</strong> Doutrina de ataques preventivos, prisão de Guantánamo e ataques com drones.<br>
+        • <strong>Custo humano e financeiro:</strong> Centenas de milhares de mortes e custos globais trilionários.</p>
+
+        <p class="creditos">Feito por Emily</p>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         8. TALIBÃ (Miguel L)
+    ========================================================== -->
+    <div class="conteudo" id="taliba">
+      <div class="cartao-conteudo">
+        <h2>O Talibã</h2>
+        <figure class="foto">
+          <img src="afe8.jpg" alt="O Talibã" onerror="semImagem(this)">
+        </figure>
+        <p>Grupo fundamentalista fundado em 1994 no Afeganistão.</p>
+        <p>• Governou o país de 1996 a 2001 até ser derrubado pela invasão norte-americana.<br>
+        • Atuou como força de guerrilha por 20 anos até a assinatura do Acordo de Doha (2020) e a retomada do poder em agosto de 2021.</p>
+
+        <p class="creditos">Feito por Miguel L</p>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         9. OTAN (Anna Zurdo)
+    ========================================================== -->
+    <div class="conteudo" id="otan">
+      <div class="cartao-conteudo">
+        <h2>Atuação da OTAN</h2>
+        <figure class="foto">
+          <img src="afe9.jpg" alt="Atuação da OTAN" onerror="semImagem(this)">
+        </figure>
+        <p>A aliança invocou pela primeira vez na história o <strong>Artigo 5º</strong> (defesa coletiva) após o 11 de setembro.</p>
+        <p>• Liderou a missão ISAF (2003–2014) e a missão Resolute Support (2015–2021) para treinamento de forças afegãs.<br>
+        • Mais de 1.100 militares de aliados europeus e canadenses morreram durante as operações no país.</p>
+
+        <p class="creditos">Feito por Anna Zurdo</p>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         10. RETIRADA DAS TROPAS EM 2021 (Anna Zurdo)
+    ========================================================== -->
+    <div class="conteudo" id="retirada">
+      <div class="cartao-conteudo">
+        <h2>Retirada das Tropas em 2021</h2>
+        <figure class="foto">
+          <img src="afe10.jpg" alt="Retirada das tropas" onerror="semImagem(this)">
+        </figure>
+        <p>Em agosto de 2021, a saída final das forças dos EUA e da OTAN culminou no rápido colapso do governo afegão e em uma evacuação dramática pelo aeroporto de Cabul, com a retirada de mais de 124 mil pessoas.</p>
+
+        <p class="creditos">Feito por Anna Zurdo</p>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         11. SITUAÇÃO ATUAL (Anna Zurdo)
+    ========================================================== -->
+    <div class="conteudo" id="situacao">
+      <div class="cartao-conteudo">
+        <h2>Como está a situação atual do Afeganistão?</h2>
+        <figure class="foto">
+          <img src="afe11.jpg" alt="Situação Atual" onerror="semImagem(this)">
+        </figure>
+        <p>• <strong>Crise Humanitária:</strong> Milhões de pessoas enfrentam pobreza extrema e insegurança alimentar.<br>
+        • <strong>Direitos Humanos:</strong> Severas restrições ao trabalho e estudo de mulheres e meninas.<br>
+        • <strong>Isolamento Internacional:</strong> Falta de reconhecimento diplomático formal por potências ocidentais.</p>
+
+        <p class="creditos">Feito por Anna Zurdo</p>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         12. QUIZ (HTML + JS) (Anna Zurdo)
+    ========================================================== -->
+    <div class="conteudo" id="quiz">
+      <div class="cartao-conteudo">
+        <h2>📝 Quiz: EUA x Afeganistão</h2>
+
+        <div id="painel-nota" class="nota">
+          <div id="nota-numero" class="numero">0 / 5</div>
+          <p id="nota-texto" style="font-weight: bold; margin-top: 8px;"></p>
+        </div>
+
+        <form id="form-quiz" onsubmit="corrigirQuiz(event)">
+          
+          <div class="cartao-quiz">
+            <h2>1. Qual foi o principal motivo que levou os Estados Unidos a invadirem o Afeganistão em outubro de 2001?</h2>
+            <label><input type="radio" name="p1" value="a" required> Uma disputa comercial sobre tarifas de exportação de trigo.</label>
+            <label><input type="radio" name="p1" value="b"> Os ataques terroristas de 11 de setembro de 2001 e a recusa do regime em entregar Osama bin Laden.</label>
+            <label><input type="radio" name="p1" value="c"> A descoberta de grandes reservas de petróleo na capital Cabul.</label>
+            <label><input type="radio" name="p1" value="d"> A invasão prévia do Afeganistão a territórios da Europa Ocidental.</label>
+            <p id="msg1" class="feedback"></p>
+          </div>
+
+          <div class="cartao-quiz">
+            <h2>2. Por aproximadamente quanto tempo durou a presença militar direta dos Estados Unidos e de seus aliados no Afeganistão?</h2>
+            <label><input type="radio" name="p2" value="a" required> Apenas 6 meses.</label>
+            <label><input type="radio" name="p2" value="b"> Cerca de 20 anos.</label>
+            <label><input type="radio" name="p2" value="c"> Quase 50 anos.</label>
+            <label><input type="radio" name="p2" value="d"> Exatamente 2 anos.</label>
+            <p id="msg2" class="feedback"></p>
+          </div>
+
+          <div class="cartao-quiz">
+            <h2>3. Qual grupo fundamentalista islâmico estava no poder no Afeganistão quando os Estados Unidos invadiram o país em 2001?</h2>
+            <label><input type="radio" name="p3" value="a" required> ISIS (Estado Islâmico)</label>
+            <label><input type="radio" name="p3" value="b"> Talibã</label>
+            <label><input type="radio" name="p3" value="c"> Al-Qaeda</label>
+            <label><input type="radio" name="p3" value="d"> Aliança do Norte</label>
+            <p id="msg3" class="feedback"></p>
+          </div>
+
+          <div class="cartao-quiz">
+            <h2>4. O que aconteceu em agosto de 2021, logo após a retirada das últimas tropas dos Estados Unidos do Afeganistão?</h2>
+            <label><input type="radio" name="p4" value="a" required> O Talibã retomou rapidamente o controle de Cabul e do governo do país.</label>
+            <label><input type="radio" name="p4" value="b"> A Organização das Nações Unidas assumiu a administração militar direta.</label>
+            <label><input type="radio" name="p4" value="c"> Houve eleições livres vencidas por um partido moderado.</label>
+            <label><input type="radio" name="p4" value="d"> O país tornou-se uma monarquia constitucional.</label>
+            <p id="msg4" class="feedback"></p>
+          </div>
+
+          <div class="cartao-quiz">
+            <h2>5. Qual é a situação atual no Afeganistão sob o governo do Talibã em relação às mulheres e à diplomacia?</h2>
+            <label><input type="radio" name="p5" value="a" required> As mulheres possuem plena liberdade para trabalhar e estudar em todos os níveis de ensino.</label>
+            <label><input type="radio" name="p5" value="b"> O governo é reconhecido oficialmente por todos os países do mundo como uma democracia plena.</label>
+            <label><input type="radio" name="p5" value="c"> O Talibã impõe severas restrições ao estudo e ao trabalho das mulheres, sem reconhecimento diplomático formal global.</label>
+            <label><input type="radio" name="p5" value="d"> Há um sistema econômico de livre mercado com eleições multipartidárias anuais.</label>
+            <p id="msg5" class="feedback"></p>
+          </div>
+
+          <button type="submit" class="btn-submit-quiz">Ver resultado</button>
+        </form>
+
+        <p class="creditos">Feito por Anna Zurdo</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- =========================================================
+       JAVASCRIPT DAS ABAS E CORREÇÃO DO QUIZ
+  ========================================================== -->
+  <script>
+    function abrir(id, botao) {
+      document.querySelectorAll('.conteudo').forEach(c => c.classList.remove('aberto'));
+      
+      const elementoAlvo = document.getElementById(id);
+      if (elementoAlvo) {
+        elementoAlvo.classList.add('aberto');
+      }
+
+      document.querySelectorAll('.botoes button').forEach(b => b.classList.remove('ativo'));
+      if (botao) {
+        botao.classList.add('ativo');
+      }
+    }
+
+    function semImagem(img) {
+      if (img.dataset.ok) return;
+      img.dataset.ok = '1';
+      img.src = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(
+        '<svg xmlns="http://www.w3.org/2000/svg" width="600" height="340">' +
+        '<rect width="600" height="340" fill="#dfe8ef"/>' +
+        '<text x="300" y="165" font-family="Arial" font-size="22" fill="#7d8da0" ' +
+        'text-anchor="middle">Coloque sua imagem aqui</text>' +
+        '<text x="300" y="195" font-family="Arial" font-size="15" fill="#9aa8b8" ' +
+        'text-anchor="middle">' + img.getAttribute('src').split('?')[0] + '</text>' +
+        '</svg>'
+      );
+    }
+
+    function corrigirQuiz(event) {
+      event.preventDefault();
+
+      const gabarito = {
+        p1: { certa: 'b', texto: 'Os ataques terroristas de 11 de setembro de 2001 e a recusa do regime em entregar Osama bin Laden.' },
+        p2: { certa: 'b', texto: 'Cerca de 20 anos.' },
+        p3: { certa: 'b', texto: 'Talibã' },
+        p4: { certa: 'a', texto: 'O Talibã retomou rapidamente o controle de Cabul e do governo do país.' },
+        p5: { certa: 'c', texto: 'O Talibã impõe severas restrições ao estudo e ao trabalho das mulheres, sem reconhecimento diplomático formal global.' }
+      };
+
+      let pontos = 0;
+
+      for (let i = 1; i <= 5; i++) {
+        const campo = 'p' + i;
+        const resposta = document.querySelector('input[name="' + campo + '"]:checked');
+        const msgEl = document.getElementById('msg' + i);
+
+        msgEl.style.display = 'block';
+
+        if (resposta && resposta.value === gabarito[campo].certa) {
+          pontos++;
+          msgEl.className = 'feedback feedback-acerto';
+          msgEl.textContent = '✔ Acertou!';
+        } else {
+          msgEl.className = 'feedback feedback-erro';
+          msgEl.textContent = '✘ Errou. A resposta certa era: ' + gabarito[campo].texto;
+        }
+      }
+
+      const painel = document.getElementById('painel-nota');
+      const notaNum = document.getElementById('nota-numero');
+      const notaTexto = document.getElementById('nota-texto');
+
+      painel.style.display = 'block';
+      notaNum.textContent = pontos + ' / 5';
+
+      if (pontos === 5) {
+        notaTexto.textContent = 'Perfeito! Você acertou tudo! 🎉';
+      } else if (pontos >= 3) {
+        notaTexto.textContent = 'Muito bem! Você foi bem no quiz. 👏';
+      } else {
+        notaTexto.textContent = 'Vale reler o conteúdo e tentar de novo. 📚';
+      }
+
+      painel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  </script>
+</body>
+</html>

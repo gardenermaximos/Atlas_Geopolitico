@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Grupo 1: Rússia x Ucrânia — Atlas Geopolítico</title>
+
+  <!-- =========================================================
+       CSS DA PÁGINA (GRUPO 1)
+  ========================================================== -->
+  <style>
+    :root {
+      --cor-fundo:    #cecece;
+      --cor-texto:    #16202b;
+      --cor-suave:    #5b6b7a;
+      --cor-cartao:   #f1f1f1;
+      --cor-destaque: #1f7a8c;  /* cor do botão selecionado */
+      --cor-borda:    #d6e0e8;
+      --cor-acerto:   #1e7e34;
+      --cor-erro:     #bd2130;
+    }
+
+    * { box-sizing: border-box; }
+    
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: var(--cor-fundo);
+      color: var(--cor-texto);
+      line-height: 1.6;
+    }
+
+    .pagina {
+      max-width: 860px; 
+      margin: 0 auto; 
+      padding: 32px 20px 60px;
+      position: relative; 
+      z-index: 1;
+      background: var(--cor-fundo);
+      min-height: 100vh;
+    }
+
+    /* ---- Topo com o botão de voltar ---- */
+    .voltar {
+      display: inline-block; 
+      text-decoration: none;
+      color: var(--cor-suave); 
+      font-weight: bold; 
+      margin-bottom: 20px;
+      transition: color 0.2s;
+    }
+    .voltar:hover { color: var(--cor-destaque); }
+
+    header h1 { font-size: 32px; margin: 0 0 6px; }
+    header p.intro { color: var(--cor-suave); margin: 0 0 28px; }
+
+    /* ---- BARRA DE BOTÕES RESPONSIVA ---- */
+    .botoes {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px;
+    }
+    .botoes button {
+      font-family: inherit; font-size: 15px; font-weight: bold;
+      padding: 11px 20px; border-radius: 30px; cursor: pointer;
+      background: var(--cor-cartao); color: var(--cor-texto);
+      border: 2px solid var(--cor-borda);
+      transition: all 0.2s ease;
+    }
+    .botoes button:hover { border-color: var(--cor-destaque); }
+    .botoes button.ativo {
+      background: var(--cor-destaque); color: #ffffff; border-color: var(--cor-destaque);
+    }
+
+    /* ---- CONTEÚDOS ---- */
+    .conteudo { display: none; }
+    .conteudo.aberto { display: block !important; }
+
+    .cartao-conteudo {
+      background: var(--cor-cartao);
+      border: 1px solid var(--cor-borda);
+      border-radius: 18px;
+      padding: 26px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.06);
+    }
+    .cartao-conteudo h2 { margin: 0 0 14px; font-size: 24px; color: var(--cor-destaque); }
+    .cartao-conteudo h3 { margin: 18px 0 8px; font-size: 18px; color: var(--cor-texto); }
+    .cartao-conteudo p  { margin: 0 0 14px; }
+    .cartao-conteudo ul { margin: 0 0 14px; padding-left: 20px; }
+
+    /* ---- Imagens ---- */
+    .foto { margin: 0 0 18px; }
+    .foto img {
+      width: 100%; max-width: 100%; height: auto;
+      border-radius: 12px; display: block; background: #dfe8ef;
+    }
+    .foto figcaption {
+      font-size: 13px; color: var(--cor-suave); margin-top: 8px; text-align: center;
+    }
+
+    .destaque {
+      background: #e4f0f2;
+      border-left: 4px solid var(--cor-destaque);
+      padding: 12px 16px;
+      margin: 14px 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    /* ---- ESTILOS DO QUIZ ---- */
+    .cartao-quiz {
+      background: var(--cor-cartao);
+      border: 1px solid var(--cor-borda);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 18px;
+    }
+
+    .cartao-quiz h2 {
+      font-size: 17px;
+      color: var(--cor-destaque);
+      margin: 0 0 10px;
+      line-height: 1.4;
+    }
+
+    .cartao-quiz label {
+      display: block;
+      padding: 8px 12px;
+      margin-bottom: 6px;
+      background: #ffffff;
+      border-radius: 8px;
+      border: 1px solid var(--cor-borda);
+      cursor: pointer;
+      font-size: 15px;
+      transition: background 0.2s;
+    }
+
+    .cartao-quiz label:hover {
+      background: #eef3f7;
+    }
+
+    .cartao-quiz input[type="radio"] {
+      margin-right: 8px;
+      accent-color: var(--cor-destaque);
+    }
+
+    .nota {
+      text-align: center;
+      background: #ffffff;
+      border: 2px solid var(--cor-destaque);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    .nota .numero {
+      font-size: 42px;
+      font-weight: bold;
+      color: var(--cor-destaque);
+    }
+
+    .feedback {
+      font-weight: bold;
+      margin: 10px 0 0;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      display: none;
+    }
+
+    .feedback-acerto {
+      color: var(--cor-acerto);
+      background: #e8f5e9;
+      border: 1px solid #c8e6c9;
+    }
+
+    .feedback-erro {
+      color: var(--cor-erro);
+      background: #ffebee;
+      border: 1px solid #ffcdd2;
+    }
+
+    .btn-submit-quiz {
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 12px 28px;
+      border-radius: 30px;
+      cursor: pointer;
+      background: var(--cor-destaque);
+      color: #fff;
+      border: none;
+      transition: background 0.2s;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .btn-submit-quiz:hover {
+      background: #155562;
+    }
+
+    /* ---- Imagens fixas nas laterais ---- */
+    .lateral {
+      position: fixed;
+      top: 15%;
+      bottom: 15%;
+      width: calc((100% - 860px) / 2 - 60px);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      z-index: 0;
+    }
+    .lateral.esq { left: 30px;  background-image: url('fundo_esq.svg'); }
+    .lateral.dir { right: 30px; background-image: url('fundo_dir.jpg'); }
+
+    @media (max-width: 1000px) {
+      .lateral { display: none; }
+    }
+
+    @media (max-width: 500px) {
+      header h1 { font-size: 26px; }
+      .cartao-conteudo { padding: 20px; }
+      .botoes button { flex: 1 1 calc(50% - 10px); text-align: center; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="lateral esq"></div>
+  <div class="lateral dir"></div>
+
+  <div class="pagina">
+    
+    <!-- Volta para o carrossel -->
+    <a class="voltar" href="index.html">← Voltar aos temas</a>
+
+    <header>
+      <h1>Grupo 1: Rússia x Ucrânia</h1>
+      <p class="intro">Clique em um botão para ver o conteúdo.</p>
+    </header>
+
+    <!-- =========================================================
+         BOTÕES DE NAVEGAÇÃO
+    ========================================================== -->
+    <div class="botoes">
+      <button class="ativo" onclick="abrir('norte', this)">Onde acontece o conflito</button>
+      <button onclick="abrir('nordeste', this)">Como surgiu o conflito</button>
+      <button onclick="abrir('centrooeste', this)">Quem participa</button>
+      <button onclick="abrir('sudeste', this)">Quais interesses?</button>
+      <button onclick="abrir('sul', this)">Quais os impactos</button>
+      <button onclick="abrir('quiz', this)">Quiz</button>
+    </div>
+
+    <!-- =========================================================
+         1. ONDE ACONTECE O CONFLITO
+    ========================================================== -->
+    <div class="conteudo aberto" id="norte">
+      <div class="cartao-conteudo">
+        <h2>Onde acontece o conflito?</h2>
+
+        <figure class="foto">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Ukraine%20location%20map.svg" alt="Mapa da localização da Ucrânia">
+          <figcaption>Localização geográfica da Ucrânia no continente europeu.</figcaption>
+        </figure>
+
+        <p><strong>Países envolvidos:</strong> Rússia e Ucrânia são os principais países envolvidos diretamente na guerra. Belarus também participa indiretamente, permitindo que forças russas utilizem seu território.</p>
+        <p><strong>Capitais:</strong> A capital da Ucrânia é Kyiv (Kiev), a da Rússia é Moscou e a de Belarus é Minsk.</p>
+        <p><strong>Continente:</strong> O conflito acontece no continente europeu, principalmente na região conhecida como Leste Europeu.</p>
+        <p><strong>Fronteiras:</strong> A Ucrânia faz fronteira com Rússia, Belarus, Polônia, Eslováquia, Hungria, Romênia e Moldávia. Ao sul, possui acesso ao Mar Negro e ao Mar de Azov.</p>
+        <p><strong>Localização geográfica:</strong> A Ucrânia está localizada entre a Europa Central e a Rússia, ocupando uma posição estratégica de ligação entre os países europeus e o território russo.</p>
+        <p><strong>Recursos naturais existentes:</strong> A Ucrânia possui carvão mineral, minério de ferro, manganês, gás natural e terras muito férteis, utilizadas para a produção de trigo, milho e girassol. A Rússia possui grandes reservas de petróleo, gás natural, carvão e outros minerais.</p>
+        <p><strong>Importância estratégica da região:</strong> A região possui grande importância econômica e política devido ao acesso ao Mar Negro, aos portos comerciais, às rotas de transporte, à produção agrícola e às reservas de recursos naturais.</p>
+      </div>
+      <p style="margin-top: 10px;"><b>Feito por Ruan Victor Del Bianco Carvalho</b></p>
+    </div>
+
+    <!-- =========================================================
+         2. COMO SURGIU O CONFLITO
+    ========================================================== -->
+    <div class="conteudo" id="nordeste">
+      <div class="cartao-conteudo">
+        <h2>Como surgiu o conflito e contexto histórico</h2>
+
+        <figure class="foto">
+          <img src="mapa.jpg" alt="Mapa da Rússia e Ucrânia" onerror="semImagem(this)">
+          <figcaption>Rússia e Ucrânia possuem uma história compartilhada há séculos.</figcaption>
+        </figure>
+
+        <p>As raízes históricas entre Rússia e Ucrânia remontam ao século IX, quando surgiu o Rus de Kiev, uma importante organização política medieval que contribuiu para a formação histórica e cultural dos povos eslavos da região.</p>
+        <p>Durante séculos, partes do território ucraniano ficaram sob domínio de diferentes impérios, incluindo o Império Russo. Em 1922, a Ucrânia passou a integrar a União Soviética (URSS).</p>
+        <p>Em 1991, com o fim da União Soviética, a Ucrânia conquistou sua independência. A partir daí, o país passou a buscar maior aproximação com a Europa e com países ocidentais, enquanto a Rússia procurava manter sua influência na região.</p>
+        <p>As tensões aumentaram principalmente em 2014, com a anexação da Crimeia pela Rússia e os conflitos no leste ucraniano. Em 24 de fevereiro de 2022, a Rússia iniciou uma invasão em larga escala contra a Ucrânia.</p>
+
+        <hr style="border: 0; border-top: 1px solid var(--cor-borda); margin: 20px 0;">
+
+        <h2>Fatores Políticos, Econômicos e Sociais</h2>
+        <p><strong>Disputas Políticas:</strong> A aproximação da Ucrânia com a União Europeia e a OTAN é vista pela Rússia como ameaça à sua segurança nacional. A Ucrânia defende sua soberania e o direito de escolher suas alianças.</p>
+        <p><strong>Fatores Econômicos:</strong> A região possui enorme importância agrícola e rotas estratégicas de gás natural e petróleo para a Europa.</p>
+        <p><strong>Fatores Étnicos e Religiosos:</strong> A Ucrânia possui minorias étnicas russas e divergências entre igrejas ortodoxas ligadas à Ucrânia e a Moscou.</p>
+      </div>
+      <p style="margin-top: 10px;"><b>Feito por Victor Matos Minucci Volpe</b></p>
+    </div>
+
+    <!-- =========================================================
+         3. QUEM PARTICIPA
+    ========================================================== -->
+    <div class="conteudo" id="centrooeste">
+      <div class="cartao-conteudo">
+        <h2>Governos e países diretamente envolvidos</h2>
+        
+        <h3>Rússia</h3>
+        <figure class="foto">
+          <img src="putin.png" alt="Vladimir Putin" onerror="semImagem(this)">
+          <figcaption>(Vladimir Putin - Presidente da Rússia)</figcaption>
+        </figure>
+        <p>Rússia: governo de Vladimir Putin, responsável pela invasão em grande escala da Ucrânia em fevereiro de 2022.</p>
+
+        <h3>Ucrânia</h3>
+        <figure class="foto">
+          <img src="ucra.png" alt="Volodymyr Zelensky" onerror="semImagem(this)">
+          <figcaption>(Volodymyr Zelensky - Presidente da Ucrânia)</figcaption>
+        </figure>
+        <p>Ucrânia: governo de Volodymyr Zelensky, que organiza a defesa do território ucraniano.</p>
+      </div>
+      
+      <br>
+
+      <div class="cartao-conteudo">
+        <h2>Grupos armados e forças militares</h2>
+        
+        <h3>Forças Armadas da Ucrânia</h3>
+        <p><strong>Exército oficial Ucraniano:</strong> Responsáveis por defender o território ucraniano, proteger cidades e combater as tropas russas com apoio de países aliados.</p>
+        <p><strong>Brigada Azov:</strong> Unidade militar ucraniana integrada à Guarda Nacional, conhecida pela defesa de Mariupol em 2022.</p>
+
+        <h3>Forças Armadas da Rússia</h3>
+        <p><strong>Exército oficial Russo:</strong> Responsáveis pelas operações militares russas com soldados, tanques, aviação e artilharia.</p>
+        <p><strong>Grupo Wagner:</strong> Grupo militar privado russo que teve papel de destaque em batalhas como Bakhmut antes da rebelião de 2023.</p>
+      </div>
+      <p style="margin-top: 10px;"><b>Feito por Danilo Rafael Pedrozo Moreira</b></p>
+    </div>
+
+    <!-- =========================================================
+         4. QUAIS INTERESSES?
+    ========================================================== -->
+    <div class="conteudo" id="sudeste">
+      <div class="cartao-conteudo">
+        <h2>Quais interesses estão envolvidos?</h2>
+        <p class="intro">Os principais interesses econômicos, territoriais e estratégicos na guerra entre Rússia e Ucrânia:</p>
+
+        <h3>1. Petróleo e Gás Natural</h3>
+        <p>A Rússia busca manter o controle de mercado de energia e rotas de exportação para a Europa, enquanto a Ucrânia tenta proteger sua infraestrutura e independência energética.</p>
+
+        <h3>2. Minérios e Recursos Naturais</h3>
+        <p>A Ucrânia abriga vastas reservas de minério de ferro, lítio, titânio e manganês, fundamentais para a indústria tecnológica e militar.</p>
+
+        <h3>3. Rotas Comerciais e Agricultura</h3>
+        <p>O controle de portos no Mar Negro e no Mar de Azov é crucial para a exportação global de grãos (trigo, milho e girassol).</p>
+
+        <h3>4. Territórios Disputados e Segurança</h3>
+        <p>A disputa inclui a península da Crimeia e as regiões de Donetsk, Luhansk, Zaporizhzhia e Kherson, além da influência da OTAN no Leste Europeu.</p>
+      </div>
+      <p style="margin-top: 10px;"><b>Feito por Raphael Gustavo de Lima Gomes</b></p>
+    </div>
+
+    <!-- =========================================================
+         5. QUAIS OS IMPACTOS
+    ========================================================== -->
+    <div class="conteudo" id="sul">
+      <div class="cartao-conteudo">
+        <h2>Quais os impactos da guerra?</h2>
+        <figure class="foto">
+          <img src="finha.png" alt="Consequências do conflito" onerror="semImagem(this)">
+          <figcaption>Consequências humanas e materiais da guerra.</figcaption>
+        </figure>
+
+        <h3>1. Crise Humanitária e Refugiados</h3>
+        <p>Milhões de pessoas foram forçadas a abandonar suas casas, gerando a maior crise de refugiados na Europa desde a Segunda Guerra Mundial.</p>
+
+        <h3>2. Destruição de Infraestrutura</h3>
+        <p>Cidades inteiras, hospitais, estradas e redes elétricas foram destruídas pelos combates e bombardeiros.</p>
+
+        <h3>3. Impactos Econômicos Globais</h3>
+        <p>Aumento da inflação mundial, crise energética na Europa e alta nos preços dos alimentos e fertilizantes no mercado internacional.</p>
+      </div>
+      <p style="margin-top: 10px;"><b>Feito por Pedro Henrique Ozeldi Valentim</b></p>
+    </div>
+
+    <!-- =========================================================
+         6. QUIZ (HTML + JS)
+    ========================================================== -->
+    <div class="conteudo" id="quiz">
+      <div class="cartao-conteudo">
+        <h2>📝 Quiz: Rússia x Ucrânia</h2>
+
+        <div id="painel-nota" class="nota">
+          <div id="nota-numero" class="numero">0 / 5</div>
+          <p id="nota-texto" style="font-weight: bold; margin-top: 8px;"></p>
+        </div>
+
+        <form id="form-quiz" onsubmit="corrigirQuiz(event)">
+          
+          <div class="cartao-quiz">
+            <h2>1. Onde acontece o principal conflito entre Rússia e Ucrânia?</h2>
+            <label><input type="radio" name="p1" value="a" required> Na África Central</label>
+            <label><input type="radio" name="p1" value="b"> No Oriente Médio</label>
+            <label><input type="radio" name="p1" value="c"> Na América do Sul</label>
+            <label><input type="radio" name="p1" value="d"> Na Europa Oriental</label>
+            <p id="msg1" class="feedback"></p>
+          </div>
+
+          <div class="cartao-quiz">
+            <h2>2. Como surgiu o conflito entre Rússia e Ucrânia, que se intensificou em 2022?</h2>
+            <label><input type="radio" name="p2" value="a" required> Por uma disputa esportiva entre os países</label>
+            <label><input type="radio" name="p2" value="b"> Por uma disputa sobre recursos marítimos na América</label>
+            <label><input type="radio" name="p2" value="c"> Por uma guerra religiosa entre os países</label>
+            <label><input type="radio" name="p2" value="d"> Por disputas territoriais, políticas e pela influência sobre a Ucrânia</label>
+            <p id="msg2" class="feedback"></p>
+          </div>
+
+          <div class="cartao-quiz">
+            <h2>3. Quais são os principais países envolvidos diretamente no conflito?</h2>
+            <label><input type="radio" name="p3" value="a" required> Estados Unidos e China</label>
+            <label><input type="radio" name="p3" value="b"> Alemanha e França</label>
+            <label><input type="radio" name="p3" value="c"> Rússia e Ucrânia</label>
+            <label><input type="radio" name="p3" value="d"> Brasil e Argentina</label>
+            <p id="msg3" class="feedback"></p>
+          </div>
+
+          <div class="cartao-quiz">
+            <h2>4. Quais são alguns dos principais interesses envolvidos no conflito?</h2>
+            <label><input type="radio" name="p4" value="a" required> Somente disputas esportivas</label>
+            <label><input type="radio" name="p4" value="b"> Apenas interesses turísticos e culturais</label>
+            <label><input type="radio" name="p4" value="c"> Controle territorial, recursos naturais e influência geopolítica</label>
+            <label><input type="radio" name="p4" value="d"> A expansão de áreas agrícolas brasileiras</label>
+            <p id="msg4" class="feedback"></p>
+          </div>
+
+          <div class="cartao-quiz">
+            <h2>5. Quais são os principais impactos causados pela guerra?</h2>
+            <label><input type="radio" name="p5" value="a" required> Apenas mudanças nas fronteiras comerciais</label>
+            <label><input type="radio" name="p5" value="b"> Mortes, destruição, refugiados e crise econômica</label>
+            <label><input type="radio" name="p5" value="c"> Redução da população mundial por causas naturais</label>
+            <label><input type="radio" name="p5" value="d"> Aumento do turismo e crescimento econômico</label>
+            <p id="msg5" class="feedback"></p>
+          </div>
+
+          <button type="submit" class="btn-submit-quiz">Ver resultado</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- =========================================================
+       JAVASCRIPT DAS ABAS E CORREÇÃO DO QUIZ
+  ========================================================== -->
+  <script>
+    function abrir(id, botao) {
+      document.querySelectorAll('.conteudo').forEach(c => c.classList.remove('aberto'));
+      
+      const elementoAlvo = document.getElementById(id);
+      if (elementoAlvo) {
+        elementoAlvo.classList.add('aberto');
+      }
+
+      document.querySelectorAll('.botoes button').forEach(b => b.classList.remove('ativo'));
+      if (botao) {
+        botao.classList.add('ativo');
+      }
+    }
+
+    function semImagem(img) {
+      if (img.dataset.ok) return;
+      img.dataset.ok = '1';
+      img.src = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(
+        '<svg xmlns="http://www.w3.org/2000/svg" width="600" height="340">' +
+        '<rect width="600" height="340" fill="#dfe8ef"/>' +
+        '<text x="300" y="165" font-family="Arial" font-size="22" fill="#7d8da0" ' +
+        'text-anchor="middle">Coloque sua imagem aqui</text>' +
+        '<text x="300" y="195" font-family="Arial" font-size="15" fill="#9aa8b8" ' +
+        'text-anchor="middle">' + img.getAttribute('src').split('?')[0] + '</text>' +
+        '</svg>'
+      );
+    }
+
+    function corrigirQuiz(event) {
+      event.preventDefault();
+
+      const gabarito = {
+        p1: { certa: 'd', texto: 'Na Europa Oriental.' },
+        p2: { certa: 'd', texto: 'Por disputas territoriais, políticas e pela influência sobre a Ucrânia.' },
+        p3: { certa: 'c', texto: 'Rússia e Ucrânia.' },
+        p4: { certa: 'c', texto: 'Controle territorial, recursos naturais e influência geopolítica.' },
+        p5: { certa: 'b', texto: 'Mortes, destruição, refugiados e crise econômica.' }
+      };
+
+      let pontos = 0;
+
+      for (let i = 1; i <= 5; i++) {
+        const campo = 'p' + i;
+        const resposta = document.querySelector('input[name="' + campo + '"]:checked');
+        const msgEl = document.getElementById('msg' + i);
+
+        msgEl.style.display = 'block';
+
+        if (resposta && resposta.value === gabarito[campo].certa) {
+          pontos++;
+          msgEl.className = 'feedback feedback-acerto';
+          msgEl.textContent = '✔ Acertou!';
+        } else {
+          msgEl.className = 'feedback feedback-erro';
+          msgEl.textContent = '✘ Errou. A resposta certa era: ' + gabarito[campo].texto;
+        }
+      }
+
+      const painel = document.getElementById('painel-nota');
+      const notaNum = document.getElementById('nota-numero');
+      const notaTexto = document.getElementById('nota-texto');
+
+      painel.style.display = 'block';
+      notaNum.textContent = pontos + ' / 5';
+
+      if (pontos === 5) {
+        notaTexto.textContent = 'Perfeito! Você acertou tudo! 🎉';
+      } else if (pontos >= 3) {
+        notaTexto.textContent = 'Muito bem! Você foi bem no quiz. 👏';
+      } else {
+        notaTexto.textContent = 'Vale reler o conteúdo e tentar de novo. 📚';
+      }
+
+      painel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  </script>
+</body>
+</html>
