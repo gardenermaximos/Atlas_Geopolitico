@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Grupo 1: Rússia x Ucrânia — Atlas Geopolítico</title>
 
   <!-- =========================================================
-       CSS DA PÁGINA (GRUPO 1)
+       CSS DA PÁGINA (GRUPO 1) — RESPONSIVO E CORRIGIDO
   ========================================================== -->
   <style>
     :root {
@@ -54,7 +53,7 @@
     }
     .voltar:hover { color: var(--cor-destaque); }
 
-    header h1 { font-size: 32px; margin: 0 0 6px; }
+    header h1 { font-size: 32px; margin: 0 0 6px; color: var(--cor-destaque); }
     header p.intro { color: var(--cor-suave); margin: 0 0 28px; }
 
     /* ---- BARRA DE BOTÕES RESPONSIVA ---- */
@@ -73,7 +72,7 @@
       background: var(--cor-destaque); color: #ffffff; border-color: var(--cor-destaque);
     }
 
-    /* ---- CONTEÚDOS ---- */
+    /* ---- CONTEÚDOS DAS ABAS ---- */
     .conteudo { display: none; }
     .conteudo.aberto { display: block !important; }
 
@@ -82,12 +81,15 @@
       border: 1px solid var(--cor-borda);
       border-radius: 18px;
       padding: 26px;
+      margin-bottom: 20px;
       box-shadow: 0 8px 24px rgba(0,0,0,.06);
     }
     .cartao-conteudo h2 { margin: 0 0 14px; font-size: 24px; color: var(--cor-destaque); }
-    .cartao-conteudo h3 { margin: 18px 0 8px; font-size: 18px; color: var(--cor-texto); }
-    .cartao-conteudo p  { margin: 0 0 14px; }
+    .cartao-conteudo h3 { margin: 20px 0 10px; font-size: 19px; color: var(--cor-texto); }
+    .cartao-conteudo h4 { margin: 16px 0 8px; font-size: 16px; color: var(--cor-destaque); }
+    .cartao-conteudo p  { margin: 0 0 14px; text-align: justify; }
     .cartao-conteudo ul { margin: 0 0 14px; padding-left: 20px; }
+    .cartao-conteudo li { margin-bottom: 6px; }
 
     /* ---- Imagens ---- */
     .foto { margin: 0 0 18px; }
@@ -96,15 +98,56 @@
       border-radius: 12px; display: block; background: #dfe8ef;
     }
     .foto figcaption {
-      font-size: 13px; color: var(--cor-suave); margin-top: 8px; text-align: center;
+      font-size: 13px; color: var(--cor-suave); margin-top: 8px; text-align: center; font-weight: 600;
     }
 
+    /* ---- Bloco de Destaque ---- */
     .destaque {
       background: #e4f0f2;
       border-left: 4px solid var(--cor-destaque);
       padding: 12px 16px;
       margin: 14px 0;
       border-radius: 0 8px 8px 0;
+    }
+
+    /* ---- Linha do Tempo ---- */
+    .linha-tempo {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+      border-left: 3px solid var(--cor-destaque);
+    }
+
+    .item-tempo {
+      margin-bottom: 25px;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .item-tempo::before {
+      content: '';
+      position: absolute;
+      left: -9px;
+      top: 5px;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: var(--cor-destaque);
+    }
+
+    .data-tempo {
+      font-weight: bold;
+      color: var(--cor-destaque);
+      display: block;
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    /* ---- Créditos do Autor ---- */
+    .creditos {
+      margin-top: 15px;
+      font-weight: bold;
+      color: var(--cor-texto);
     }
 
     /* ---- ESTILOS DO QUIZ ---- */
@@ -237,25 +280,25 @@
 
     <header>
       <h1>Grupo 1: Rússia x Ucrânia</h1>
-      <p class="intro">Clique em um botão para ver o conteúdo.</p>
+      <p class="intro">Clique em um dos botões abaixo para explorar o conteúdo completo.</p>
     </header>
 
     <!-- =========================================================
          BOTÕES DE NAVEGAÇÃO
     ========================================================== -->
     <div class="botoes">
-      <button class="ativo" onclick="abrir('norte', this)">Onde acontece o conflito</button>
-      <button onclick="abrir('nordeste', this)">Como surgiu o conflito</button>
-      <button onclick="abrir('centrooeste', this)">Quem participa</button>
-      <button onclick="abrir('sudeste', this)">Quais interesses?</button>
-      <button onclick="abrir('sul', this)">Quais os impactos</button>
+      <button class="ativo" onclick="abrir('onde-acontece', this)">Onde acontece o conflito</button>
+      <button onclick="abrir('surgimento', this)">Como surgiu o conflito</button>
+      <button onclick="abrir('quem-participa', this)">Quem participa</button>
+      <button onclick="abrir('interesses', this)">Quais interesses?</button>
+      <button onclick="abrir('impactos', this)">Quais os impactos</button>
       <button onclick="abrir('quiz', this)">Quiz</button>
     </div>
 
     <!-- =========================================================
          1. ONDE ACONTECE O CONFLITO
     ========================================================== -->
-    <div class="conteudo aberto" id="norte">
+    <div class="conteudo aberto" id="onde-acontece">
       <div class="cartao-conteudo">
         <h2>Onde acontece o conflito?</h2>
 
@@ -271,14 +314,17 @@
         <p><strong>Localização geográfica:</strong> A Ucrânia está localizada entre a Europa Central e a Rússia, ocupando uma posição estratégica de ligação entre os países europeus e o território russo.</p>
         <p><strong>Recursos naturais existentes:</strong> A Ucrânia possui carvão mineral, minério de ferro, manganês, gás natural e terras muito férteis, utilizadas para a produção de trigo, milho e girassol. A Rússia possui grandes reservas de petróleo, gás natural, carvão e outros minerais.</p>
         <p><strong>Importância estratégica da região:</strong> A região possui grande importância econômica e política devido ao acesso ao Mar Negro, aos portos comerciais, às rotas de transporte, à produção agrícola e às reservas de recursos naturais.</p>
+        
+        <p class="creditos">Feito por Ruan Victor Del Bianco Carvalho</p>
       </div>
-      <p style="margin-top: 10px;"><b>Feito por Ruan Victor Del Bianco Carvalho</b></p>
     </div>
 
     <!-- =========================================================
-         2. COMO SURGIU O CONFLITO
+         2. COMO SURGIU O CONFLITO (TODAS AS SEÇÕES + LINHA DO TEMPO)
     ========================================================== -->
-    <div class="conteudo" id="nordeste">
+    <div class="conteudo" id="surgimento">
+      
+      <!-- Contexto Histórico -->
       <div class="cartao-conteudo">
         <h2>Como surgiu o conflito e contexto histórico</h2>
 
@@ -291,21 +337,123 @@
         <p>Durante séculos, partes do território ucraniano ficaram sob domínio de diferentes impérios, incluindo o Império Russo. Em 1922, a Ucrânia passou a integrar a União Soviética (URSS).</p>
         <p>Em 1991, com o fim da União Soviética, a Ucrânia conquistou sua independência. A partir daí, o país passou a buscar maior aproximação com a Europa e com países ocidentais, enquanto a Rússia procurava manter sua influência na região.</p>
         <p>As tensões aumentaram principalmente em 2014, com a anexação da Crimeia pela Rússia e os conflitos no leste ucraniano. Em 24 de fevereiro de 2022, a Rússia iniciou uma invasão em larga escala contra a Ucrânia.</p>
-
-        <hr style="border: 0; border-top: 1px solid var(--cor-borda); margin: 20px 0;">
-
-        <h2>Fatores Políticos, Econômicos e Sociais</h2>
-        <p><strong>Disputas Políticas:</strong> A aproximação da Ucrânia com a União Europeia e a OTAN é vista pela Rússia como ameaça à sua segurança nacional. A Ucrânia defende sua soberania e o direito de escolher suas alianças.</p>
-        <p><strong>Fatores Econômicos:</strong> A região possui enorme importância agrícola e rotas estratégicas de gás natural e petróleo para a Europa.</p>
-        <p><strong>Fatores Étnicos e Religiosos:</strong> A Ucrânia possui minorias étnicas russas e divergências entre igrejas ortodoxas ligadas à Ucrânia e a Moscou.</p>
       </div>
-      <p style="margin-top: 10px;"><b>Feito por Victor Matos Minucci Volpe</b></p>
+
+      <!-- Disputas Políticas -->
+      <div class="cartao-conteudo">
+        <h2>Disputas Políticas</h2>
+
+        <figure class="foto">
+          <img src="representacao.jpg" alt="Representação política da Rússia e Ucrânia" onerror="semImagem(this)">
+          <figcaption>A disputa pela influência política e militar é um dos principais fatores do conflito.</figcaption>
+        </figure>
+
+        <p>Um dos principais motivos das tensões é a aproximação da Ucrânia com a União Europeia e a possibilidade de integrar a OTAN (Organização do Tratado do Atlântico Norte).</p>
+        <p>A Rússia considera a expansão da influência militar ocidental próxima de suas fronteiras uma ameaça à sua segurança nacional.</p>
+        <p>Por outro lado, a Ucrânia defende sua independência, soberania e o direito de escolher suas próprias alianças políticas e militares.</p>
+        <p>Outro ponto importante é a disputa pelo controle e influência sobre a Crimeia e as regiões de Donetsk e Luhansk, localizadas no leste ucraniano.</p>
+      </div>
+
+      <!-- Fatores Econômicos -->
+      <div class="cartao-conteudo">
+        <h2>Fatores Econômicos</h2>
+
+        <figure class="foto">
+          <img src="agro.jpg" alt="Produção agrícola e infraestrutura energética" onerror="semImagem(this)">
+          <figcaption>A região possui importância agrícola, energética e industrial.</figcaption>
+        </figure>
+
+        <p>A Ucrânia possui grandes áreas de terras férteis, sendo uma importante produtora e exportadora de trigo, milho e outros produtos agrícolas.</p>
+        <p>Outro fator importante é sua localização estratégica para o transporte de gás natural e outras mercadorias entre a Rússia e os países europeus.</p>
+        <p>A Rússia é uma grande produtora e exportadora de petróleo e gás natural. Por isso, a energia também possui grande importância nas relações econômicas e políticas do conflito.</p>
+        <p>A guerra provocou destruição de infraestrutura, dificuldades no comércio internacional, aumento de custos energéticos e prejuízos econômicos para diversos países.</p>
+      </div>
+
+      <!-- Fatores Étnicos e Religiosos -->
+      <div class="cartao-conteudo">
+        <h2>Fatores Étnicos e Religiosos</h2>
+
+        <figure class="foto">
+          <img src="cultura.jpg" alt="Cultura e população da Ucrânia" onerror="semImagem(this)">
+          <figcaption>A população ucraniana possui diferentes identidades culturais e linguísticas.</figcaption>
+        </figure>
+
+        <p><strong>Fatores Étnicos:</strong> A Ucrânia possui uma população formada principalmente por ucranianos, mas também possui minorias étnicas, incluindo russos. O idioma russo é falado por parte da população, especialmente em algumas regiões do leste e do sul.</p>
+        <p>Essas diferenças linguísticas e culturais fazem parte da história do país, mas não significam que todos os habitantes dessas regiões tenham as mesmas opiniões políticas.</p>
+        <p><strong>Fatores Religiosos:</strong> A maioria dos ucranianos possui tradição cristã ortodoxa. Existem diferentes igrejas ortodoxas no país, incluindo a Igreja Ortodoxa da Ucrânia, que recebeu reconhecimento de autocefalia em 2019.</p>
+        <p>A questão religiosa também possui importância cultural e política, pois representa uma disputa de influência entre instituições religiosas ligadas à Ucrânia e à Rússia.</p>
+      </div>
+
+      <!-- Linha do Tempo -->
+      <div class="cartao-conteudo">
+        <h2>Principais Acontecimentos — Linha do Tempo</h2>
+
+        <figure class="foto">
+          <img src="crono.jpg" alt="Representação histórica do conflito" onerror="semImagem(this)">
+          <figcaption>Os principais acontecimentos que marcaram a relação entre Rússia e Ucrânia.</figcaption>
+        </figure>
+
+        <ul class="linha-tempo">
+          <li class="item-tempo">
+            <span class="data-tempo">Século IX — Rus de Kiev</span>
+            Surge uma importante organização política medieval, considerada parte das raízes históricas de russos e ucranianos.
+          </li>
+          <li class="item-tempo">
+            <span class="data-tempo">1922 — Formação da URSS</span>
+            A Ucrânia passa a integrar a União das Repúblicas Socialistas Soviéticas.
+          </li>
+          <li class="item-tempo">
+            <span class="data-tempo">1991 — Independência da Ucrânia</span>
+            Com o fim da União Soviética, a Ucrânia conquista sua independência.
+          </li>
+          <li class="item-tempo">
+            <span class="data-tempo">2004 — Revolução Laranja</span>
+            Grandes manifestações acontecem após uma eleição presidencial contestada, fortalecendo movimentos favoráveis a reformas democráticas e à aproximação com o Ocidente.
+          </li>
+          <li class="item-tempo">
+            <span class="data-tempo">2013 — Protestos de Euromaidan</span>
+            Manifestações começam após o governo ucraniano suspender um acordo de aproximação com a União Europeia.
+          </li>
+          <li class="item-tempo">
+            <span class="data-tempo">2014 — Anexação da Crimeia</span>
+            A Rússia ocupa e anexa a Crimeia, território internacionalmente reconhecido como parte da Ucrânia.
+          </li>
+          <li class="item-tempo">
+            <span class="data-tempo">2014 — Conflito no Donbass</span>
+            Começam confrontos entre forças ucranianas e separatistas apoiados pela Rússia nas regiões de Donetsk e Luhansk.
+          </li>
+          <li class="item-tempo">
+            <span class="data-tempo">2019 — Igreja Ortodoxa da Ucrânia</span>
+            A Igreja Ortodoxa da Ucrânia recebe o reconhecimento de sua independência religiosa pelo Patriarcado Ecumênico.
+          </li>
+          <li class="item-tempo">
+            <span class="data-tempo">2022 — Invasão em larga escala</span>
+            Em 24 de fevereiro, a Rússia inicia uma invasão em larga escala contra o território ucraniano.
+          </li>
+          <li class="item-tempo">
+            <span class="data-tempo">2023 — Continuação da guerra</span>
+            Os combates continuam, com impactos humanitários, econômicos e políticos em diferentes partes do mundo.
+          </li>
+          <li class="item-tempo">
+            <span class="data-tempo">2024 — Guerra prolongada</span>
+            O conflito continua, com ataques, disputas territoriais e apoio internacional aos dois lados.
+          </li>
+          <li class="item-tempo">
+            <span class="data-tempo">2025 — Continuidade das negociações</span>
+            A guerra permanece sem uma solução definitiva, enquanto acontecem iniciativas diplomáticas e negociações para buscar o fim dos combates.
+          </li>
+        </ul>
+
+        <p class="creditos">Feito por Victor Matos Minucci Volpe</p>
+      </div>
+
     </div>
 
     <!-- =========================================================
          3. QUEM PARTICIPA
     ========================================================== -->
-    <div class="conteudo" id="centrooeste">
+    <div class="conteudo" id="quem-participa">
+      
       <div class="cartao-conteudo">
         <h2>Governos e países diretamente envolvidos</h2>
         
@@ -323,67 +471,239 @@
         </figure>
         <p>Ucrânia: governo de Volodymyr Zelensky, que organiza a defesa do território ucraniano.</p>
       </div>
-      
-      <br>
 
       <div class="cartao-conteudo">
         <h2>Grupos armados e forças militares</h2>
         
         <h3>Forças Armadas da Ucrânia</h3>
-        <p><strong>Exército oficial Ucraniano:</strong> Responsáveis por defender o território ucraniano, proteger cidades e combater as tropas russas com apoio de países aliados.</p>
-        <p><strong>Brigada Azov:</strong> Unidade militar ucraniana integrada à Guarda Nacional, conhecida pela defesa de Mariupol em 2022.</p>
+        
+        <h4>Exército oficial Ucraniano</h4>
+        <figure class="foto">
+          <img src="exercito_uc.png" alt="Exército Ucraniano" onerror="semImagem(this)">
+          <figcaption>(Exército Ucraniano)</figcaption>
+        </figure>
+        <p>São responsáveis por defender o território ucraniano, proteger cidades e combater as tropas russas. Recebem equipamentos e treinamento de países aliados.</p>
+
+        <h4>Brigada Azov</h4>
+        <figure class="foto">
+          <img src="azov.png" alt="Batalhão Azov" onerror="semImagem(this)">
+          <figcaption>(Batalhão Ucraniano)</figcaption>
+        </figure>
+        <p>Unidade militar ucraniana que faz parte da Guarda Nacional. Ficou conhecida pela defesa de Mariupol em 2022 e continua integrada às forças ucranianas.</p>
 
         <h3>Forças Armadas da Rússia</h3>
-        <p><strong>Exército oficial Russo:</strong> Responsáveis pelas operações militares russas com soldados, tanques, aviação e artilharia.</p>
-        <p><strong>Grupo Wagner:</strong> Grupo militar privado russo que teve papel de destaque em batalhas como Bakhmut antes da rebelião de 2023.</p>
+
+        <h4>Exército oficial Russo</h4>
+        <figure class="foto">
+          <img src="exercito_ru.jpeg" alt="Exército Russo" onerror="semImagem(this)">
+          <figcaption>(Exército Russo)</figcaption>
+        </figure>
+        <p>São responsáveis pelas operações militares russas, utilizando soldados, tanques, aviões, artilharia e mísseis para atacar posições ucranianas.</p>
+
+        <h4>Grupo Wagner</h4>
+        <figure class="foto">
+          <img src="gp_wagner.png" alt="Grupo Wagner" onerror="semImagem(this)">
+          <figcaption>(Grupo Wagner)</figcaption>
+        </figure>
+        <p>Grupo militar privado russo que teve grande participação na guerra, principalmente na batalha de Bakhmut. Em 2023, sofreu uma rebelião contra o governo russo e depois perdeu sua antiga estrutura de atuação.</p>
+
+        <p class="creditos">Feito por Danilo Rafael Pedrozo Moreira</p>
       </div>
-      <p style="margin-top: 10px;"><b>Feito por Danilo Rafael Pedrozo Moreira</b></p>
+
     </div>
 
     <!-- =========================================================
-         4. QUAIS INTERESSES?
+         4. QUAIS INTERESSES? (TODOS OS 7 TÓPICOS + CONCLUSÃO)
     ========================================================== -->
-    <div class="conteudo" id="sudeste">
+    <div class="conteudo" id="interesses">
+      
+      <!-- Intro + Petróleo -->
       <div class="cartao-conteudo">
         <h2>Quais interesses estão envolvidos?</h2>
-        <p class="intro">Os principais interesses econômicos, territoriais e estratégicos na guerra entre Rússia e Ucrânia:</p>
+        <p class="intro">Conheça os principais interesses econômicos, territoriais, políticos e estratégicos envolvidos na guerra entre Rússia e Ucrânia.</p>
 
-        <h3>1. Petróleo e Gás Natural</h3>
-        <p>A Rússia busca manter o controle de mercado de energia e rotas de exportação para a Europa, enquanto a Ucrânia tenta proteger sua infraestrutura e independência energética.</p>
-
-        <h3>2. Minérios e Recursos Naturais</h3>
-        <p>A Ucrânia abriga vastas reservas de minério de ferro, lítio, titânio e manganês, fundamentais para a indústria tecnológica e militar.</p>
-
-        <h3>3. Rotas Comerciais e Agricultura</h3>
-        <p>O controle de portos no Mar Negro e no Mar de Azov é crucial para a exportação global de grãos (trigo, milho e girassol).</p>
-
-        <h3>4. Territórios Disputados e Segurança</h3>
-        <p>A disputa inclui a península da Crimeia e as regiões de Donetsk, Luhansk, Zaporizhzhia e Kherson, além da influência da OTAN no Leste Europeu.</p>
+        <h3>1. Petróleo e gás natural</h3>
+        <figure class="foto">
+          <img src="gas.jpg" alt="Produção de petróleo e gás natural" onerror="semImagem(this)">
+          <figcaption>Produção e transporte de recursos energéticos.</figcaption>
+        </figure>
+        <p>O petróleo e o gás natural são recursos fundamentais para a economia, utilizados no abastecimento de transportes, indústrias e residências. A Rússia possui enormes reservas desses recursos e é uma das principais produtoras e exportadoras mundiais.</p>
+        <p>A Ucrânia também possui reservas próprias de petróleo e gás, além de uma localização estratégica para o transporte de energia até a Europa.</p>
+        <p><strong>Principais interesses:</strong></p>
+        <ul>
+          <li>Rússia: manter sua influência no mercado internacional de energia.</li>
+          <li>Ucrânia: explorar seus recursos e reduzir a dependência energética externa.</li>
+          <li>Europa: encontrar fornecedores alternativos para diminuir a dependência do gás russo.</li>
+        </ul>
+        <div class="destaque">
+          <strong>Importância:</strong> controlar recursos energéticos e suas rotas de transporte significa ter maior influência econômica e política.
+        </div>
       </div>
-      <p style="margin-top: 10px;"><b>Feito por Raphael Gustavo de Lima Gomes</b></p>
+
+      <!-- Minérios -->
+      <div class="cartao-conteudo">
+        <h3>2. Minérios e recursos naturais</h3>
+        <figure class="foto">
+          <img src="minerais.jpg" alt="Mineração de recursos minerais na Ucrânia" onerror="semImagem(this)">
+          <figcaption>Extração de minerais utilizados na indústria e tecnologia.</figcaption>
+        </figure>
+        <p>A Ucrânia possui importantes reservas de ferro, lítio, titânio, grafite e manganês. Esses minerais são utilizados na fabricação de aço, baterias, veículos elétricos, máquinas e equipamentos militares.</p>
+        <p>A Rússia também possui grandes reservas minerais, incluindo níquel, cobre, ouro e ferro.</p>
+        <p><strong>Principais interesses:</strong></p>
+        <ul>
+          <li>Controlar regiões ricas em recursos minerais.</li>
+          <li>Garantir matérias-primas para indústrias e tecnologias.</li>
+          <li>Fortalecer a produção industrial e militar.</li>
+          <li>Explorar recursos que possuem grande valor econômico.</li>
+        </ul>
+        <div class="destaque">
+          <strong>Importância:</strong> os minerais são essenciais para a tecnologia moderna e podem representar uma grande fonte de riqueza.
+        </div>
+      </div>
+
+      <!-- Água e Energia Nuclear -->
+      <div class="cartao-conteudo">
+        <h3>3. Água e energia nuclear</h3>
+        <figure class="foto">
+          <img src="barragem.jpg" alt="Barragem de Kakhovka na Ucrânia" onerror="semImagem(this)">
+          <figcaption>Reservatórios e estruturas hídricas da Ucrânia.</figcaption>
+        </figure>
+        <p>A água é essencial para o abastecimento da população, a agricultura, as indústrias e a geração de eletricidade. Por isso, rios, barragens e reservatórios possuem grande importância estratégica.</p>
+        <p>A Ucrânia depende de grandes rios, como o Dnipro, para abastecimento de cidades e irrigação agrícola. A Crimeia também possui importância nessa questão, pois enfrentou problemas de abastecimento após a interrupção do fornecimento pelo Canal da Crimeia do Norte em 2014.</p>
+        <p>Em junho de 2023, a barragem de Kakhovka foi destruída, provocando inundações e prejudicando o abastecimento de água, a agricultura e o meio ambiente.</p>
+        <p>Outro ponto estratégico é a usina nuclear de Zaporizhzhia, a maior da Europa, ocupada por forças russas desde 2022. Sua situação representa uma preocupação internacional relacionada à segurança nuclear.</p>
+        <p><strong>Principais interesses:</strong></p>
+        <ul>
+          <li>Controlar fontes de abastecimento de água.</li>
+          <li>Garantir água para a população e a agricultura.</li>
+          <li>Controlar estruturas importantes para a geração de energia.</li>
+        </ul>
+      </div>
+
+      <!-- Rotas comerciais e agricultura -->
+      <div class="cartao-conteudo">
+        <h3>4. Rotas comerciais e agricultura</h3>
+        <figure class="foto">
+          <img src="comercio.jpg" alt="Porto de exportação de grãos da Ucrânia" onerror="semImagem(this)">
+          <figcaption>Transporte marítimo de mercadorias pelo Mar Negro.</figcaption>
+        </figure>
+        <p>A localização da Ucrânia, próxima ao Mar Negro e ao Mar de Azov, torna seu território importante para o comércio internacional. Seus portos são utilizados para transportar alimentos, combustíveis e matérias-primas.</p>
+        <p>A Ucrânia é uma importante exportadora de trigo, milho e óleo de girassol. Já a Rússia utiliza portos do Mar Negro e do Mar de Azov para exportar petróleo, fertilizantes, grãos e outros produtos.</p>
+        <p><strong>Principais interesses:</strong></p>
+        <ul>
+          <li>Controlar portos e rotas marítimas estratégicas.</li>
+          <li>Garantir a exportação de alimentos e matérias-primas.</li>
+          <li>Manter o acesso ao Mar Negro.</li>
+          <li>Preservar a importância comercial dos dois países.</li>
+        </ul>
+        <div class="destaque">
+          <strong>Importância mundial:</strong> dificuldades nas exportações de grãos podem diminuir a oferta internacional de alimentos, contribuindo para o aumento dos preços em diversos países.
+        </div>
+      </div>
+
+      <!-- Territórios disputados -->
+      <div class="cartao-conteudo">
+        <h3>5. Territórios disputados</h3>
+        <figure class="foto">
+          <img src="territorios.jpg" alt="Mapa das regiões disputadas na Ucrânia" onerror="semImagem(this)">
+          <figcaption>Territórios ucranianos ocupados e reivindicados pela Rússia.</figcaption>
+        </figure>
+        <p>A disputa territorial é um dos principais elementos da guerra. A Rússia ocupa e reivindica regiões ucranianas consideradas estratégicas, enquanto a Ucrânia busca recuperar esses territórios e preservar sua integridade territorial.</p>
+        <p><strong>Principais regiões:</strong></p>
+        <ul>
+          <li><strong>Crimeia:</strong> península anexada pela Rússia em 2014, importante pela localização no Mar Negro e pela base naval de Sebastopol.</li>
+          <li><strong>Donetsk:</strong> região industrial do leste ucraniano, conhecida por suas atividades mineradoras e siderúrgicas.</li>
+          <li><strong>Luhansk:</strong> região do Donbas, importante pela mineração de carvão e pela indústria.</li>
+          <li><strong>Zaporizhzhia:</strong> região importante pela indústria, agricultura e usina nuclear.</li>
+          <li><strong>Kherson:</strong> região do sul, importante pela agricultura, pelos rios e pelo acesso ao Mar Negro.</li>
+        </ul>
+        <p>A Rússia declarou a anexação dessas quatro regiões em 2022, além da Crimeia em 2014. Entretanto, essas anexações não são reconhecidas pela Ucrânia nem pela maior parte da comunidade internacional.</p>
+      </div>
+
+      <!-- Indústria e economia -->
+      <div class="cartao-conteudo">
+        <h3>6. Indústria e economia</h3>
+        <figure class="foto">
+          <img src="industrias.jpg" alt="Indústria siderúrgica da Ucrânia" onerror="semImagem(this)">
+          <figcaption>Produção industrial e siderúrgica.</figcaption>
+        </figure>
+        <p>A Ucrânia possui indústrias siderúrgicas, metalúrgicas, químicas e de produção de máquinas. A Rússia também possui uma economia industrial ligada à energia, mineração e fabricação de equipamentos militares.</p>
+        <p><strong>Principais interesses:</strong></p>
+        <ul>
+          <li>Preservar fábricas e centros industriais.</li>
+          <li>Controlar áreas de produção e matérias-primas.</li>
+          <li>Fortalecer a economia e a capacidade industrial.</li>
+        </ul>
+        <div class="destaque">
+          <strong>Importância:</strong> regiões industriais representam empregos, produção, tecnologia e riqueza para os países.
+        </div>
+      </div>
+
+      <!-- Influência internacional -->
+      <div class="cartao-conteudo">
+        <h3>7. Influência internacional e segurança militar</h3>
+        <figure class="foto">
+          <img src="influencia.jpg" alt="Bandeiras da OTAN e da União Europeia" onerror="semImagem(this)">
+          <figcaption>Alianças internacionais e relações diplomáticas.</figcaption>
+        </figure>
+        <p>A guerra não envolve somente Rússia e Ucrânia. Diversos países e organizações internacionais participam indiretamente do conflito por meio de apoio militar, econômico, financeiro e diplomático.</p>
+        <p><strong>Principais participantes internacionais:</strong></p>
+        <ul>
+          <li><strong>Estados Unidos:</strong> fornecem apoio militar, financeiro e diplomático à Ucrânia.</li>
+          <li><strong>União Europeia:</strong> oferece recursos financeiros, ajuda humanitária e aplica sanções econômicas contra a Rússia.</li>
+          <li><strong>OTAN:</strong> coopera com a defesa ucraniana por meio de equipamentos e treinamento, mas a Ucrânia não é membro da aliança.</li>
+          <li><strong>China:</strong> mantém relações econômicas e diplomáticas importantes com a Rússia e busca preservar seus interesses internacionais.</li>
+          <li><strong>Bielorrússia:</strong> é aliada da Rússia e permitiu que seu território fosse utilizado como ponto de apoio para a invasão de 2022.</li>
+        </ul>
+        <p>A aproximação da Ucrânia com a OTAN também está relacionada às preocupações russas com a segurança e a influência militar ocidental na região.</p>
+        <div class="destaque">
+          <strong>Importância:</strong> as alianças internacionais influenciam a segurança militar, a economia e o equilíbrio de poder mundial.
+        </div>
+      </div>
+
+      <!-- Conclusão -->
+      <div class="cartao-conteudo">
+        <h2>Conclusão</h2>
+        <p>A guerra entre Rússia e Ucrânia envolve muito mais do que uma disputa territorial. O conflito também está relacionado ao controle de recursos naturais, à produção de energia, às rotas comerciais, à economia e à influência internacional.</p>
+        <p>Esses interesses tornam a guerra importante não apenas para os dois países, mas também para a Europa e para o restante do mundo.</p>
+
+        <p class="creditos">Feito por Raphael Gustavo de Lima Gomes</p>
+      </div>
+
     </div>
 
     <!-- =========================================================
          5. QUAIS OS IMPACTOS
     ========================================================== -->
-    <div class="conteudo" id="sul">
+    <div class="conteudo" id="impactos">
       <div class="cartao-conteudo">
         <h2>Quais os impactos da guerra?</h2>
+
         <figure class="foto">
           <img src="finha.png" alt="Consequências do conflito" onerror="semImagem(this)">
-          <figcaption>Consequências humanas e materiais da guerra.</figcaption>
+          <figcaption>Consequências humanas, materiais e econômicas da guerra.</figcaption>
         </figure>
 
-        <h3>1. Crise Humanitária e Refugiados</h3>
-        <p>Milhões de pessoas foram forçadas a abandonar suas casas, gerando a maior crise de refugiados na Europa desde a Segunda Guerra Mundial.</p>
+        <h3>1. Crise humanitária e refugiados</h3>
+        <p>O conflito provocou uma grave crise humanitária na região. Milhões de pessoas foram forçadas a abandonar suas casas e comunidades em busca de segurança, gerando uma das maiores crises de refugiados na Europa desde a Segunda Guerra Mundial.</p>
 
-        <h3>2. Destruição de Infraestrutura</h3>
-        <p>Cidades inteiras, hospitais, estradas e redes elétricas foram destruídas pelos combates e bombardeiros.</p>
+        <h3>2. Destruição da infraestrutura</h3>
+        <p>Cidades inteiras, hospitais, escolas, residências, estradas, pontes e redes de abastecimento elétrico e hídrico foram severamente danificados ou destruídos. A reconstrução dessas estruturas representa um desafio de décadas.</p>
 
-        <h3>3. Impactos Econômicos Globais</h3>
-        <p>Aumento da inflação mundial, crise energética na Europa e alta nos preços dos alimentos e fertilizantes no mercado internacional.</p>
+        <h3>3. Falta de alimentos, água e suprimentos</h3>
+        <p>Em diversas áreas atingidas pelos combates, a população enfrenta graves dificuldades para conseguir alimentos, água potável, aquecimento, medicamentos e cuidados médicos essenciais, agravando o sofrimento civil.</p>
+
+        <h3>4. Impactos econômicos globais</h3>
+        <p>A guerra prejudicou o comércio internacional, gerou inflação mundial, elevou os custos dos combustíveis e da energia na Europa e provocou alta nos preços globais de alimentos e fertilizantes.</p>
+
+        <h3>5. Consequências políticas e diplomáticas internacionais</h3>
+        <p>O conflito alterou drasticamente as relações diplomáticas no mundo, intensificou as sanções econômicas contra a Rússia, fortaleceu as alianças ocidentais e redefiniu os gastos com defesa de vários países.</p>
+
+        <h3>6. Impactos de longo prazo na população</h3>
+        <p>Crianças, idosos e famílias enfrentam trauma psicológico profundo, interrupção de estudos e perda de moradia. Os efeitos sociais e de saúde mental da guerra permanecerão por gerações.</p>
+
+        <p class="creditos">Feito por Pedro Henrique Ozeldi Valentim</p>
       </div>
-      <p style="margin-top: 10px;"><b>Feito por Pedro Henrique Ozeldi Valentim</b></p>
     </div>
 
     <!-- =========================================================
